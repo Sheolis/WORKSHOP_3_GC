@@ -17,15 +17,19 @@ body {
 }
 
 .empty {
-  display: inline-block;
+  display: inline-flex;
+  position: relative;
   height: 160px;
   width: 160px;
-  margin: 10px;
   border: solid 3px salmon;
-  background: white;
+  background: black;
 }
 
 .hovered {
   background: #f4f4f4;
   border-style: dashed;
+}
+
+.F2 {
+  top: 200px;
 }
