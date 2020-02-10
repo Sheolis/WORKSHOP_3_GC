@@ -1,0 +1,20 @@
+body {
+  width: 1280px;
+  height: 720px;
+}
+
+#environnement{
+  background-repeat: no-repeat;
+  z-index: 0;
+  position: absolute;
+}
+
+#dialogue{
+  position: absolute;
+  z-index: 1;
+  margin-left: 100px;
+  margin-top: 490px;
+}
+.hide{
+  display: none;
+}
