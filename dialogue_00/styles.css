@@ -14,7 +14,9 @@ body {
   z-index: 1;
   margin-left: 100px;
   margin-top: 490px;
+  cursor: pointer;
 }
+
 .hide{
   display: none;
 }
