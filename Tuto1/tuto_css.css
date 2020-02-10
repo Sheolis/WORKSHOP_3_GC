@@ -3,7 +3,7 @@ body {
 }
 
 .fill {
-  background-image: url('https://source.unsplash.com/random/150x150');
+  background-image: url('img/etoile.svg');
   position: relative;
   height: 150px;
   width: 150px;
