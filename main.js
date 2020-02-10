@@ -23,14 +23,14 @@ function init() {
 
 }
 
-function preload(){
-
+function preload() {
+    this.load.image('background_0','assets/backgrounds/purple_720p.png');
 }
 
 function create() {
-
+    this.add.image(400,300,'background_0');
 }
 
-function update()
+function update() {
 
 }
