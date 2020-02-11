@@ -56,8 +56,8 @@ function f_choix(choix_index) { //fonction_choix
 
 ///////////////////////////////////////////////MAIN/////////////////////////////////////////////////////
 
+$('#nom_du_locuteur').html(pseudo_liste[dialogue_liste[dialogue_index][dialogue_ligne][1]]);
 $('#dialogue').html(dialogue_liste[dialogue_index][0][0]); //appelle la première ligne du premier dialogue à s'afficher sur le html
-
 
 $('#dialogue').on('click',function(){
 

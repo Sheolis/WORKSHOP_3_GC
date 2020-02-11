@@ -24,6 +24,20 @@ body {
 #emplacement_1{margin-left: 380px; z-index:2;}
 #emplacement_2{margin-left: 760px; z-index:1;}
 
+#nom_du_locuteur{
+  background-color: black;
+  width: 200px;
+  height: 50px;
+  margin-left: 100px;
+  margin-top: 454px;
+  padding-left: 15px;
+  padding-top: 15px;
+  position: absolute;
+  z-index: 3;
+  color: white;
+  font-size: 25px;
+}
+
 #boite_de_dialogue{
   background-color: black;
   width: 1080px;
