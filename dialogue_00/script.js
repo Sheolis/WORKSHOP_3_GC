@@ -8,12 +8,12 @@ var dialogue_liste=[ // contient la liste des dialogues [le dialogue1[ligne de d
     ['Textecourt',1],
     ['TexteLongTexteLongTexteLongTexteLongTexteLongTexteLongTexteLongTexteLongTexteLongTexteLongTexteLongTexteLongTexteLongTexteLongTexteLongTexteLongTexteLong',2],
     ['TextemoinslongTextemoinslongTextemoinslongTextemoinslongTextemoinslong',0],
-    'choix' // si le dialogue est égal à 'choix' on va aller chercher l'affichage du choix suivant dans la liste de choix, permettant au joueur de prendre une décision
+    ['choix',0] // si le dialogue est égal à 'choix' on va aller chercher l'affichage du choix suivant dans la liste de choix, permettant au joueur de prendre une décision. Le 0 n'a pas d'importance
   ],
   [
     ['Début du texte 2',1],
     ['Fin du texte 2',0],
-    'choix'
+    ['choix',0]
   ]
 ];
 
@@ -60,7 +60,7 @@ function f_dialogue(dialogue_index) {
           return 0;
         }
         else {
-            $('#nom_du_locuteur').html(dialogue_liste[dialogue_index][dialogue_ligne][1]);
+            $('#nom_du_locuteur').html(pseudo_liste[dialogue_liste[dialogue_index][dialogue_ligne][1]]);
             $('#dialogue').html(dialogue_liste[dialogue_index][dialogue_ligne][0]);
             dialogue_ligne ++;
         }
@@ -69,7 +69,7 @@ function f_dialogue(dialogue_index) {
 
 function f_choix(choix_index) { //fonction_choix
     for (var i = 0; i < choix_liste[choix_index].length; i++) {
-        $( "#boite_choix_multiples" ).append( "<p id=\"choix_"+i+"\" class=\"choix\">"+choix_liste[i][0]+"</p>" ); // !! code valable pour un nombre de choix inférieur ou égal à 10
+        $( "#boite_choix_multiples" ).append( "<p id=\"choix_"+i+"\" class=\"choix\">"+choix_liste[choix_index][i][0]+"</p>" ); // !! code valable pour un nombre de choix inférieur ou égal à 10
     }
     return 1;
 }
