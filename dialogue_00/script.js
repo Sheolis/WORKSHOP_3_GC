@@ -35,7 +35,7 @@ var choix_liste = [ //contient plusieurs groupes de choix. Chaque choix est comp
 
 var dialogue_statut=1; // 1 le dialogue est en cours, 0 le dialogue est terminé
 var dialogue_index=0; //index du dialogue
-var dialogue_ligne=0; //index de la ligne de texte du dialogue
+var dialogue_ligne=1; //index de la ligne de texte du dialogue
 var choix_index; // index du choix proposé
 
 
@@ -45,25 +45,33 @@ function f_choix(choix_index) { //fonction_choix
     for (var i = 0; i < choix_liste[choix_index].length; i++) {
         $( "#boite_choix_multiples" ).append( "<p id=\"choix_"+i+"\" class=\"choix\">"+choix_liste[choix_index][i][0]+"</p>" ); // !! code valable pour un nombre de choix inférieur ou égal à 10
     }
+    $('.choix').on('click', function() {
+        $( ".choix" ).remove();
+        dialogue_index=choix_liste[choix_index][this.id[6]][1];
+        $('#dialogue').html(dialogue_liste[dialogue_index][0][0]);
+        dialogue_ligne=1;
+    })
 }
 
 
 ///////////////////////////////////////////////MAIN/////////////////////////////////////////////////////
 
-$('#dialogue').html(dialogue_liste[dialogue_index][dialogue_ligne][0]); //appelle la première ligne du premier dialogue à s'afficher sur le html
+$('#dialogue').html(dialogue_liste[dialogue_index][0][0]); //appelle la première ligne du premier dialogue à s'afficher sur le html
 
 
 $('#dialogue').on('click',function(){
-    dialogue_ligne ++;
+
     if (dialogue_liste[dialogue_index][dialogue_ligne][0]=='choix'){
-        f_choix(lien_dialogue_choix[dialogue_index]);
+        choix_index=lien_dialogue_choix[dialogue_index];
+        f_choix(choix_index);
     }
     else if(dialogue_liste[dialogue_index][dialogue_ligne][0]=='fin') {
       //! A COMPLETER !// - Condition de fin
     }
-    else {
+    else if(dialogue_ligne<dialogue_liste[dialogue_index].length){
         $('#nom_du_locuteur').html(pseudo_liste[dialogue_liste[dialogue_index][dialogue_ligne][1]]);
         $('#dialogue').html(dialogue_liste[dialogue_index][dialogue_ligne][0]);
+        dialogue_ligne ++;
     }
 })
 
@@ -83,12 +91,3 @@ $('#dialogue').on('click',function(){
         }
     }
 }*/
-
-
-
-$('.choix').on('click', function() {
-    $( ".choix" ).remove();
-    dialogue_index=choix_liste[this.id[6]][1];
-    dialogue_ligne=0;
-    $('#dialogue').html(dialogue_liste[dialogue_index][dialogue_ligne][0]);
-})
