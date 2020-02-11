@@ -1,5 +1,5 @@
 var pseudo_liste=['Lui', 'Elle', 'Ça'];
-var perso_asset_liste=[['Docteur_2_0.png',1]]; //Contient le nom d'asset des perso et le slot d'affichage à l'écran de l'image
+var perso_asset_liste=[['Docteur_2_0.png',1],['Docteur_2_0.png',0],['Docteur_2_0.png',2]]; //Contient le nom d'asset des perso et le slot d'affichage à l'écran de l'image
 var dialogue_liste=[ // contient la liste des dialogues [le dialogue1[ligne de dialogue, l'index du nom(pseudo_list) de celui qui parle], le dialogue2 ...]
   [
     ['Bonjour', 0],
@@ -67,6 +67,7 @@ function f_choix(choix_index) { //fonction_choix
     })
 
     $('#relire_dialogue').on('click', function() {
+        window.clearInterval(intervalId);
         $( ".choix" ).remove();
         $('#boite_de_dialogue').removeClass('hide');
         $('#nom_du_locuteur').removeClass('hide');
@@ -80,7 +81,10 @@ function f_choix(choix_index) { //fonction_choix
 
 ///////////////////////////////////////////////MAIN/////////////////////////////////////////////////////
 
+
+clearInterval();
 $('#nom_du_locuteur').html(pseudo_liste[dialogue_liste[dialogue_index][dialogue_ligne][1]]); //Initialisation avec le premier nom à afficher
+$('#emplacement'+perso_asset_liste[dialogue_liste[dialogue_index][dialogue_ligne][1]][1]).prepend('<img src="'+perso_asset_liste[dialogue_liste[dialogue_index][dialogue_ligne][1]][0]+'" />');
 print_ligne_dialogue(dialogue_index,0);//$('#dialogue').html(dialogue_liste[dialogue_index][0][0]); //appelle la première ligne du premier dialogue à s'afficher sur le html
 
 $('#boite_de_dialogue').on('click',function(){
@@ -99,6 +103,7 @@ $('#boite_de_dialogue').on('click',function(){
           //! A COMPLETER !// - Condition de fin
         }
         else if(dialogue_ligne<dialogue_liste[dialogue_index].length){
+            $('#emplacement'+perso_asset_liste[dialogue_liste[dialogue_index][dialogue_ligne][1]][1]).prepend('<img src="'+perso_asset_liste[dialogue_liste[dialogue_index][dialogue_ligne][1]][0]+'" />');
             $('#nom_du_locuteur').html(pseudo_liste[dialogue_liste[dialogue_index][dialogue_ligne][1]]);
             print_ligne_dialogue(dialogue_index,dialogue_ligne);//$('#dialogue').html(dialogue_liste[dialogue_index][dialogue_ligne][0]);
             dialogue_ligne ++;
