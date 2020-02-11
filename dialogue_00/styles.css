@@ -26,6 +26,10 @@ body {
   justify-content: space-between;
 }
 
+.choix{
+  cursor: pointer;
+}
+
 .hide{
   display: none;
 }
