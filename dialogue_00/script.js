@@ -1,5 +1,5 @@
 var pseudo_liste=['Lui', 'Elle', 'Ça'];
-var perso_asset_liste=[['docteur_2_0.png',1]]; //Contient le nom d'asset des perso et le slot d'affichage à l'écran de l'image
+var perso_asset_liste=[['Docteur_2_0.png',1]]; //Contient le nom d'asset des perso et le slot d'affichage à l'écran de l'image
 var dialogue_liste=[ // contient la liste des dialogues [le dialogue1[ligne de dialogue, l'index du nom(pseudo_list) de celui qui parle], le dialogue2 ...]
   [
     ['Bonjour', 0],
@@ -45,12 +45,29 @@ function f_choix(choix_index) { //fonction_choix
     for (var i = 0; i < choix_liste[choix_index].length; i++) {
         $( "#boite_choix_multiples" ).append( "<p id=\"choix_"+i+"\" class=\"choix\">"+choix_liste[choix_index][i][0]+"</p>" ); // !! code valable pour un nombre de choix inférieur ou égal à 10
     }
+    $('#nom_du_locuteur').addClass('hide');
+    $('#boite_de_dialogue').addClass('hide');
+    $('#relire_dialogue').removeClass('hide');
+
     $('.choix').on('click', function() {
         $( ".choix" ).remove();
         dialogue_index=choix_liste[choix_index][this.id[6]][1];
         $('#dialogue').html(dialogue_liste[dialogue_index][0][0]);
         dialogue_ligne=1;
+        $('#boite_de_dialogue').removeClass('hide');
+        $('#nom_du_locuteur').removeClass('hide');
+        $('#relire_dialogue').addClass('hide');
     })
+
+    $('#relire_dialogue').on('click', function() {
+        $( ".choix" ).remove();
+        $('#boite_de_dialogue').removeClass('hide');
+        $('#nom_du_locuteur').removeClass('hide');
+        $('#relire_dialogue').addClass('hide');
+        $('#dialogue').html(dialogue_liste[dialogue_index][dialogue_ligne-1][0]);
+    })
+
+
 }
 
 
@@ -59,7 +76,7 @@ function f_choix(choix_index) { //fonction_choix
 $('#nom_du_locuteur').html(pseudo_liste[dialogue_liste[dialogue_index][dialogue_ligne][1]]);
 $('#dialogue').html(dialogue_liste[dialogue_index][0][0]); //appelle la première ligne du premier dialogue à s'afficher sur le html
 
-$('#dialogue').on('click',function(){
+$('#boite_de_dialogue').on('click',function(){
 
     if (dialogue_liste[dialogue_index][dialogue_ligne][0]=='choix'){
         choix_index=lien_dialogue_choix[dialogue_index];
