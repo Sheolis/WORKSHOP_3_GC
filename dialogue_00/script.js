@@ -35,16 +35,20 @@ var choix_index; // index du choix proposé
 
 
 ///////////////////////////////////////////////FONCTIONS/////////////////////////////////////////////////////
+var intervalId;
+
+
 function print_ligne_dialogue(dialogue_index,dialogue_ligne) {
-    //$('#dialogue').html(dialogue_liste[dialogue_index][dialogue_ligne][0]);
-    //var ligne_width = $('#dialogue').width();
-    //$('#text').animate( { width: ligne_width }, 1000 );
-    var texte='';
-    for (i=0; i<dialogue_liste[dialogue_index][dialogue_ligne][0].length; i++) {
-        texte+=dialogue_liste[dialogue_index][dialogue_ligne][0][i];
-        $('#dialogue').html(texte);
-    }
-}
+    $('#dialogue').html('');
+    var i = 0;
+
+    var texte=dialogue_liste[dialogue_index][dialogue_ligne][0];
+    intervalId = window.setInterval(function() {
+        $('#dialogue').append(texte.charAt(i++));
+        if (i > texte.length)
+            window.clearInterval(intervalId);
+    }, 100);
+  }
 
 function f_choix(choix_index) { //fonction_choix
     for (var i = 0; i < choix_liste[choix_index].length; i++) {
@@ -82,7 +86,7 @@ $('#nom_du_locuteur').html(pseudo_liste[dialogue_liste[dialogue_index][dialogue_
 print_ligne_dialogue(dialogue_index,0);//$('#dialogue').html(dialogue_liste[dialogue_index][0][0]); //appelle la première ligne du premier dialogue à s'afficher sur le html
 
 $('#boite_de_dialogue').on('click',function(){
-
+    clearInterval();
     if (dialogue_liste[dialogue_index][dialogue_ligne][0]=='choix'){
         choix_index=dialogue_liste[dialogue_index][dialogue_ligne][1];
         f_choix(choix_index);
