@@ -9,20 +9,39 @@ body {
   position: absolute;
 }
 
-#boite_de_dialogue{
+#personnages{
+    position: absolute;
+    margin-top: 70px;
+}
+
+.emplacement{
+  width: 520px;
+  height: 650px;
   position: absolute;
-  z-index: 1;
-  margin-left: 100px;
-  margin-right: 100px;
-  margin-top: 490px;
+}
+
+#emplacement_0{z-index:1; }
+#emplacement_1{margin-left: 380px; z-index:2;}
+#emplacement_2{margin-left: 760px; z-index:1;}
+
+#boite_de_dialogue{
+  background-color: black;
+  width: 1080px;
+  height: 180px;
+  position: absolute;
+  z-index: 3;
+  padding-left: 100px;
+  padding-right: 100px;
+  margin-top: 500px;
   cursor: pointer;
+  color: white;
 }
 
 #boite_choix_multiples{
   position: absolute;
   display: flex;
   flex-direction: column;
-  z-index: 1;
+  z-index: 3;
   justify-content: space-between;
 }
 

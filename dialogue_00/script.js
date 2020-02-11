@@ -1,7 +1,5 @@
 var pseudo_liste=['Lui', 'Elle', 'Ça'];
 var perso_asset_liste=[['docteur_2_0.png',1]]; //Contient le nom d'asset des perso et le slot d'affichage à l'écran de l'image
-var dialogue_index=0; //index du dialogue
-var dialogue_ligne=0; //index de la ligne de texte du dialogue
 var dialogue_liste=[ // contient la liste des dialogues [le dialogue1[ligne de dialogue, l'index du nom(pseudo_list) de celui qui parle], le dialogue2 ...]
   [
     ['Bonjour', 0],
@@ -22,7 +20,6 @@ var lien_dialogue_choix= [ //contient à l'index x, l'index du choix appelé(cho
   1
 ];
 
-var choix_index;
 var choix_liste = [ //contient plusieurs groupes de choix. Chaque choix est composé d'une phrase et de l'index du dialogue qu'il appelle.
   [
     ['oui',1],
@@ -37,20 +34,40 @@ var choix_liste = [ //contient plusieurs groupes de choix. Chaque choix est comp
 ];
 
 var dialogue_statut=1; // 1 le dialogue est en cours, 0 le dialogue est terminé
+var dialogue_index=0; //index du dialogue
+var dialogue_ligne=0; //index de la ligne de texte du dialogue
+var choix_index; // index du choix proposé
+
+
+///////////////////////////////////////////////FONCTIONS/////////////////////////////////////////////////////
+
+function f_choix(choix_index) { //fonction_choix
+    for (var i = 0; i < choix_liste[choix_index].length; i++) {
+        $( "#boite_choix_multiples" ).append( "<p id=\"choix_"+i+"\" class=\"choix\">"+choix_liste[choix_index][i][0]+"</p>" ); // !! code valable pour un nombre de choix inférieur ou égal à 10
+    }
+}
+
+
+///////////////////////////////////////////////MAIN/////////////////////////////////////////////////////
+
 $('#dialogue').html(dialogue_liste[dialogue_index][dialogue_ligne][0]); //appelle la première ligne du premier dialogue à s'afficher sur le html
 
 
 $('#dialogue').on('click',function(){
-  if(dialogue_index<dialogue_liste.length-1) {
-      dialogue_index++;
-      if(dialogue_liste[dialogue_index]=='choix') {
-          choix_i=f_choix(choix_index);
-      }
-      $('#dialogue').html(dialogue_liste[dialogue_index]);
-  }
+    dialogue_ligne ++;
+    if (dialogue_liste[dialogue_index][dialogue_ligne][0]=='choix'){
+        f_choix(lien_dialogue_choix[dialogue_index]);
+    }
+    else if(dialogue_liste[dialogue_index][dialogue_ligne][0]=='fin') {
+      //! A COMPLETER !// - Condition de fin
+    }
+    else {
+        $('#nom_du_locuteur').html(pseudo_liste[dialogue_liste[dialogue_index][dialogue_ligne][1]]);
+        $('#dialogue').html(dialogue_liste[dialogue_index][dialogue_ligne][0]);
+    }
 })
 
-function f_dialogue(dialogue_index) {
+/*function f_dialogue(dialogue_index) {
     dialogue_ligne=0 ;
     while (dialogue_ligne<dialogue_liste[dialogue_index].length){
         if (dialogue_liste[dialogue_index][dialogue_ligne][0]=='choix'){
@@ -65,18 +82,13 @@ function f_dialogue(dialogue_index) {
             dialogue_ligne ++;
         }
     }
-}
+}*/
 
-function f_choix(choix_index) { //fonction_choix
-    for (var i = 0; i < choix_liste[choix_index].length; i++) {
-        $( "#boite_choix_multiples" ).append( "<p id=\"choix_"+i+"\" class=\"choix\">"+choix_liste[choix_index][i][0]+"</p>" ); // !! code valable pour un nombre de choix inférieur ou égal à 10
-    }
-    return 1;
-}
+
 
 $('.choix').on('click', function() {
     $( ".choix" ).remove();
-    f_dialogue(choix_liste[this.id[6]][1]);
+    dialogue_index=choix_liste[this.id[6]][1];
+    dialogue_ligne=0;
+    $('#dialogue').html(dialogue_liste[dialogue_index][dialogue_ligne][0]);
 })
-
-dialogue_statut = f_dialogue(0)
