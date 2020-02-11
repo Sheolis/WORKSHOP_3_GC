@@ -50,6 +50,7 @@ body {
   cursor: pointer;
   color: white;
   font-size: 25px;
+  white-space: normal;
 }
 
 #boite_choix_multiples{
@@ -81,6 +82,11 @@ body {
   z-index: 4;
   cursor: pointer;
 }
+
+#text{
+  width: 0px;
+}
+
 .choix{
   cursor: pointer;
   background-color: black;

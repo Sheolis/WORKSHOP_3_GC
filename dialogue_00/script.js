@@ -4,20 +4,15 @@ var dialogue_liste=[ // contient la liste des dialogues [le dialogue1[ligne de d
   [
     ['Bonjour', 0],
     ['Textecourt',1],
-    ['TexteLongTexteLongTexteLongTexteLongTexteLongTexteLongTexteLongTexteLongTexteLongTexteLongTexteLongTexteLongTexteLongTexteLongTexteLongTexteLongTexteLong',2],
+    ['TexteLong TexteLongTexteLong TexteLongTexteLongText LongTexteLongTexteLong TexteLongTexteLongTexteLongTexteLongTexteLong TexteLongTexteLong exteLongTexteLong',2],
     ['TextemoinslongTextemoinslongTextemoinslongTextemoinslongTextemoinslong',0],
     ['choix',0] // si le dialogue est égal à 'choix' on va aller chercher l'affichage du choix suivant dans la liste de choix, permettant au joueur de prendre une décision. Le 0 n'a pas d'importance
   ],
   [
     ['Début du texte 2',1],
     ['Fin du texte 2',0],
-    ['choix',0]
+    ['choix',1]
   ]
-];
-
-var lien_dialogue_choix= [ //contient à l'index x, l'index du choix appelé(choix_liste) par le dialogue x(dialogue_liste)
-  0,
-  1
 ];
 
 var choix_liste = [ //contient plusieurs groupes de choix. Chaque choix est composé d'une phrase et de l'index du dialogue qu'il appelle.
@@ -40,6 +35,16 @@ var choix_index; // index du choix proposé
 
 
 ///////////////////////////////////////////////FONCTIONS/////////////////////////////////////////////////////
+function print_ligne_dialogue(dialogue_index,dialogue_ligne) {
+    //$('#dialogue').html(dialogue_liste[dialogue_index][dialogue_ligne][0]);
+    //var ligne_width = $('#dialogue').width();
+    //$('#text').animate( { width: ligne_width }, 1000 );
+    var texte='';
+    for (i=0; i<dialogue_liste[dialogue_index][dialogue_ligne][0].length; i++) {
+        texte+=dialogue_liste[dialogue_index][dialogue_ligne][0][i];
+        $('#dialogue').html(texte);
+    }
+}
 
 function f_choix(choix_index) { //fonction_choix
     for (var i = 0; i < choix_liste[choix_index].length; i++) {
@@ -52,7 +57,7 @@ function f_choix(choix_index) { //fonction_choix
     $('.choix').on('click', function() {
         $( ".choix" ).remove();
         dialogue_index=choix_liste[choix_index][this.id[6]][1];
-        $('#dialogue').html(dialogue_liste[dialogue_index][0][0]);
+        print_ligne_dialogue(dialogue_index,0);//$('#dialogue').html(dialogue_liste[dialogue_index][0][0]);
         dialogue_ligne=1;
         $('#boite_de_dialogue').removeClass('hide');
         $('#nom_du_locuteur').removeClass('hide');
@@ -64,7 +69,7 @@ function f_choix(choix_index) { //fonction_choix
         $('#boite_de_dialogue').removeClass('hide');
         $('#nom_du_locuteur').removeClass('hide');
         $('#relire_dialogue').addClass('hide');
-        $('#dialogue').html(dialogue_liste[dialogue_index][dialogue_ligne-1][0]);
+        print_ligne_dialogue(dialogue_index,dialogue_ligne-1);//$('#dialogue').html(dialogue_liste[dialogue_index][dialogue_ligne-1][0]);
     })
 
 
@@ -74,12 +79,12 @@ function f_choix(choix_index) { //fonction_choix
 ///////////////////////////////////////////////MAIN/////////////////////////////////////////////////////
 
 $('#nom_du_locuteur').html(pseudo_liste[dialogue_liste[dialogue_index][dialogue_ligne][1]]);
-$('#dialogue').html(dialogue_liste[dialogue_index][0][0]); //appelle la première ligne du premier dialogue à s'afficher sur le html
+print_ligne_dialogue(dialogue_index,0);//$('#dialogue').html(dialogue_liste[dialogue_index][0][0]); //appelle la première ligne du premier dialogue à s'afficher sur le html
 
 $('#boite_de_dialogue').on('click',function(){
 
     if (dialogue_liste[dialogue_index][dialogue_ligne][0]=='choix'){
-        choix_index=lien_dialogue_choix[dialogue_index];
+        choix_index=dialogue_liste[dialogue_index][dialogue_ligne][1];
         f_choix(choix_index);
     }
     else if(dialogue_liste[dialogue_index][dialogue_ligne][0]=='fin') {
@@ -87,24 +92,7 @@ $('#boite_de_dialogue').on('click',function(){
     }
     else if(dialogue_ligne<dialogue_liste[dialogue_index].length){
         $('#nom_du_locuteur').html(pseudo_liste[dialogue_liste[dialogue_index][dialogue_ligne][1]]);
-        $('#dialogue').html(dialogue_liste[dialogue_index][dialogue_ligne][0]);
+        print_ligne_dialogue(dialogue_index,dialogue_ligne);//$('#dialogue').html(dialogue_liste[dialogue_index][dialogue_ligne][0]);
         dialogue_ligne ++;
     }
 })
-
-/*function f_dialogue(dialogue_index) {
-    dialogue_ligne=0 ;
-    while (dialogue_ligne<dialogue_liste[dialogue_index].length){
-        if (dialogue_liste[dialogue_index][dialogue_ligne][0]=='choix'){
-            return f_choix(lien_dialogue_choix[dialogue_index]);
-        }
-        else if(dialogue_liste[dialogue_index][dialogue_ligne][0]=='fin') {
-          return 0;
-        }
-        else {
-            $('#nom_du_locuteur').html(pseudo_liste[dialogue_liste[dialogue_index][dialogue_ligne][1]]);
-            $('#dialogue').html(dialogue_liste[dialogue_index][dialogue_ligne][0]);
-            dialogue_ligne ++;
-        }
-    }
-}*/

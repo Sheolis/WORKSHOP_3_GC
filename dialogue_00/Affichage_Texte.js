@@ -1,8 +1,8 @@
 <DIV STYLE="width:350;height:300;background:BLACK;color:GREEN;border-style:solid;border-width:1;border-color:#000000;font-family:Arial;font-size:14px" ID=bloc></DIV>
 <SCRIPT LANGUAGE=JavaScript>
 
-var chaine = "ce kon veut y mettre on s'en fout ça change rien c'est juste pour les tests on fera des essais plus tard n a pas de temps à perdre"; 
-var nb_car = chaine.length; 
+var chaine = "ce kon veut y mettre on s'en fout ça change rien c'est juste pour les tests on fera des essais plus tard n a pas de temps à perdre";
+var nb_car = chaine.length;
 var tableau = chaine.split("");
 texte = new Array;
 var txt = '';
@@ -22,6 +22,6 @@ actual_texte = nb_msg;
 }
 if(document.getElementById)
 
-setInterval("changeMessage()",20) /* la vitesse de defilement (plus on a une valeur faible plus 
+setInterval("changeMessage()",20) /* la vitesse de defilement (plus on a une valeur faible plus
 texte s'affiche rapidement) */
 </SCRIPT>
