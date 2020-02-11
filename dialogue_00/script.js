@@ -37,11 +37,9 @@ var choix_index; // index du choix proposé
 ///////////////////////////////////////////////FONCTIONS/////////////////////////////////////////////////////
 var intervalId;
 
-
 function print_ligne_dialogue(dialogue_index,dialogue_ligne) {
     $('#dialogue').html('');
     var i = 0;
-
     var texte=dialogue_liste[dialogue_index][dialogue_ligne][0];
     intervalId = window.setInterval(function() {
         $('#dialogue').append(texte.charAt(i++));
@@ -82,21 +80,28 @@ function f_choix(choix_index) { //fonction_choix
 
 ///////////////////////////////////////////////MAIN/////////////////////////////////////////////////////
 
-$('#nom_du_locuteur').html(pseudo_liste[dialogue_liste[dialogue_index][dialogue_ligne][1]]);
+$('#nom_du_locuteur').html(pseudo_liste[dialogue_liste[dialogue_index][dialogue_ligne][1]]); //Initialisation avec le premier nom à afficher
 print_ligne_dialogue(dialogue_index,0);//$('#dialogue').html(dialogue_liste[dialogue_index][0][0]); //appelle la première ligne du premier dialogue à s'afficher sur le html
 
 $('#boite_de_dialogue').on('click',function(){
-    clearInterval();
-    if (dialogue_liste[dialogue_index][dialogue_ligne][0]=='choix'){
-        choix_index=dialogue_liste[dialogue_index][dialogue_ligne][1];
-        f_choix(choix_index);
+    if ($('#dialogue').html().length < dialogue_liste[dialogue_index][dialogue_ligne-1][0].length) {
+        window.clearInterval(intervalId);
+        $('#dialogue').html('');
+        $('#dialogue').html(dialogue_liste[dialogue_index][dialogue_ligne-1][0]);
     }
-    else if(dialogue_liste[dialogue_index][dialogue_ligne][0]=='fin') {
-      //! A COMPLETER !// - Condition de fin
-    }
-    else if(dialogue_ligne<dialogue_liste[dialogue_index].length){
-        $('#nom_du_locuteur').html(pseudo_liste[dialogue_liste[dialogue_index][dialogue_ligne][1]]);
-        print_ligne_dialogue(dialogue_index,dialogue_ligne);//$('#dialogue').html(dialogue_liste[dialogue_index][dialogue_ligne][0]);
-        dialogue_ligne ++;
+    else {
+
+        if (dialogue_liste[dialogue_index][dialogue_ligne][0]=='choix'){
+            choix_index=dialogue_liste[dialogue_index][dialogue_ligne][1];
+            f_choix(choix_index);
+        }
+        else if(dialogue_liste[dialogue_index][dialogue_ligne][0]=='fin') {
+          //! A COMPLETER !// - Condition de fin
+        }
+        else if(dialogue_ligne<dialogue_liste[dialogue_index].length){
+            $('#nom_du_locuteur').html(pseudo_liste[dialogue_liste[dialogue_index][dialogue_ligne][1]]);
+            print_ligne_dialogue(dialogue_index,dialogue_ligne);//$('#dialogue').html(dialogue_liste[dialogue_index][dialogue_ligne][0]);
+            dialogue_ligne ++;
+        }
     }
 })
