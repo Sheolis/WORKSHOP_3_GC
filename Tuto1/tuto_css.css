@@ -1,35 +1,54 @@
 body {
-  background: #318ce7;
+  background-color: grey;
 }
 
-.fill {
-  background-image: url('img/etoile.svg');
+
+#div1, #div2,  #div3, #div4 {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  padding: 10px;
+  border: 5px solid black;
+}
+
+#div5 {
   position: relative;
-  height: 150px;
-  width: 150px;
-  top: 5px;
-  left: 5px;
-  cursor: pointer;
+  top: 170px;
+  left: 250px;
+  width: 100px;
+  height: 120px;
+  margin: 10px;
+  padding: 10px;
+  border: 5px solid black;
 }
-
-.hold {
-  border: solid 5px #ccc;
-}
-
-.empty {
-  display: inline-flex;
+#div6 {
   position: relative;
-  height: 160px;
-  width: 160px;
-  border: solid 3px salmon;
-  background: black;
+  top: 250px;
+  left: 750px;
+  width: 100px;
+  height: 120px;
+  margin: 10px;
+  padding: 10px;
+  border: 5px solid black;
 }
-
-.hovered {
-  background: #f4f4f4;
-  border-style: dashed;
+#div7 {
+  position: relative;
+  top: 150px;
+  left: 500px;
+  width: 100px;
+  height: 120px;
+  margin: 10px;
+  padding: 10px;
+  border: 5px solid black;
 }
-
-.F2 {
-  top: 200px;
+#div8 {
+  position: relative;
+  top: 120px;
+  left: 200px;
+  width: 100px;
+  height: 120px;
+  margin: 10px;
+  padding: 10px;
+  border: 5px solid black;
 }
