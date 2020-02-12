@@ -12,7 +12,7 @@ body {
   border: 5px solid black;
 }
 
-#div5 {
+#triangle_bloc {
   position: relative;
   top: 170px;
   left: 250px;
@@ -22,7 +22,7 @@ body {
   padding: 10px;
   border: 5px solid black;
 }
-#div6 {
+#rond_bloc {
   position: relative;
   top: 250px;
   left: 750px;
@@ -32,7 +32,7 @@ body {
   padding: 10px;
   border: 5px solid black;
 }
-#div7 {
+#carre_bloc {
   position: relative;
   top: 150px;
   left: 500px;
@@ -42,7 +42,7 @@ body {
   padding: 10px;
   border: 5px solid black;
 }
-#div8 {
+#etoile_bloc {
   position: relative;
   top: 120px;
   left: 200px;
