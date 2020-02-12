@@ -31,7 +31,7 @@ var timedEvent;
 
 function preload(){
 	this.load.image('background','assets/cour.png');
-	this.load.image('bomb','assets/bomb.png');
+	this.load.image('bomb','assets/pangBall.png');
 	this.load.image('mur','assets/mur.png');
 	this.load.image('barriere','assets/barrieres.png')
 	this.load.spritesheet('perso','assets/perso2.png',{frameWidth: 64, frameHeight: 64});
@@ -42,6 +42,10 @@ function preload(){
 
 
 function create(){
+
+
+
+
 	this.add.image(640,360,'background');
 	life1 = this.add.image(400,300,'life1').setScale(0.25);
 	life2 = this.add.image(400,300,'life2').setScale(0.25);
@@ -81,7 +85,18 @@ function create(){
 		
 		
 		text = this.add.text(32, 32);
-	    timedEvent = this.time.addEvent({ delay: 2000, callback: setbomb, callbackScope: this, repeat: 5 });
+	    timedEvent = this.time.addEvent({ delay: 800, callback: setbomb, callbackScope: this, repeat: 20 });
+
+
+
+
+
+
+
+
+
+
+	    
 }
 
 function hitBomb(player, bomb){
@@ -138,8 +153,10 @@ function setbomb (){
 		var gravityY = Phaser.Math.Between(-100,-600);
 		bomb.setBounce(1);
 		bomb.setCollideWorldBounds(false);
-		bomb.setVelocity(Phaser.Math.Between(-600, -700), 100);
+		bomb.setVelocity(Phaser.Math.Between(-300, -700),  50);
 		bomb.setGravityY(gravityY);
 		bomb.setGravityX(0);
 	}
+
+
 
