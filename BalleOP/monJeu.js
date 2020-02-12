@@ -6,7 +6,7 @@ physics: {
         default: 'arcade',
         arcade: {
             gravity: { y: 300 },
-            debug: true
+            debug: false
         }
     },
 scene: {
@@ -19,37 +19,48 @@ scene: {
 
 var game = new Phaser.Game(config);
 var score = 0;
-var vie = 3;
+var vie = 2;
 
 function init() {
 var player;
 var cursors;
 var scoreText;
 var bomb;
+
 var text;
+
 var timedEvent;
 }
 
 function preload(){
 	this.load.image('background','assets/cour.png');
-	this.load.image('bomb','assets/bomb.png');
+
+	this.load.image('bomb','assets/pangBall.png');
 	this.load.image('mur','assets/mur.png');
-	this.load.spritesheet('perso','assets/dudee.png',{frameWidth: 32, frameHeight: 32});
-	this.load.image('life1','assets/vie1.png');
-		this.load.image('life2','assets/vie2.png');
-			this.load.image('life3','assets/vie3.png');
+	this.load.image('barriere','assets/barrieres.png')
+	this.load.spritesheet('perso','assets/perso2.png',{frameWidth: 64, frameHeight: 64});
+	this.load.image('life1','assets/life1.png');
+	this.load.image('life2','assets/life2.png');
+
 }
 
 
 
 function create(){
+
+
+
+
+
 	this.add.image(640,360,'background');
 	life1 = this.add.image(400,300,'life1').setScale(0.25);
 	life2 = this.add.image(400,300,'life2').setScale(0.25);
-	life3 = this.add.image(400,300,'life3').setScale(0.25);
+
 
 	platforms = this.physics.add.staticGroup();
 	platforms.create(0,400,'mur').setScale(2).refreshBody();
+	platforms.create(650,710,'barriere');
+	platforms.create(650,10,'barriere');
 
 	player = this.physics.add.sprite(100,450,'perso');
 	player.setCollideWorldBounds(true);
@@ -81,7 +92,19 @@ function create(){
 		
 		
 		text = this.add.text(32, 32);
-	    timedEvent = this.time.addEvent({ delay: 2000, callback: setbomb, callbackScope: this, repeat: 5 });
+
+	    timedEvent = this.time.addEvent({ delay: 800, callback: setbomb, callbackScope: this, repeat: 20 });
+
+
+
+
+
+
+
+
+
+
+
 }
 
 function hitBomb(player, bomb){
@@ -92,27 +115,19 @@ function hitBomb(player, bomb){
 function update(){
 
 	if(cursors.left.isDown){
-		player.anims.play('left', true);
+
 		player.setVelocityX(-300);
-		player.setFlipX(true);
 	}else if(cursors.right.isDown){
 		player.setVelocityX(300);
-		player.anims.play('left', true);
-		player.setFlipX(false);
 	}else{
-		player.anims.play('stop', true);
 		player.setVelocityX(0);
 	}
 	if(cursors.up.isDown){
-		player.anims.play('up', true);
 		player.setVelocityY(-300);
-		player.setFlipY(true);
 	}else if(cursors.down.isDown){
 		player.setVelocityY(300);
-		player.anims.play('up', true);
-		player.setFlipY(false);
 	}else{
-		player.anims.play('stop', true);
+
 		player.setVelocityY(0);
 	}
 
@@ -121,10 +136,8 @@ function update(){
 
 //Perte de Vie
 
-	if (vie == 2){
-		life3.destroy(true);
-	}
-	else if (vie == 1){
+
+	if (vie == 1){
 		life2.destroy(true);
 	}
 	else if (vie == 0){
@@ -148,10 +161,11 @@ function setbomb (){
 
 		var y = Phaser.Math.Between(10,710);
 		var bomb = bombs.create(1200, y, 'bomb');
+		var gravityY = Phaser.Math.Between(-100,-600);
 		bomb.setBounce(1);
 		bomb.setCollideWorldBounds(false);
-		bomb.setVelocity(Phaser.Math.Between(-600, -700), 100);
-		bomb.setGravityY(-500);
+		bomb.setVelocity(Phaser.Math.Between(-300, -700),  50);
+		bomb.setGravityY(gravityY);
 		bomb.setGravityX(0);
 	}
 
