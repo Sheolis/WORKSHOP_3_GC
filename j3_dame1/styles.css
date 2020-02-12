@@ -1,0 +1,33 @@
+body {
+  background-color="#FFF1D2"; 
+  background="nth_brown_bg.png";
+}
+
+p { 
+  color:rgb(0,0,0); 
+  font-family:Times New Roman;
+}
+
+h1 { 
+  color:rgb(128,64,0); 
+  font-size:12pt; 
+  font-family:Times New Roman;
+}
+
+h2 { 
+  color:rgb(191,96,0); 
+  font-size:12pt; 
+  font-family:Times New Roman;
+}
+
+p.namo-list { 
+  color:rgb(64,0,0); 
+  font-size:12pt; 
+  font-family:Times New Roman;
+}
+
+p.namo-sublist { 
+  color:rgb(145,102,23); 
+  font-size:10pt; 
+  font-family:Times New Roman;
+}
