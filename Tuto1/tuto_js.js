@@ -1,5 +1,3 @@
-var objet_deplace;
-
 function allowDrop(ev) {
   ev.preventDefault();
 
