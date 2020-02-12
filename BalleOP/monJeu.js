@@ -26,22 +26,28 @@ var player;
 var cursors;
 var scoreText;
 var bomb;
+
+var text;
+
 var timedEvent;
 }
 
 function preload(){
 	this.load.image('background','assets/cour.png');
+
 	this.load.image('bomb','assets/pangBall.png');
 	this.load.image('mur','assets/mur.png');
 	this.load.image('barriere','assets/barrieres.png')
 	this.load.spritesheet('perso','assets/perso2.png',{frameWidth: 64, frameHeight: 64});
 	this.load.image('life1','assets/life1.png');
 	this.load.image('life2','assets/life2.png');
+
 }
 
 
 
 function create(){
+
 
 
 
@@ -55,6 +61,7 @@ function create(){
 	platforms.create(0,400,'mur').setScale(2).refreshBody();
 	platforms.create(650,710,'barriere');
 	platforms.create(650,10,'barriere');
+
 	player = this.physics.add.sprite(100,450,'perso');
 	player.setCollideWorldBounds(true);
 	player.setBounce(0.2);
@@ -85,6 +92,7 @@ function create(){
 		
 		
 		text = this.add.text(32, 32);
+
 	    timedEvent = this.time.addEvent({ delay: 800, callback: setbomb, callbackScope: this, repeat: 20 });
 
 
@@ -96,7 +104,7 @@ function create(){
 
 
 
-	    
+
 }
 
 function hitBomb(player, bomb){
@@ -107,6 +115,7 @@ function hitBomb(player, bomb){
 function update(){
 
 	if(cursors.left.isDown){
+
 		player.setVelocityX(-300);
 	}else if(cursors.right.isDown){
 		player.setVelocityX(300);
@@ -118,6 +127,7 @@ function update(){
 	}else if(cursors.down.isDown){
 		player.setVelocityY(300);
 	}else{
+
 		player.setVelocityY(0);
 	}
 
@@ -125,6 +135,7 @@ function update(){
 
 
 //Perte de Vie
+
 
 	if (vie == 1){
 		life2.destroy(true);
@@ -157,6 +168,4 @@ function setbomb (){
 		bomb.setGravityY(gravityY);
 		bomb.setGravityX(0);
 	}
-
-
 
