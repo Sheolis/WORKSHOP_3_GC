@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="styles.css">
+<title>Puzzle</title>
+</head>
+<body>
+
+
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+  	<img src="../_graph/img/assets_jeu/formes_triangle.png" draggable="true" ondragstart="drag(event)" id="triangle" width="100" height="100">
+</div>
+
+<div class='div2' id="div2" ondrop="drop(event)" ondragover="allowDrop(event)">
+  <img src="../_graph/img/assets_jeu/formes_rond.png" draggable="true" ondragstart="drag(event)"  id="rond" width="100" height="100"></div>
+<div id="div3" ondrop="drop(event)" ondragover="allowDrop(event)">
+	<img src="../_graph/img/assets_jeu/formes_carre.png" draggable="true" ondragstart="drag(event)" id="carre" width="100" height="100">
+</div>
+<div id="div4" ondrop="drop(event)" ondragover="allowDrop(event)">
+	<img src="../_graph/img/assets_jeu/formes_etoile.png" draggable="true" ondragstart="drag(event)" id="etoile" width="100" height="100">
+</div>
+
+
+<div id="triangle_bloc" ondrop="drop(event)" ondragover="allowDrop(event)">Triangle</div>
+<div id="rond_bloc" ondrop="drop(event)" ondragover="allowDrop(event)">Rond</div>
+<div id="carre_bloc" ondrop="drop(event)" ondragover="allowDrop(event)">Carré</div>
+<div id="etoile_bloc" ondrop="drop(event)" ondragover="allowDrop(event)">Etoile</div>
+
+
+    <script src="script.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</body>
+</html>
