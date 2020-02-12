@@ -28,7 +28,7 @@ function init(){
 	var cursors;
 	var boits;
 	var gameOverText;
-	
+
 }
 var Immovable = {
 		setImmovable: function (value)
@@ -45,33 +45,33 @@ var Immovable = {
 	module.exports = Immovable;
 
 function preload(){
-	this.load.image('background','assets_jeu/carton_camion.png');
-	this.load.image('cote', 'assets_jeu/carton_côté.png');
-	this.load.image('cote1', 'assets_jeu/carton_côté.png');
-	this.load.image('sol', 'assets_jeu/carton_sol.png');
-	this.load.image('boits', 'assets_jeu/carton_boite.jpg');
-	this.load.image('perso','assets_jeu/carton_boxB.jpg');
-	this.load.image('perso1','assets_jeu/carton_boxC.jpg');
-	this.load.image('perso2','assets_jeu/carton_boxD.jpg');
-	this.load.image('perso3','assets_jeu/carton_boxE.jpg');
-	this.load.image('box','assets_jeu/carton_boxB.jpg');
+	this.load.image('background','_graph/img/decors/camion_2.png');
+	this.load.image('cote', '_graph/img/assets_jeu/carton_côté.png');
+	this.load.image('cote1', '_graph/img/assets_jeu/carton_côté.png');
+	this.load.image('sol', '_graph/img/assets_jeu/carton_sol.png');
+	this.load.image('boits', '_graph/img/assets_jeu/carton_boite.jpg');
+	this.load.image('perso','_graph/img/assets_jeu/carton_boxB.jpg');
+	this.load.image('perso1','_graph/img/assets_jeu/carton_boxC.jpg');
+	this.load.image('perso2','_graph/img/assets_jeu/carton_boxD.jpg');
+	this.load.image('perso3','_graph/img/assets_jeu/carton_boxE.jpg');
+	this.load.image('box','_graph/img/assets_jeu/carton_boxB.jpg');
 
 }
 
 function create(){
 
-	
+
 // Player équivaut aux boites que l'on déplacera
 
 	//Monde
-	
+
 	this.add.image(400,300,'background');
-	
+
 	cote1 = this.physics.add.staticGroup();
 	cote1.create(36,250, 'cote1');
 	cote1.create(552,250, 'cote1');
 	cote1.setAlpha(0);
-	
+
 
 	sol = this.physics.add.staticGroup();
 	sol.create(300,720, 'sol').setScale(2).refreshBody();
@@ -80,9 +80,9 @@ function create(){
 
 	cote = this.physics.add.staticGroup();
 	cote.create(-10,300, 'cote');
-	
-	
-	
+
+
+
 
 	//Player 1
 
@@ -96,9 +96,9 @@ function create(){
 
 
 	//Récupération des curseurs
-	
+
 	cursors = this.input.keyboard.createCursorKeys();
-	
+
 
 
 	//Animations Joueur 2
@@ -111,9 +111,9 @@ function create(){
 	this.physics.add.collider(player2,sol);
 	this.physics.add.collider(player2,cote);
 
-	
 
-	
+
+
 	//Animations Joueur 3
 
 	player3 = this.physics.add.sprite(400,100,'perso2');
@@ -124,9 +124,9 @@ function create(){
 	this.physics.add.collider(player3,sol);
 	this.physics.add.collider(player3,cote);
 
-	
 
-	
+
+
 	//Animations Joueur 4
 
 	player4 = this.physics.add.sprite(400,100,'perso3');
@@ -137,7 +137,7 @@ function create(){
 	this.physics.add.collider(player4,sol);
 	this.physics.add.collider(player4,cote);
 
-	
+
 
 	//Animations Joueur 5
 
@@ -149,7 +149,7 @@ function create(){
 	this.physics.add.collider(player5,sol);
 	this.physics.add.collider(player5,cote);
 
-	
+
 
 
 	//Animations Joueur 6
@@ -162,7 +162,7 @@ function create(){
 	this.physics.add.collider(player6,sol);
 	this.physics.add.collider(player6,cote);
 
-	
+
 
 	//Animations Joueur 6
 
@@ -212,7 +212,7 @@ function create(){
 	this.physics.add.collider(playerA,cote);
 
 
-	
+
 	//BOITES
 
 	box = this.physics.add.staticGroup();
@@ -231,13 +231,13 @@ function create(){
 	boits.create(194,350, 'boits');
 	boits.create(194,150, 'boits');
 	boits.create(194,70, 'boits');*/
-	
-	
+
+
 
 	this.physics.add.collider(boits,cote);
 	this.physics.add.collider(boits,sol);
-	
-	
+
+
 
 
 	this.physics.add.collider(player, player2);
@@ -250,9 +250,9 @@ function create(){
 	this.physics.add.collider(player, player9);
 	this.physics.add.collider(player, playerA);
 
-	
-	
-	
+
+
+
 	this.physics.add.collider(player2, player3);
 	this.physics.add.collider(player2, player4);
 	this.physics.add.collider(player2, player5);
@@ -262,8 +262,8 @@ function create(){
 	this.physics.add.collider(player2, player9);
 	this.physics.add.collider(player2, playerA);
 
-	
-	
+
+
 
 	this.physics.add.collider(player3, player4);
 	this.physics.add.collider(player3, player5);
@@ -272,7 +272,7 @@ function create(){
 	this.physics.add.collider(player3, player8);
 	this.physics.add.collider(player3, player9);
 	this.physics.add.collider(player3, playerA);
-	
+
 
 
 
@@ -291,7 +291,7 @@ function create(){
 	this.physics.add.collider(player5, player8);
 	this.physics.add.collider(player5, player9);
 	this.physics.add.collider(player5, playerA);
-	
+
 
 
 
@@ -330,7 +330,7 @@ function create(){
 
 	this.physics.add.collider(boits, boits);
 
-	
+
 
 
 	this.physics.add.collider(player, box);
@@ -378,7 +378,7 @@ function update() {
 		if (cursors.up.isDown){
 			player.anims.play('left', true);
 			player.setVelocityY(10);
-			
+
 		}
 		else if (cursors.down.isDown){
 			player.anims.play('left', true);
@@ -413,7 +413,7 @@ function update() {
 			if (cursors.up.isDown){
 			player2.anims.play('left', true);
 			player2.setVelocityY(10);
-			
+
 			}
 			else if (cursors.down.isDown){
 				player2.anims.play('left', true);
@@ -448,7 +448,7 @@ function update() {
 				if (cursors.up.isDown){
 				player3.anims.play('left', true);
 				player3.setVelocityY(10);
-				
+
 				}
 				else if (cursors.down.isDown){
 					player3.anims.play('left', true);
@@ -474,7 +474,7 @@ function update() {
 
 				}
 			}
-		
+
 			//Joueur 3 arrêt, début Joueur 4
 			if(player3.y>380){
 				player4.body.setGravityY(0);
@@ -483,7 +483,7 @@ function update() {
 					if (cursors.up.isDown){
 					player4.anims.play('left', true);
 					player4.setVelocityY(10);
-					
+
 					}
 					else if (cursors.down.isDown){
 						player4.anims.play('left', true);
@@ -517,9 +517,9 @@ function update() {
 						if (cursors.up.isDown){
 						player5.anims.play('left', true);
 						player5.setVelocityY(10);
-							
+
 						}
-						
+
 						else if (cursors.down.isDown){
 							player5.anims.play('left', true);
 							player5.setVelocityY(100);
@@ -552,9 +552,9 @@ function update() {
 							if (cursors.up.isDown){
 								player6.anims.play('left', true);
 								player6.setVelocityY(10);
-								
+
 								}
-							
+
 							else if (cursors.down.isDown){
 								player6.anims.play('left', true);
 								player6.setVelocityY(100);
@@ -587,9 +587,9 @@ function update() {
 								if (cursors.up.isDown){
 									player6.anims.play('left', true);
 									player6.setVelocityY(10);
-									
+
 									}
-								
+
 								else if (cursors.down.isDown){
 									player7.anims.play('left', true);
 									player7.setVelocityY(100);
@@ -622,9 +622,9 @@ function update() {
 									if (cursors.up.isDown){
 										player8.anims.play('left', true);
 										player8.setVelocityY(10);
-										
+
 										}
-									
+
 									else if (cursors.down.isDown){
 										player8.anims.play('left', true);
 										player8.setVelocityY(100);
@@ -657,9 +657,9 @@ function update() {
 										if (cursors.up.isDown){
 											player9.anims.play('left', true);
 											player9.setVelocityY(10);
-											
+
 											}
-										
+
 										else if (cursors.down.isDown){
 											player9.anims.play('left', true);
 											player9.setVelocityY(100);
@@ -692,9 +692,9 @@ function update() {
 											if (cursors.up.isDown){
 												playerA.anims.play('left', true);
 												playerA.setVelocityY(10);
-												
+
 												}
-											
+
 											else if (cursors.down.isDown){
 												playerA.anims.play('left', true);
 												playerA.setVelocityY(100);
@@ -729,7 +729,7 @@ function update() {
 						}
 					}
 				}
-				
+
 			}
 		}
 	}
