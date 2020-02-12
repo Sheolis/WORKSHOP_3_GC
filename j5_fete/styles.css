@@ -1,0 +1,42 @@
+body {
+color:black;
+background-color:white;
+background-image:url(img/fete_background.png);
+width: 1280px;
+height: 720px;
+background-repeat: no-repeat;
+}
+
+#triangle{
+  position: absolute;
+  top: 110px;
+  left: 680px;
+}
+#rond{
+  position: absolute;
+  top: 130px;
+  left: 160px;
+}
+#carre{
+  position: absolute;
+  top: 350px;
+  left: 690px;
+}
+#etoile{
+  position: absolute;
+  top: 480px;
+  left: 270px;
+}
+
+
+#poubelle {
+  position: absolute;
+  top: 480px;
+  left: 950px;
+  width: 100px;
+  height: 120px;
+  margin: 10px;
+  padding: 10px;
+  border: 5px solid black;
+}
+

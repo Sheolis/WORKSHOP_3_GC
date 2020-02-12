@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="fr">
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="tuto_css.css">
+<title>Puzzle</title>
+</head>
+<body>
+
+	<img src="img/fete_vetement.png" draggable="true" ondragstart="drag(event)" id="triangle" width="147" height="113">
+	<img src="img/fete_pizza.png" draggable="true" ondragstart="drag(event)" id="rond" width="75" height="75">
+	<img src="img/fete_canette.png" draggable="true" ondragstart="drag(event)" id="carre" width="50" height="50">
+	<img src="img/fete_pizza.png" draggable="true" ondragstart="drag(event)" id="etoile" width="75" height="75">
+
+<div id="poubelle" ondrop="drop(event)" ondragover="allowDrop(event)">Poubelle</div>
+
+
+
+    <script src="tuto_js.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</body>
+</html>
