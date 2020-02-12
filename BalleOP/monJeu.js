@@ -26,6 +26,7 @@ var player;
 var cursors;
 var scoreText;
 var bomb;
+var timedEvent;
 }
 
 function preload(){
@@ -70,19 +71,16 @@ function create(){
 		frameRate: 20
 	});
 
-	stars = this.physics.add.group({
-		key: 'etoile',
-		repeat:0,
-		setXY: {x:50,y:0,stepX:70}
-	});
-
-	this.physics.add.collider(stars,platforms);
-	this.physics.add.overlap(player,stars,collectStar,null,this);
+	this.physics.add.overlap(player,null,this);
 
 	scoreText = this.add.text(16,16, 'score: 0', {fontSize: '32px', fill:'#000'});
 	bombs = this.physics.add.group();
 	this.physics.add.collider(bombs,platforms);
 	this.physics.add.collider(player,bombs, hitBomb, null, this);
+		
+		
+		text = this.add.text(32, 32);
+	    timedEvent = this.time.addEvent({ delay: 2000, callback: setbomb, callbackScope: this, repeat: 5 });
 }
 
 function hitBomb(player, bomb){
@@ -137,26 +135,22 @@ function update(){
 		score = 0;
 		vie = 3;
 	}
+
+
+
+	text.setText('Event.progress: ' + timedEvent.getProgress().toString().substr(0, 4) + '\nEvent.repeatCount: ' + timedEvent.repeatCount);
 }
 
 
 
-function collectStar(player, star){
-	star.disableBody(true,true);
-	score += 10;
-	scoreText.setText('score: '+score);
-	if(stars.countActive(true)===0){
-		stars.children.iterate(function(child){
-			child.enableBody(true,child.y,0, true, true);
-		});
+function setbomb (){
 
 		var y = Phaser.Math.Between(10,710);
-		var bomb = bombs.create(1270, y, 'bomb');
+		var bomb = bombs.create(1200, y, 'bomb');
 		bomb.setBounce(1);
 		bomb.setCollideWorldBounds(false);
 		bomb.setVelocity(Phaser.Math.Between(-600, -700), 100);
-		bomb.setGravityY(-300);
+		bomb.setGravityY(-500);
 		bomb.setGravityX(0);
 	}
-}
-//https://phaser.discourse.group/t/countdown-timer/2471/4
+
