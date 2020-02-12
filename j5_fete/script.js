@@ -14,8 +14,10 @@ function drag(ev) {
 
 function drop(ev) {
 	ev.preventDefault();
-  	if (ev.target.id==('poubelle')) {
+  	if (ev.target.id==(objet_deplace+'_poubelle')) {
   		$('#'+objet_deplace).remove();
 	}
-
+    if (ev.target.id==('poubelle')) {
+      $('#'+objet_deplace).remove();
+}
 }

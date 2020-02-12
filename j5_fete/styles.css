@@ -1,16 +1,26 @@
 body {
 color:black;
 background-color:white;
-background-image:url(img/fete_background.png);
+background-image:url(../_graph/img/decors/fete_background.png);
 width: 1280px;
 height: 720px;
 background-repeat: no-repeat;
 }
 
-#triangle{
+#triangle_poubelle{
   position: absolute;
   top: 110px;
   left: 680px;
+}
+#triangle1_poubelle{
+  position: absolute;
+  top: 380px;
+  left: 40px;
+}
+#triangle2_poubelle{
+  position: absolute;
+  top: 600px;
+  left: 750px;
 }
 #rond{
   position: absolute;
@@ -21,6 +31,21 @@ background-repeat: no-repeat;
   position: absolute;
   top: 350px;
   left: 690px;
+}
+#carre1{
+  position: absolute;
+  top: 290px;
+  left: 60px;
+}
+#carre2{
+  position: absolute;
+  top: 680px;
+  left: 170px;
+}
+#carre3{
+  position: absolute;
+  top: 400px;
+  left: 1030px;
 }
 #etoile{
   position: absolute;
@@ -33,10 +58,6 @@ background-repeat: no-repeat;
   position: absolute;
   top: 480px;
   left: 950px;
-  width: 100px;
-  height: 120px;
-  margin: 10px;
-  padding: 10px;
-  border: 5px solid black;
+  width: 200px;
+  height: 200px;
 }
-
