@@ -1,4 +1,6 @@
 var etat_jeu=2;
+var indexhtml_suivant='../j4_recree/index.html';
+var joueur = $.session.get('nom_joueur');
 
 var pseudo_liste=['','Mère'];
 var decors_liste=['naissance_','chambre_']; //placé dans le chemin suivant ../_graph/img/perso/
@@ -6,7 +8,7 @@ var perso_asset_liste=[
 ]; //Contient le nom d'asset des perso et le slot d'affichage à l'écran de l'image
 var dialogue_liste=[ // contient la liste des dialogues [le dialogue1[ligne de dialogue, l'index du nom(pseudo_list) de celui qui parle], le dialogue2 ...]
   [
-    ['Bienvenue dans la famille NOMDUJOUEUR![NDJ]', 1],
+    ['Bienvenue dans la famille '+joueur+'!', 1],
     ['decors', 1]
   ],
   [
@@ -34,7 +36,7 @@ function print_ligne_dialogue(dialogue_index,dialogue_ligne) {
         $('#dialogue').append(texte.charAt(i++));
         if (i > texte.length)
             window.clearInterval(intervalId);
-    }, 100);
+    }, 30);
   }
 function upload_environnement(index_environnement) {
   $("#environnement").empty();
@@ -65,7 +67,6 @@ function f_choix(choix_index) { //fonction_choix
     $('.choix').on('click', function() {
         $( ".choix" ).remove();
         dialogue_index=choix_liste[choix_index][this.id[6]][1];//on reccup l'index du dialogue de réponse au choix effectué
-
         print_personnage(dialogue_index,0); //début du dialogue
         print_ligne_dialogue(dialogue_index,0);
         dialogue_ligne=1;
@@ -115,7 +116,7 @@ $('#boite_de_dialogue').on('click',function(){
           dialogue_ligne=1;
         }
         else if(dialogue_liste[dialogue_index][dialogue_ligne][0]=='fin') {
-          document.location.href = '../dialogue_patron/index.html';
+          document.location.href = indexhtml_suivant;
 
         }
         else if(dialogue_ligne<dialogue_liste[dialogue_index].length){
