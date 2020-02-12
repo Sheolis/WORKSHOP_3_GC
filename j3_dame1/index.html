@@ -133,7 +133,7 @@
           function toggle(x,y) {
              if (my_turn) {
                 if (piece_toggled)
-                draw(selected.x,selected.y,"moi1"+((board[selected.x][selected.y]==1.1)?"q":"")+".gif");
+                draw(selected.x,selected.y,"../_graph/img/assets_jeu/dame_moi1"+((board[selected.x][selected.y]==1.1)?"q":"")+".gif");
 
                 if (piece_toggled && (selected.x == x) && (selected.y == y)) {
                    piece_toggled = false;
@@ -142,7 +142,7 @@
 
                 else {
                    piece_toggled = true;
-                   draw(x,y,"moi2"+((board[x][y]==1.1)?"q":"")+".gif");
+                   draw(x,y,"../_graph/img/assets_jeu/dame_moi2"+((board[x][y]==1.1)?"q":"")+".gif");
                 }
 
                 selected = coord(x,y);
@@ -150,7 +150,7 @@
 
              else {
                 if ((piece_toggled) && (integ(board[selected_c.x][selected_c.y])==-1))
-                   draw(selected_c.x,selected_c.y,"IA1"+((board[selected_c.x][selected_c.y]==-1.1)?"q":"")+".gif");
+                   draw(selected_c.x,selected_c.y,"../_graph/img/assets_jeu/dame_IA1"+((board[selected_c.x][selected_c.y]==-1.1)?"q":"")+".gif");
 
                 if (piece_toggled && (selected_c.x == x) && (selected_c.y == y)) {
                    piece_toggled = false;
@@ -158,7 +158,7 @@
 
                 else {
                    piece_toggled = true;
-                   draw(x,y,"IA2"+((board[x][y]==-1.1)?"q":"")+".gif");
+                   draw(x,y,"../_graph/img/assets_jeu/dame_IA2"+((board[x][y]==-1.1)?"q":"")+".gif");
                 }
                 selected_c = coord(x,y);
              }
@@ -270,11 +270,11 @@
           function queen_IA(x,y) {
              if (board[x][y] == 1) {
                 board[x][y] = 1.1; // reine moi
-                draw(x,y,"moi2q.gif");
+                draw(x,y,"../_graph/img/assets_jeu/dame_moi2q.gif");
              }
              else if (board[x][y] == -1) {
                board[x][y] = -1.1; // reine IA
-               draw(x,y,"IA2q.gif");
+               draw(x,y,"../_graph/img/assets_jeu/dame_IA2q.gif");
              }
           }
 

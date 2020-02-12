@@ -33,13 +33,13 @@ var timedEvent;
 }
 
 function preload(){
-	this.load.image('background','../_graph/img/decors/recree_2.png');
-	this.load.image('bomb','../_graph/img/assets_jeu/recree_pangBall.png');
-	this.load.image('mur','../_graph/img/assets_jeu/recree_mur.png');
-	this.load.image('barriere','../_graph/img/assets_jeu/recree_barrieres.png')
-	this.load.spritesheet('perso','../_graph/img/assets_jeu/recree_perso2.png',{frameWidth: 64, frameHeight: 64});
-	this.load.image('life1','../_graph/img/assets_jeu/recree_life1.png');
-	this.load.image('life2','../_graph/img/assets_jeu/recree_life2.png');
+	this.load.image('background','_graph/img/decors/recree_2.png');
+	this.load.image('bomb','_graph/img/assets_jeu/recree_pangBall.png');
+	this.load.image('mur','_graph/img/assets_jeu/recree_mur.png');
+	this.load.image('barriere','_graph/img/assets_jeu/recree_barrieres.png')
+	this.load.spritesheet('perso','_graph/img/assets_jeu/recree_perso2.png',{frameWidth: 64, frameHeight: 64});
+	this.load.image('life1','_graph/img/assets_jeu/recree_life1.png');
+	this.load.image('life2','_graph/img/assets_jeu/recree_life2.png');
 }
 
 
