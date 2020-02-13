@@ -1,4 +1,97 @@
 body {
-  width: 1280px;
-  height: 720px;
+color:black;
+background-color:white;
+background-image:url(../_graph/img/decors/fete_background.png);
+width: 1280px;
+height: 720px;
+background-repeat: no-repeat;
 }
+
+#l1{
+  position: absolute;
+  top: 110px;
+  left: 680px;
+}
+#l2{
+  position: absolute;
+  top: 380px;
+  left: 40px;
+}
+#l3{
+  position: absolute;
+  top: 600px;
+  left: 750px;
+}
+#p1{
+  position: absolute;
+  top: 130px;
+  left: 160px;
+}
+#p2{
+  position: absolute;
+  top: 350px;
+  left: 690px;
+}
+#p3{
+  position: absolute;
+  top: 290px;
+  left: 60px;
+}
+#p4{
+  position: absolute;
+  top: 680px;
+  left: 170px;
+}
+#p5{
+  position: absolute;
+  top: 400px;
+  left: 1030px;
+}
+#p6{
+  position: absolute;
+  top: 480px;
+  left: 270px;
+}
+
+
+#p_bac {
+  position: absolute;
+  top: 480px;
+  left: 950px;
+  width: 200px;
+  height: 200px;
+}
+#l_bac {
+  position: absolute;
+  top: 500px;
+  left: 810px;
+  width: 150px;
+  height: 100px;
+}
+.styled {
+    border: 0;
+    line-height: 2.5;
+    padding: 0 20px;
+    font-size: 1rem;
+    text-align: center;
+    color: #fff;
+    text-shadow: 1px 1px 1px #000;
+    border-radius: 10px;
+    background-color: rgba(220, 0, 0, 1);
+    background-image: linear-gradient(to top left,
+                                      rgba(0, 0, 0, .2),
+                                      rgba(0, 0, 0, .2) 30%,
+                                      rgba(0, 0, 0, 0));
+    box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
+                inset -2px -2px 3px rgba(0, 0, 0, .6);
+}
+
+.styled:hover {
+    background-color: rgba(255, 0, 0, 1);
+}
+
+.styled:active {
+    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
+                inset 2px 2px 3px rgba(0, 0, 0, .6);
+}
+
