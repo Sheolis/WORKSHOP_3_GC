@@ -6,6 +6,8 @@
       <link rel="stylesheet" href="styles.css">
   </head>
       <body>
+
+        <div src = "../_graph/img/decors/plateau_dames_1.png"> </div>
         <p>&nbsp;</p>
 
         <script language="JavaScript1.1">
@@ -51,8 +53,8 @@
 
           var board;
           Board(0,0,0,0,0,0,0,0,
-                0,1,0,0,0,0,0,0,
-                0,0,0,0,1,0,1,0,
+                0,1,0,1,0,0,0,0,
+                0,0,1,0,1,0,1,0,
                 0,0,0,0,0,0,0,0,
                 -1,0,0,0,-1,0,0,0,
                 0,0,0,-1,0,0,0,0,
@@ -109,11 +111,12 @@
               document.write("<img src='../_graph/img/assets_jeu/dame_black.gif' width=4 height="+square_dim+"></td></tr>");
            }
 
-           document.write("<tr><td><img src='../_graph/img/assets_jeu/dame_black.gif' width="+(square_dim*8+8)
-            +" height=4><br></td></tr></table><br>"
-            +"<form name='disp'><textarea name='message' wrap=virtual rows=2 cols=40></textarea><br><input "
-            +"type=button value=\"Red&eacute;marrer le jeu\" onClick=\"location.href+=''\"></form>");
-           document.write("<a href='../jeux.htm'><img src='images/Dames_htm_smartbutton1.gif'  border='0'></a>")
+      document.write("<tr><td><img src='../_graph/img/assets_jeu/dame_black.gif' width="+(square_dim*8+8)
+           +" height=4><br></td></tr></table><br>"
+           +"<form name='disp'><textarea name='message' wrap=virtual rows=2 cols=40></textarea><br><input "
+           +"type=button value=\"Red&eacute;marrer le jeu\" onClick=\"location.href+=''\"></form>");
+          
+
 
 
 
