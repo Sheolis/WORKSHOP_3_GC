@@ -91,7 +91,7 @@ function create(){
 
 		text = this.add.text(32, 32);
 
-	    timedEvent = this.time.addEvent({ delay: 800, callback: setbomb, callbackScope: this, repeat: 20 });
+	    timedEvent = this.time.addEvent({ delay: 800, callback: setbomb, callbackScope: this, repeat: 25 });
 
 
 
@@ -150,7 +150,11 @@ function update(){
 
 
 
-	text.setText('Event.progress: ' + timedEvent.getProgress().toString().substr(0, 4) + '\nEvent.repeatCount: ' + timedEvent.repeatCount);
+	text.setText('\nTemps restant: ' + timedEvent.repeatCount);
+
+	if(timedEvent.repeatCount==0){
+		
+	}
 }
 
 

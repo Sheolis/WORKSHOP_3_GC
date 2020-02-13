@@ -13,7 +13,20 @@ function drag(ev) {
 }
 
 
+var count = 20;
 
+var fenetre = window.setInterval(function(){
+  count --;
+
+  $("#chrono").html('Temps Restant :'+count);
+
+  if (count <= 0 ){
+    window.clearInterval(fenetre);
+
+    //
+  }
+
+},1000)
 
 
 function drop(ev) {

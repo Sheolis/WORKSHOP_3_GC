@@ -33,11 +33,16 @@ function init(){
 	var cursors;
 	var gameOverText;
 	var gameOverTextj;
+
+
+	var text;
+	var timedEvent;
 	var fleurs
 	var fleursV
 	var fleursR
 	var fleursB
 	var fleursJ
+
 }
 
 function preload(){
@@ -361,6 +366,9 @@ function create(){
 		setXY: {x: 640, y: 600, stepX: 70}
 	});
 
+
+	text = this.add.text(32, 32);
+	timedEvent = this.time.addEvent({ delay: 800, callback: setbomb, callbackScope: this, repeat: 90 });
 	this.physics.add.collider(fleursR, platforms);
 	fleursR.setTint(0xff0000);
 	this.physics.add.collider(fleursR, sol);
@@ -412,6 +420,7 @@ function create(){
 	this.physics.add.collider(fleurs, platforms);
 	this.physics.add.collider(fleurs, sol);
 	this.physics.add.collider(fleurs, murs);
+
 
 
 
@@ -558,9 +567,19 @@ function update() {
 
 	}
 
+
+
+
+	text.setText('\nTemps restant: ' + timedEvent.repeatCount);
+
+	if(timedEvent.repeatCount==0){
+		//condition de sortie du jeu defaite
+	}
+
 	if (score == 40){
 		gameOverText.visible = true;
 		this.physics.pause();
 	}
+
 
 }
