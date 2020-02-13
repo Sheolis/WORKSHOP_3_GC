@@ -1,2 +1,95 @@
 # WORKSHOP_3_GC
 Visual Novel + puzzle, Js, css, html
+
+Factoring : 
+Noms:
+  Jeux:
+    formes
+    anneau
+    dame1
+    recree
+    fete
+    carton
+    botaniste
+    instrument
+    dame2
+   dialogues:
+    intro
+    d_formes
+    d_anneau
+    d_dame1
+    d_recree
+    d_fete
+    d_carton
+    d_botaniste
+    d_instrument
+    d_dame2
+    
+
+Repository:  
+
+ /graph
+      /img
+        /decors
+          nom_decorsA_0.png
+          nom_decorsA_1.png
+          nom_decorsA_2.png
+          ...
+        /perso
+          nom_persoA_0_0.png
+          nom_persoA_1_0.png
+          nom_persoA_2_0.png
+           ...
+        /assets_jeu
+          nom_jeu_nom_assetA_0.png
+          nom_jeu_nom_assetA_1.png
+        ..
+     /anim
+        nom_anim.mp4
+ /son
+     /musique
+        nom_musique.mp3
+     /bruitages
+        nom_bruitage.mp3
+ /j1_formes
+    index.html
+    styles.css
+    script.js
+ /j2_anneau
+ index.html
+    styles.css
+    script.js
+ /j3_dame1
+ index.html
+    styles.css
+    script.js
+ /j4_recree
+ index.html
+    styles.css
+    script.js
+ /j5_fete
+    index.html
+    styles.css
+    script.js
+ /j6_carton
+    index.html
+    styles.css
+    script.js
+ /j7_botanist
+    index.html
+    styles.css
+    script.jse
+ /j8_instrument
+    index.html
+    styles.css
+    script.js
+ /j9_dame2
+    index.html
+    styles.css
+    script.js
+ 
+ index.html
+ script.js
+ styles.css
+ phaser.js
+ mangoose.exe
