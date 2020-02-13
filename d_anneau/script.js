@@ -16,13 +16,13 @@ var pseudo_liste=[
   ];
 var perso_asset_liste=[
   ['', 0],
-  ['mere_18_ans_', 0],
-  ['pere_18_ans_', 1],
+  ['mere_45ans_', 0],
+  ['homme_45ans_', 1],
   ['copain_d_enfance_12ans_', 2],
   ['copain_d_enfance_12ans_', 2],
   ['', 0],
-  ['mere_18_ans_', 0],
-  ['pere_18_ans_', 1],
+  ['mere_45ans_', 0],
+  ['homme_45ans_', 1],
   ['copain_d_enfance_12ans_', 2]
 ]; //Contient le nom d'asset des perso et le slot d'affichage à l'écran de l'image
 var decors_liste=[['chambre_', 0], ['cuisine_', 3], ['chambre_', 6], ['cuisine_', 12], ['recree_', 14]];

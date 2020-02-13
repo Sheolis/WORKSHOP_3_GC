@@ -1,20 +1,20 @@
 var etat_jeu=2;
-var indexhtml_suivant='../j7_botanist/index.html';
+var indexhtml_suivant='../j4_dame1/index.html';
 var joueur = $.session.get('nom_joueur');
 
 
 var pseudo_liste=[
     '',
+    'Père',
   ];
 var perso_asset_liste=[
   ['', 0],
+  ['homme_45ans_', 1]
 ]; //Contient le nom d'asset des perso et le slot d'affichage à l'écran de l'image
-var decors_liste=[['bureau_', 0]];
+var decors_liste=[['plateau_dames_', 0]];
 var dialogue_liste=[ // contient la liste des dialogues [le dialogue1[ligne de dialogue, l'index du nom(pseudo_list) de celui qui parle], le dialogue2 ...]
   [
-    ['Vous fermez le tiroir de votre bureau en soupirant.', 0],
-    ['La journée est passée à une vitesse folle et vous avez encore des résultats d’analyses à faire parvenir à vos supérieurs.', 0],
-    ['Vous vous saisissez du matériel et vous remettez au travail.', 0],
+    ['Il n’y a pas assez de place, on fera un deuxième voyage.', 0],
     ['fin', 0] // si le dialogue est égal à 'choix' on va aller chercher l'affichage du choix suivant dans la liste de choix, permettant au joueur de prendre une décision. Le 0 n'a pas d'importance
   ]
 ];

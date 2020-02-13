@@ -9,7 +9,7 @@ var pseudo_liste=[
 var perso_asset_liste=[
   ['',1]
 ]; //Contient le nom d'asset des perso et le slot d'affichage à l'écran de l'image
-var decors_liste=['chambre_'];
+var decors_liste=[['chambre_', 0]];
 var dialogue_liste=[ // contient la liste des dialogues [le dialogue1[ligne de dialogue, l'index du nom(pseudo_list) de celui qui parle], le dialogue2 ...]
   [
     ['Le premier jeu vous ayant vraiment plu, vous vous ruez sur le suivant.', 0],
