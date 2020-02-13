@@ -5,16 +5,18 @@ var joueur = $.session.get('nom_joueur');
 
 var pseudo_liste=[
     '',
-    'Papy'
+    'Papy',
+    ''
   ];
 var perso_asset_liste=[
   ['', 0],
+  ['grand_pere_', 1],
   ['grand_pere_', 1]
 ]; //Contient le nom d'asset des perso et le slot d'affichage à l'écran de l'image
 var decors_liste=[['plateau_dames_', 0]];
 var dialogue_liste=[ // contient la liste des dialogues [le dialogue1[ligne de dialogue, l'index du nom(pseudo_list) de celui qui parle], le dialogue2 ...]
   [
-    ['Vous vous retrouvez devant votre grand-père, en pleine échange avec ce dernier', 0],
+    ['Vous vous retrouvez devant votre grand-père, en plein échange avec ce dernier', 2],
     ['choix', 0] // si le dialogue est égal à 'choix' on va aller chercher l'affichage du choix suivant dans la liste de choix, permettant au joueur de prendre une décision. Le 0 n'a pas d'importance
   ],
   [
@@ -22,9 +24,9 @@ var dialogue_liste=[ // contient la liste des dialogues [le dialogue1[ligne de d
     ['choix', 1]
   ],
   [
-    ['Papi sourit d’un air bienveillant.', 0],
+    ['Papi sourit d’un air bienveillant.', 2],
     ['D\'ailleurs, comment vont Papa et Maman ?',1],
-    ['Il déplace son pion avant de lever de nouveau les yeux.', 0],
+    ['Il déplace son pion avant de lever de nouveau les yeux.', 2],
     ['choix', 2]
   ],
   [
