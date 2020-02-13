@@ -2,22 +2,43 @@ var etat_jeu=2;
 var indexhtml_suivant='../j4_recree/index.html';
 var joueur = $.session.get('nom_joueur');
 
-var pseudo_liste=['','Mère'];
-var decors_liste=['naissance_','chambre_']; //placé dans le chemin suivant ../_graph/img/perso/
+
+var pseudo_liste=[
+    'Lui',
+    'Elle',
+    'Ça'
+  ];
 var perso_asset_liste=[
-  ['',0],['',0]
+  ['docteurspeak_',1],
+  ['docteurspeak_',0],
+  ['docteurspeak_',2]
 ]; //Contient le nom d'asset des perso et le slot d'affichage à l'écran de l'image
+var decors_liste=['recree_'];
 var dialogue_liste=[ // contient la liste des dialogues [le dialogue1[ligne de dialogue, l'index du nom(pseudo_list) de celui qui parle], le dialogue2 ...]
   [
-    ['Bienvenue dans la famille '+joueur+'!', 1],
-    ['decors', 1]
+    ['Bonjour', 0],
+    ['Textecourt',1],
+    ['TexteLong TexteLongTexteLong TexteLongTexteLongText LongTexteLongTexteLong TexteLongTexteLongTexteLongTexteLongTexteLong TexteLongTexteLong exteLongTexteLong',2],
+    ['TextemoinslongTextemoinslongTextemoinslongTextemoinslongTextemoinslong',0],
+    ['choix',0] // si le dialogue est égal à 'choix' on va aller chercher l'affichage du choix suivant dans la liste de choix, permettant au joueur de prendre une décision. Le 0 n'a pas d'importance
   ],
   [
-    ['Vous vous trouvez dans ce qui semble être une chambre d’enfant. Un certain nombre de jeux se trouvent à votre portée. Envahi par un sentiment d’excitation, vous vous avancez vers ces derniers afin d’y jouer.', 0],
-    ['fin', 0]
+    ['Début du texte 2',1],
+    ['Fin du texte 2',0],
+    ['choix',1]
   ]
 ];
 var choix_liste = [ //contient plusieurs groupes de choix. Chaque choix est composé d'une phrase et de l'index du dialogue qu'il appelle.
+  [
+    ['oui',1],
+    ['non',1],
+    ['peut-etre',0]
+  ],
+  [
+    ['da',0],
+    ['nee',1],
+    ['poporotski',0]
+  ]
 ];
 
 var dialogue_statut=1; // 1 le dialogue est en cours, 0 le dialogue est terminé
@@ -35,9 +56,9 @@ function print_ligne_dialogue(dialogue_index,dialogue_ligne) {
     var texte=dialogue_liste[dialogue_index][dialogue_ligne][0];
     var index_perso = dialogue_liste[dialogue_index][dialogue_ligne][1];
     $('#emplacement_'+perso_asset_liste[index_perso][1]).animateSprite({
-    fps: 2,
+    fps: 5,
     animations: {
-        speak: [1, 2],
+        speak: [0, 1, 2],
     },
     loop: true,
     });
@@ -45,7 +66,7 @@ function print_ligne_dialogue(dialogue_index,dialogue_ligne) {
         $('#dialogue').append(texte.charAt(i++));
         if (i > texte.length)
             window.clearInterval(intervalId);
-            $('#emplacement_'+perso_asset_liste[index_perso][1]).animateSprite('stop');
+           // $('#emplacement_'+perso_asset_liste[index_perso][1]).animateSprite('stop');
     }, 30);
   }
 function upload_environnement(index_environnement) {
@@ -54,17 +75,17 @@ function upload_environnement(index_environnement) {
 }
 
 function clean_emplacements_perso(){
-    for (i=0; i<3; i++) $('#emplacement_'+i).empty();
+    for (i=0; i<3; i++) $('#emplacement_'+i).css("background-image","");
     }
 
-  function print_personnage(i, l) { //fonction chargée de l'update de l'image à charger et du nom à afficher
-    var index_perso = dialogue_liste[i][l][1];
-    $('#nom_du_locuteur').html(pseudo_liste[index_perso]);
-    clean_emplacements_perso()
-    if (perso_asset_liste[index_perso][0]!='') {
-      $('#emplacement_'+perso_asset_liste[index_perso][1]).append('<img src="../_graph/img/perso/'+perso_asset_liste[index_perso][0]+etat_jeu+'.png" />');
+    function print_personnage(i, l) { //fonction chargée de l'update de l'image à charger et du nom à afficher
+      var index_perso = dialogue_liste[i][l][1];
+      $('#nom_du_locuteur').html(pseudo_liste[index_perso]);
+      clean_emplacements_perso()
+      if (perso_asset_liste[index_perso][0]!='') {
+        $('#emplacement_'+perso_asset_liste[index_perso][1]).append('<img src="../_graph/img/perso/'+perso_asset_liste[index_perso][0]+etat_jeu+'.png" />');
+      }
     }
-  }
 
 function f_choix(choix_index) { //fonction_choix
     for (var i = 0; i < choix_liste[choix_index].length; i++) {
