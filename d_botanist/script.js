@@ -1,5 +1,5 @@
 var etat_jeu=2;
-var indexhtml_suivant='../j6_carton/index.html';
+var indexhtml_suivant='../j8_instrument/index.html';
 var joueur = $.session.get('nom_joueur');
 
 
@@ -79,6 +79,9 @@ var dialogue_liste=[ // contient la liste des dialogues [le dialogue1[ligne de d
     ['Vous vous saisissez du violon et repensez à toutes ces nuits, bercées par les mélodies de votre mère.', 0],
     ['fin', 0]
   ],
+
+  //L’écran devient noir, et le bip du moniteur cardiaque devient continu, indiquant le décès de la mère.
+  // L’écran devient noir, et le bip du moniteur cardiaque devient continu, indiquant le décès de la mère.
 ];
 var choix_liste = [ //contient plusieurs groupes de choix. Chaque choix est composé d'une phrase et de l'index du dialogue qu'il appelle.
   [
