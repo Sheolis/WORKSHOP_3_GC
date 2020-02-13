@@ -1,42 +1,36 @@
 var etat_jeu=2;
-var indexhtml_suivant='../j4_dame1/index.html';
+var indexhtml_suivant='../j10_avantFin/index.html';
 var joueur = $.session.get('nom_joueur');
 
 
 var pseudo_liste=[
     '',
-    'Sam',
-    ''
+    'Scientifique A',
+    'Scientifique B',
+    'Scientifique C',
+    'Scientifique D'
   ];
 var perso_asset_liste=[
   ['', 0],
-  ['petit_fils_', 1],
-  ['petit_fils_', 1]
+  ['', 0],
+  ['', 0],
+  ['', 0],
+  ['', 0]
+
 ]; //Contient le nom d'asset des perso et le slot d'affichage à l'écran de l'image
-var decors_liste=[['plateau_dames_', 0]];
+var decors_liste=[['laboratoire_', 0]];
 var dialogue_liste=[ // contient la liste des dialogues [le dialogue1[ligne de dialogue, l'index du nom(pseudo_list) de celui qui parle], le dialogue2 ...]
   [
-    ['Votre petit-fils semble assez déçu d\'avoir perdu', 2],
-    ['choix', 0]
-  ],
-  [
-    ['Sam croise les bras, boudeur.', 2],
-    ['C\'est dur comme jeu, et puis tu es trop fort !', 1],
-    ['Vous vous rappelez soudainement que vous deviez effectuer des courses pour les préparatifs de la fête.', 2],
-    ['choix', 1]
-  ],
-  [
-    ['Vous quittez votre domicile en direction du magasin.', 0],
-    ['fin', 0]
+    ['Vous ne comprenez pas pourquoi vous vous trouvez dans un laboratoire et ni pourquoi vous êtes dans l’incapacité d’émettre le moindre son ou le moindre mouvement. ', 0],
+    ['Un groupe de chercheurs s’approche de vous jusqu’à ce que vous ayez la possibilité d’entendre leur conversation.', 0],
+    ['Encore une fois, l’expérience se conclut par un échec.', 1],
+    ['Il est impossible d’aboutir au résultat souhaité par notre commanditaire, ils ne réalisent pas la prouesse technologique que ce projet requiert.', 2],
+    ['Et puis ne parlons même pas du point de vue éthique soulevé. Peut-on encore parler d’intelligence artificielle ? Parvenir à le compléter résulterait peut-être comme un crime envers notre société !', 3],
+    ['Vous avez fini de vous trouver des excuses ou de vous donner bonne conscience ? Nous avons accepté de notre plein gré d’y participer. Donc maintenant on reboot le prototype en modifiant quelques données et on réitère l’expérimentation.', 4],
+    ['fin', 0] // si le dialogue est égal à 'choix' on va aller chercher l'affichage du choix suivant dans la liste de choix, permettant au joueur de prendre une décision. Le 0 n'a pas d'importance
   ]
 ];
 var choix_liste = [ //contient plusieurs groupes de choix. Chaque choix est composé d'une phrase et de l'index du dialogue qu'il appelle.
-  [
-    ['Encore trop jeune pour battre l\'expérimenté mon petit.', 1]
-  ],
-  [
-    ['D\'accord, pas de soucis.', 2]
-  ]
 ];
 
 var dialogue_statut=1; // 1 le dialogue est en cours, 0 le dialogue est terminé
