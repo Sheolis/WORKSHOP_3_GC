@@ -1,69 +1,22 @@
 var etat_jeu=2;
-var indexhtml_suivant='../j6_carton/index.html';
+var indexhtml_suivant='../j2_anneau/index.html';
 var joueur = $.session.get('nom_joueur');
 
 
 var pseudo_liste=[
-    '',
-    'Mère',
-    'Père',
-    'Swann',
-    '',
-    '',
     ''
   ];
 var perso_asset_liste=[
-  ['', 0],
-  ['mere_30_ans_', 0],
-  ['pere_30ans_', 1],
-  ['copine_18_ans_', 2],
-  ['mere_30_ans_', 0],
-  ['pere_30ans_', 1],
-  ['copine_18_ans_', 2]
-
+  ['',1]
 ]; //Contient le nom d'asset des perso et le slot d'affichage à l'écran de l'image
-var decors_liste=[['salon_jeune_', 0], ['camion_', 1]];
+var decors_liste=['naissance_', 0];
 var dialogue_liste=[ // contient la liste des dialogues [le dialogue1[ligne de dialogue, l'index du nom(pseudo_list) de celui qui parle], le dialogue2 ...]
   [
-    ['Après une nuit courte, Swann vous réveille, annonçant la présence du camion de déménagement.', 0],
-    ['decors', 1] // si le dialogue est égal à 'choix' on va aller chercher l'affichage du choix suivant dans la liste de choix, permettant au joueur de prendre une décision. Le 0 n'a pas d'importance
+    ['Bienvenue dans la famille'+joueur, 0],
+    ['fin', 0] // si le dialogue est égal à 'choix' on va aller chercher l'affichage du choix suivant dans la liste de choix, permettant au joueur de prendre une décision. Le 0 n'a pas d'importance
   ],
-// transition background camion de déménagement
-  [
-    ['Vous êtes sûrs que tout va passer ?', 1],
-    ['Un peu juste mais ça devrait le faire.', 2],
-    ['Votre mère soupire doucement.', 4],
-    ['Le temps passe si vite, ça fait déjà plus de 4 ans que vous êtes ensembles !', 1],
-    ['choix', 0]
-  ],
-  [
-    ['Moi si!', 3],
-    ['Elle rigole.', 6],
-    ['choix', 1]
-  ],
-  [
-    ['Bah c’est pas trop tôt !', 2],
-    ['Chéri !', 1],
-    ['Oh ça va.', 2],
-    ['choix', 2]
-  ],
-  [
-    ['Votre père tape énergiquement dans ses mains.', 5],
-    ['Bon, au boulot !', 2],
-    ['fin', 0]
-  ]
 ];
 var choix_liste = [ //contient plusieurs groupes de choix. Chaque choix est composé d'une phrase et de l'index du dialogue qu'il appelle.
-  [
-    ['J’ai pas vu le temps passer.', 2],
-    ['Et maintenant je quitte le cocon familial.', 3]
-  ],
-  [
-    ['Bah super', 4],
-  ],
-  [
-    ['Merci, Maman au moins je peux compter sur toi.', 4],
-  ]
 ];
 
 var dialogue_statut=1; // 1 le dialogue est en cours, 0 le dialogue est terminé
