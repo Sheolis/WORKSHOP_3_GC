@@ -86,11 +86,6 @@ var dialogue_liste=[ // contient la liste des dialogues [le dialogue1[ligne de d
     ['choix', 12]
   ],
   [
-    ['Oui !', 1],
-    ['La main dans la sienne, vous sortez du parc pour rentrer chez vous.', 2],
-    ['fin', 0]
-  ],
-  [
     ['Oui, médecin pour les gens !', 1],
     ['choix', 13]
   ],
@@ -122,6 +117,11 @@ var dialogue_liste=[ // contient la liste des dialogues [le dialogue1[ligne de d
     ['Tu viendras avec moi ! Comme ça tu leur joueras du violon !', 1],
     ['choix', 18]
   ],
+  [
+    ['Oui !', 1],
+    ['La main dans la sienne, vous sortez du parc pour rentrer chez vous.', 2],
+    ['fin', 0]
+  ]
 ];
 var choix_liste = [ //contient plusieurs groupes de choix. Chaque choix est composé d'une phrase et de l'index du dialogue qu'il appelle.
   [

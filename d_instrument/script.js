@@ -22,7 +22,6 @@ var dialogue_liste=[ // contient la liste des dialogues [le dialogue1[ligne de d
     ['Vous regardez votre fils, ce dernier tenant votre main, implorant.', 2],
     ['choix', 0] // si le dialogue est égal à 'choix' on va aller chercher l'affichage du choix suivant dans la liste de choix, permettant au joueur de prendre une décision. Le 0 n'a pas d'importance
   ],
-// transition background camion de déménagement
   [
     ['Trop bien ! Viens vite !', 1],
     ['Il vous entraîne vers les jeux en sautillant.', 2],
@@ -83,12 +82,8 @@ var dialogue_liste=[ // contient la liste des dialogues [le dialogue1[ligne de d
   ],
   [
     ['Vous regardez l\'heure. Indiquant qu\'il est temps de retourner à la maison.', 2],
+    ['Et puis une surprise attend votre fils à la maison, puisque son Tonton, Valentin, l\'attend chez-vous.', 2],
     ['choix', 12]
-  ],
-  [
-    ['Oui !', 1],
-    ['La main dans la sienne, vous sortez du parc pour rentrer chez vous.', 2],
-    ['fin', 0]
   ],
   [
     ['Oui, médecin pour les gens !', 1],
@@ -122,6 +117,11 @@ var dialogue_liste=[ // contient la liste des dialogues [le dialogue1[ligne de d
     ['Tu viendras avec moi ! Comme ça tu leur joueras du violon !', 1],
     ['choix', 18]
   ],
+  [
+    ['Oui !', 1],
+    ['La main dans la sienne, vous sortez du parc pour rentrer chez vous.', 2],
+    ['fin', 0]
+  ]
 ];
 var choix_liste = [ //contient plusieurs groupes de choix. Chaque choix est composé d'une phrase et de l'index du dialogue qu'il appelle.
   [
