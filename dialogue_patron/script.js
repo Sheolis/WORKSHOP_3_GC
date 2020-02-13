@@ -9,9 +9,9 @@ var pseudo_liste=[
     'Ça'
   ];
 var perso_asset_liste=[
-  ['docteurspeak_',1],
-  ['docteurspeak_',0],
-  ['docteurspeak_',2]
+  ['SHcopain_d_enfance_12ans_',2],
+  ['SHcopain_d_enfance_18ans_',1],
+  ['SHgrand_mere_',0]
 ]; //Contient le nom d'asset des perso et le slot d'affichage à l'écran de l'image
 var decors_liste=[
   ['recree_',0]
@@ -43,6 +43,47 @@ var choix_liste = [ //contient plusieurs groupes de choix. Chaque choix est comp
   ]
 ];
 
+
+
+function load_speak(id_sprite) {
+  $(id_sprite).animateSprite({
+  fps: 5,
+  animations: {
+      speak: [7, 8, 9, 10, 11, 12, 13]
+  },
+  loop: true,
+  });
+  //$(id_sprite).animateSprite('stop');
+  $(id_sprite).animateSprite('restart');
+}
+function load_blink(id_sprite) {
+  $(id_sprite).animateSprite({
+  fps: 30,
+  animations: {
+      blink: [0, 1, 2, 3, 4, 5, 6]
+  },
+  loop: true,
+  });
+  //$(id_sprite).animateSprite('stop');
+}
+
+function play_speak(id_sprite) {
+  $(id_sprite).animateSprite('play','speak');
+}
+function play_blink(id_sprite) {
+  $(id_sprite).animateSprite('play','blink');
+}
+
+function stop_anim(id_sprite) {
+  $(id_sprite).animateSprite('stop');
+}
+
+
+
+
+
+
+
 var dialogue_statut=1; // 1 le dialogue est en cours, 0 le dialogue est terminé
 var dialogue_index=0; //index du dialogue
 var dialogue_ligne=1; //index de la ligne de texte du dialogue
@@ -52,27 +93,38 @@ var choix_index; // index du choix proposé
 ///////////////////////////////////////////////FONCTIONS/////////////////////////////////////////////////////
 var intervalId;
 
+
+/*function blink_anim_f() {
+  blink_anim_interv = setInterval(function() {
+    $('#emplacement_'+perso_asset_liste[dialogue_liste[dialogue_index][dialogue_ligne][1]][1]).animateSprite({
+      fps: 5,
+      animations: {
+        blink: [0, 1, 2, 3, 4, 5, 6],
+      },
+      loop: false,
+      complete: function(){}
+    });
+  } , 1000);
+}*/
+
 function print_ligne_dialogue(dialogue_index,dialogue_ligne) {
+    //clearInterval(blink_anim_interv);
     $('#dialogue').html('');
     var i = 0;
     var texte=dialogue_liste[dialogue_index][dialogue_ligne][0];
     var index_perso = dialogue_liste[dialogue_index][dialogue_ligne][1];
     if ( perso_asset_liste[index_perso][0] != '') {
-      $('#emplacement_'+perso_asset_liste[index_perso][1]).animateSprite({
-      fps: 5,
-      animations: {
-          speak: [0, 1, 2],
-      },
-      loop: true,
-      });
-      intervalId = window.setInterval(function() {
-          $('#dialogue').append(texte.charAt(i++));
-          if (i > texte.length)
-              window.clearInterval(intervalId);
-             // $('#emplacement_'+perso_asset_liste[index_perso][1]).animateSprite('stop');
-
-      }, 30);
+      load_speak('#emplacement_'+perso_asset_liste[index_perso][1]);
     }
+    intervalId = window.setInterval(function() {
+        $('#dialogue').append(texte.charAt(i++));
+        if (i > texte.length)
+            window.clearInterval(intervalId);
+            //stop_anim('#emplacement_'+perso_asset_liste[index_perso][1]);
+            //blink_anim_f();
+           // $('#emplacement_'+perso_asset_liste[index_perso][1]).animateSprite('stop');
+
+    }, 30);
   }
 function upload_environnement(i) {
   $("#environnement").empty();
@@ -89,6 +141,7 @@ function print_personnage(i, l) { //fonction chargée de l'update de l'image à 
   clean_emplacements_perso();
   if (perso_asset_liste[index_perso][0]!='') {
     $('#emplacement_'+perso_asset_liste[index_perso][1]).css("background-image",'url(../_graph/img/perso/'+perso_asset_liste[index_perso][0]+etat_jeu+'.png)');
+    load_speak('#emplacement_'+perso_asset_liste[dialogue_liste[i][l][1]][1]);
   }
 }
 
@@ -132,12 +185,17 @@ function f_choix(choix_index) { //fonction_choix
 //clearInterval();
 upload_environnement(0); //charge le premier décors de la liste
 print_personnage(dialogue_index,0);
+//blink_anim_f();
 print_ligne_dialogue(dialogue_index,0);//appelle la première ligne du premier dialogue à s'afficher sur le html
 
 $('#boite_de_dialogue').on('click',function(){
     if ($('#dialogue').html().length < dialogue_liste[dialogue_index][dialogue_ligne-1][0].length) { //permet d'accelerer le dialogue si il n'est pas fini
+        if ( perso_asset_liste[dialogue_liste[dialogue_index][dialogue_ligne][1]][0] != '') {
+            //$('#emplacement_'+perso_asset_liste[dialogue_liste[dialogue_index][dialogue_ligne][1]][1]).animateSprite('stop');
+            //blink_anim_f();
+            stop_anim('#emplacement_'+perso_asset_liste[dialogue_liste[dialogue_index][dialogue_ligne-1][1]][1]);
+        }
         window.clearInterval(intervalId);
-        $('#emplacement_'+perso_asset_liste[dialogue_liste[dialogue_index][dialogue_ligne][1]][1]).animateSprite('stop');
         $('#dialogue').html('');
         $('#dialogue').html(dialogue_liste[dialogue_index][dialogue_ligne-1][0]);
     }
