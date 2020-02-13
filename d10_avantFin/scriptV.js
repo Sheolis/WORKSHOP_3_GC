@@ -1,5 +1,5 @@
 var etat_jeu=2;
-var indexhtml_suivant='../j4_dame1/index.html';
+var indexhtml_suivant='../j11_fin_2/index.html';
 var joueur = $.session.get('nom_joueur');
 
 
@@ -16,26 +16,41 @@ var perso_asset_liste=[
 var decors_liste=[['plateau_dames_', 0]];
 var dialogue_liste=[ // contient la liste des dialogues [le dialogue1[ligne de dialogue, l'index du nom(pseudo_list) de celui qui parle], le dialogue2 ...]
   [
-    ['Votre petit-fils semble assez déçu d\'avoir perdu', 2],
+    ['Je t\'ai battu, je suis trop fort !', 1],
     ['choix', 0]
   ],
   [
-    ['Sam croise les bras, boudeur.', 2],
-    ['C\'est dur comme jeu, et puis tu es trop fort !', 1],
-    ['Vous vous rappelez soudainement que vous deviez effectuer des courses pour les préparatifs de la fête.', 2],
+    ['Papa a jamais été très bon aux jeux, je le bats déjà aux petits chevaux.', 1],
+    ['Vous rigolez ensemble avant de reprendre une nouvelle partie.', 2],
+    ['Après quelques parties, vous vous rappelez soudainement que vous deviez effectuer des courses pour les préparatifs de la fête.', 2],
     ['choix', 1]
   ],
   [
+    ['Normal, j\'ai un très bon professeur !', 1],
+    ['La phrase de votre petit-fils vous touche et vous fait esquisser un sourire.', 2],
+    ['Vous continuez de jouer ensemble.', 2],
+    ['Après quelques parties, vous vous rappelez soudainement que vous deviez effectuer des courses pour les préparatifs de la fête.', 2],
+    ['choix', 1]
+  ],
+  [
+    ['Oh ok, mais quand tu reviens, on rejoue aux dames !', 1],
+    ['choix', 2] // si le dialogue est égal à 'choix' on va aller chercher l'affichage du choix suivant dans la liste de choix, permettant au joueur de prendre une décision. Le 0 n'a pas d'importance
+  ],
+  [
     ['Vous quittez votre domicile en direction du magasin.', 0],
-    ['fin', 0]
+    ['fin', 0] // si le dialogue est égal à 'choix' on va aller chercher l'affichage du choix suivant dans la liste de choix, permettant au joueur de prendre une décision. Le 0 n'a pas d'importance
   ]
 ];
 var choix_liste = [ //contient plusieurs groupes de choix. Chaque choix est composé d'une phrase et de l'index du dialogue qu'il appelle.
   [
-    ['Encore trop jeune pour battre l\'expérimenté mon petit.', 1]
+    ['Déjà plus fort que ton père',1],
+    ['J\'ai rien pu faire, tu apprends très vite.',2]
   ],
   [
-    ['D\'accord, pas de soucis.', 2]
+    ['Sam, je dois aller faire les courses c\'est important, je te laisse rejoindre Mamie ?', 3]
+  ],
+  [
+    ['D\'accord, pas de soucis.', 4]
   ]
 ];
 
