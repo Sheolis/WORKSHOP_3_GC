@@ -1,233 +1,137 @@
 var etat_jeu=2;
-var indexhtml_suivant='../j9_dame2/index.html';
+var indexhtml_suivant='../j10_avantFin/index.html';
 var joueur = $.session.get('nom_joueur');
 
 
 var pseudo_liste=[
     '',
+    'Swann',
+    'Sam',
     'Alan',
+    '',
+    '',
     ''
   ];
 var perso_asset_liste=[
-
   ['', 0],
-  ['enfant_8ans_', 1],
-  ['enfant_8ans_', 1]
+  ['grand_mere_', 0],
+  ['petit_fils_', 1],
+  ['petit_fils_38ans_', 2],
+  ['grand_mere_', 0],
+  ['petit_fils_', 1],
+  ['petit_fils_38ans_', 2]
 
 ]; //Contient le nom d'asset des perso et le slot d'affichage à l'écran de l'image
-var decors_liste=[['parc_', 0]];
+var decors_liste=[['bureau_', 0], ['salon_70_', 1]];
 var dialogue_liste=[ // contient la liste des dialogues [le dialogue1[ligne de dialogue, l'index du nom(pseudo_list) de celui qui parle], le dialogue2 ...]
   [
-    ['Allez, un dernier jeu, s’il te plaît !', 1],
-    ['Vous regardez votre fils, ce dernier tenant votre main, implorant.', 2],
-    ['choix', 0] // si le dialogue est égal à 'choix' on va aller chercher l'affichage du choix suivant dans la liste de choix, permettant au joueur de prendre une décision. Le 0 n'a pas d'importance
-  ],
-// transition background camion de déménagement
-  [
-    ['Trop bien ! Viens vite !', 1],
-    ['Il vous entraîne vers les jeux en sautillant.', 2],
-    ['Vous jouez pendant une dizaine de minutes, avant qu’Alan ne s’arrête en vous regardant.', 0],
-    ['Aujourd’hui la maîtresse nous a demandé ce qu’on voulait faire plus tard comme métier', 1],
-    ['choix', 3]
+    ['Vous regardez dehors, et remarquez à quel point le monde a changé depuis votre emménagement, il y a maintenant plus de 40 ans. ', 0],
+    ['La voix de votre femme vient vous sortir de vos pensées.', 0],
+    ['Alan et Sam sont arrivés, ils attendent dans le salon. Donc sort de ta grotte !', 1],
+    ['decors', 1] // si le dialogue est égal à 'choix' on va aller chercher l'affichage du choix suivant dans la liste de choix, permettant au joueur de prendre une décision. Le 0 n'a pas d'importance
   ],
   [
-    ['S’il te plaît…', 1],
-    ['Il vous regarde avec ses grands yeux et gonfle ses joues, prenant un air de chat botté.', 2],
+    ['Vous descendez les rejoindre et votre petit fils court dans votre direction avant de sauter dans vos bras, montrant toute l’affection qu\'il vous porte. .', 0],
+    ['choix', 0]
+  ],
+  [
+    ['Tu m\'as manqué !', 2],
     ['choix', 1]
   ],
   [
-    ['Ha ha ! Ma technique secrète fonctionne encore !', 1],
-    ['Vous souriez et commencez à marcher vers les jeux.', 2],
+    ['Je suis devenu plus fort depuis la dernière fois hein ?', 2],
     ['choix', 2]
   ],
   [
-    ['Vous jouez pendant une dizaine de minutes, avant qu’Alan ne s’arrête en vous regardant.', 0],
-    ['Aujourd’hui la maîtresse nous a demandé ce qu’on voulait faire plus tard comme métier', 1],
+    ['Alan s’approche de vous et vous prend dans ses bras à son tour.', 6],
+    ['Bonjour, comment vas-tu ?', 3],
     ['choix', 3]
   ],
   [
-    ['Astronaute ou docteur.', 1],
+    ['Celui pour le journal local ?', 3],
     ['choix', 4]
   ],
   [
-    ['Il hoche la tête énergiquement.', 0],
-    ['Oui, je vais aller sur la lune pour trouver des extraterrestres !', 1],
-    ['choix', 7]
-  ],
-  [
-    ['Je sais pas, qu’est-ce que ça aime, les extraterrestres ?', 1],
-    ['choix', 8]
-  ],
-  [
-    ['Je ramènerais des feutres dans la fusée !', 1],
-    ['choix', 9]
-  ],
-  [
-    ['Il réfléchit quelques instants avant de s’exclamer.', 2],
-    ['Tu viendras avec moi ! Comme ça tu leur joueras du violon !', 1],
-    ['choix', 9]
-  ],
-  [
-    ['Maintenant le pourquoi du Docteur', 2],
-    ['choix', 6]
-  ],
-  [
-    ['Oui, médecin pour les gens !', 1],
-    ['choix', 10]
-  ],
-  [
-    ['Alan se penche vers vous avec un air sérieux.', 2],
-    ['Bin, on peut être médecin pour pleins de choses, les gens ou les animaux ! Toi t’es médecin pour les plantes.', 1],
-    ['Vous riez, en lui mettant la main sur la tête.', 2],
-    ['choix', 11]
-  ],
-  [
-    ['Vous regardez l\'heure. Indiquant qu\'il est temps de retourner à la maison.', 2],
-    ['choix', 12]
-  ],
-  [
-    ['Oui, médecin pour les gens !', 1],
-    ['choix', 13]
-  ],
-  [
-    ['Alan se penche vers vous avec un air sérieux.', 2],
-    ['Bin, on peut être médecin pour pleins de choses, les gens ou les animaux ! Toi t’es médecin pour les plantes.', 1],
-    ['Vous riez, en lui mettant la main sur la tête.', 2],
-    ['choix', 14]
-  ],
-  [
-    ['Maintenant le pourquoi de l\'astronaute', 2],
+    ['Au même moment la voix de Swann se fait entendre depuis la cuisine.', 0],
+    ['Alan, peux-tu venir m’aider ?', 1],
+    ['J’arrive Maman.', 3],
+    ['Il se dirige vers la cuisine.', 0],
+    ['Sam se tourne de nouveau vers vous.', 5],
+    ['Maman m\'as dit que c\'était ton anniversaire demain, tu vas avoir 70 ans ! C\'est beaucoup quand même.', 2],
     ['choix', 5]
   ],
   [
-    ['Il hoche la tête énergiquement.', 2],
-    ['Oui, je vais aller sur la lune pour trouver des extraterrestres !', 1],
-    ['choix', 16]
+    ['Et moi je viens d\'avoir 5 ans, je suis presque un adulte.', 2],
+    ['choix', 6]
   ],
   [
-    ['Je sais pas, qu’est-ce que ça aime, les extraterrestres ?', 1],
-    ['choix', 17]
+    ['J\'irais leur dire ça car ils continuent de dire que je suis un enfant.', 2],
+    ['Vous riez.', 5],
+    ['choix', 7]
   ],
   [
-    ['Je ramènerais des feutres dans la fusée !', 1],
-    ['choix', 18]
+    ['Ah bon, c\'est quoi la sagesse ?', 2],
+    ['choix', 8]
   ],
   [
-    ['Il réfléchit quelques instants avant de s’exclamer.', 2],
-    ['Tu viendras avec moi ! Comme ça tu leur joueras du violon !', 1],
-    ['choix', 18]
+    ['J\'ai pas tout compris.', 2],
+    ['choix', 9]
   ],
   [
-    ['Oui !', 1],
-    ['La main dans la sienne, vous sortez du parc pour rentrer chez vous.', 2],
+    ['Sam se dirige vers une ancienne boîte de jeu sur une étagère de votre salon, avant de la prendre dans ses mains, un air curieux sur son visage.', 0],
+    ['Qu’est-ce que c’est ?', 2],
+    ['choix', 10]
+  ],
+  [
+    ['Trop bien, tu veux bien m\'apprendre et jouer avec moi ?', 5],
+    ['choix', 11]
+  ],
+  [
+    ['Vous installez le jeu, et commencez à expliquer les règles à votre petit-fils. Une fois le système compris, vous commencez votre réelle première partie. ', 5],
     ['fin', 0]
   ]
 ];
 var choix_liste = [ //contient plusieurs groupes de choix. Chaque choix est composé d'une phrase et de l'index du dialogue qu'il appelle.
   [
-    ['Un dernier et on rentre, Maman nous attend.', 1],
-    ['Pas la peine de faire cette tête, ça ne fonctionne plus.', 2]
+    ['Qu\'est ce qui me vaut un si bel accueil ?', 2],
+    ['Pas si fort, tu vas me casser haha.', 3]
   ],
   [
-    ['Bon, un dernier et c’est tout.', 3],
-    ['Ok, ok, t’as gagné.', 3]
+    ['C\'est vrai que ça fait un petit moment qu\'on ne s\'est pas vu.', 4]
   ],
   [
-    ['Allez, avant que je ne change d’avis.', 4],
+    ['Beaucoup trop fort pour moi, en effet.', 4]
   ],
   [
-    ['Ah, qu’est-ce que tu lui as répondu ?', 5],
+    ['Oh ça va, je finissais mon article sur les plantes médicinales.', 5]
   ],
   [
-    ['Astronaute ?', 6],
-    ['Docteur ?', 15]
+    ['Tout à fait.', 6]
   ],
   [
-    ['Astronaute ?', 18],
+    ['Ah c\'est vrai que je ne suis plus tout jeune.', 7],
+    ['Oui, mais c\'est l\'âge de la sagesse.', 9]
   ],
   [
-    ['Docteur ?', 11]
+    ['Déjà plus adulte que ton papa', 8]
+    ['Déjà plus adulte que ta maman', 8]
   ],
   [
-    ['Et qu’est-ce que tu vas faire quand tu les auras trouvés ?', 7]
+    ['Tu vas me faire faire taper sur les doigts Sam.', 11]
   ],
   [
-    ['Le dessin ?', 8],
-    ['La musique ?', 9]
+    ['C\'est prendre du recul, faire preuve de patience ou encore de discernement en s\'appuyant sur nos expériences passées.', 10]
   ],
   [
-    ['Marché conclu.', 10]
+    ['Haha, tu demanderas à ton père ou à ta mère demain.', 11]
   ],
   [
-    ['Comment ça pour les gens ?', 12]
+    ['C\'est un jeu de dames, et c\'est celui qui appartenait à mon grand-père.', 12]
   ],
   [
-    ['C’est pas faux.', 13]
-  ],
-  [
-    ['Bon, on y va ?', 14]
-  ],
-  [
-    ['Comment ça pour les gens ?', 16]
-  ],
-  [
-    ['C’est pas faux.', 17]
-  ],
-  [
-    ['Astronaute ?', 18],
-  ],
-  [
-    ['Et qu’est-ce que tu vas faire quand tu les auras trouvés ?', 19]
-  ],
-  [
-    ['Le dessin ?', 20],
-    ['La musique ?', 21]
-  ],
-  [
-    ['Marché conclu.', 13]
+    ['Bien sûr.', 13]
   ]
 ];
-
-
-
-function load_speak(id_sprite) {
-  $(id_sprite).animateSprite({
-  fps: 5,
-  animations: {
-      speak: [7, 8, 9, 10, 11, 12, 13]
-  },
-  loop: true,
-  });
-  //$(id_sprite).animateSprite('stop');
-  $(id_sprite).animateSprite('restart');
-}
-function load_blink(id_sprite) {
-  $(id_sprite).animateSprite({
-  fps: 30,
-  animations: {
-      blink: [0, 1, 2, 3, 4, 5, 6]
-  },
-  loop: true,
-  });
-  //$(id_sprite).animateSprite('stop');
-}
-
-function play_speak(id_sprite) {
-  $(id_sprite).animateSprite('play','speak');
-}
-function play_blink(id_sprite) {
-  $(id_sprite).animateSprite('play','blink');
-}
-
-function stop_anim(id_sprite) {
-  $(id_sprite).animateSprite('stop');
-}
-
-
-
-
-
-
 
 var dialogue_statut=1; // 1 le dialogue est en cours, 0 le dialogue est terminé
 var dialogue_index=0; //index du dialogue
@@ -238,38 +142,27 @@ var choix_index; // index du choix proposé
 ///////////////////////////////////////////////FONCTIONS/////////////////////////////////////////////////////
 var intervalId;
 
-
-/*function blink_anim_f() {
-  blink_anim_interv = setInterval(function() {
-    $('#emplacement_'+perso_asset_liste[dialogue_liste[dialogue_index][dialogue_ligne][1]][1]).animateSprite({
-      fps: 5,
-      animations: {
-        blink: [0, 1, 2, 3, 4, 5, 6],
-      },
-      loop: false,
-      complete: function(){}
-    });
-  } , 1000);
-}*/
-
 function print_ligne_dialogue(dialogue_index,dialogue_ligne) {
-    //clearInterval(blink_anim_interv);
     $('#dialogue').html('');
     var i = 0;
     var texte=dialogue_liste[dialogue_index][dialogue_ligne][0];
     var index_perso = dialogue_liste[dialogue_index][dialogue_ligne][1];
     if ( perso_asset_liste[index_perso][0] != '') {
-      load_speak('#emplacement_'+perso_asset_liste[index_perso][1]);
-    }
-    intervalId = window.setInterval(function() {
-        $('#dialogue').append(texte.charAt(i++));
-        if (i > texte.length)
-            window.clearInterval(intervalId);
-            //stop_anim('#emplacement_'+perso_asset_liste[index_perso][1]);
-            //blink_anim_f();
-           // $('#emplacement_'+perso_asset_liste[index_perso][1]).animateSprite('stop');
+      $('#emplacement_'+perso_asset_liste[index_perso][1]).animateSprite({
+      fps: 5,
+      animations: {
+          speak: [0, 1, 2],
+      },
+      loop: true,
+      });
+      intervalId = window.setInterval(function() {
+          $('#dialogue').append(texte.charAt(i++));
+          if (i > texte.length)
+              window.clearInterval(intervalId);
+             // $('#emplacement_'+perso_asset_liste[index_perso][1]).animateSprite('stop');
 
-    }, 30);
+      }, 30);
+    }
   }
 function upload_environnement(i) {
   $("#environnement").empty();
@@ -287,7 +180,6 @@ function print_personnage(i, l) { //fonction chargée de l'update de l'image à 
   clean_emplacements_perso();
   if (perso_asset_liste[index_perso][0]!='') {
     $('#emplacement_'+perso_asset_liste[index_perso][1]).css("background-image",'url(../_graph/img/perso/'+perso_asset_liste[index_perso][0]+etat_jeu+'.png)');
-    load_speak('#emplacement_'+perso_asset_liste[dialogue_liste[i][l][1]][1]);
   }
 }
 
@@ -331,18 +223,12 @@ function f_choix(choix_index) { //fonction_choix
 //clearInterval();
 upload_environnement(0); //charge le premier décors de la liste
 print_personnage(dialogue_index,0);
-//blink_anim_f();
 print_ligne_dialogue(dialogue_index,0);//appelle la première ligne du premier dialogue à s'afficher sur le html
 
 $('#boite_de_dialogue').on('click',function(){
     if ($('#dialogue').html().length < dialogue_liste[dialogue_index][dialogue_ligne-1][0].length) { //permet d'accelerer le dialogue si il n'est pas fini
-        if ( perso_asset_liste[dialogue_liste[dialogue_index][dialogue_ligne][1]][0] != '') {
-            //$('#emplacement_'+perso_asset_liste[dialogue_liste[dialogue_index][dialogue_ligne][1]][1]).animateSprite('stop');
-            //blink_anim_f();
-            stop_anim('#emplacement_'+perso_asset_liste[dialogue_liste[dialogue_index][dialogue_ligne-1][1]][1]);
-        }
         window.clearInterval(intervalId);
-
+        //$('#emplacement_'+perso_asset_liste[dialogue_liste[dialogue_index][dialogue_ligne][1]][1]).animateSprite('stop');
         $('#dialogue').html('');
         $('#dialogue').html(dialogue_liste[dialogue_index][dialogue_ligne-1][0]);
     }
