@@ -150,7 +150,11 @@ function update(){
 
 
 
-	text.setText('Event.progress: ' + timedEvent.getProgress().toString().substr(0, 4) + '\nEvent.repeatCount: ' + timedEvent.repeatCount);
+	text.setText('\nTemps restant: ' + timedEvent.repeatCount);
+
+	if(timedEvent.repeatCount==0){
+		
+	}
 }
 
 
