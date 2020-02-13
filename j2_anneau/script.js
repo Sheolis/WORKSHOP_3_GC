@@ -30,6 +30,7 @@ var flag;
 
 function preload(){
 	this.load.image('background','_graph/img/decors/chambre_2.png');
+	this.load.image('fil','_graph/img/decors/Capture_fil.png');
 	this.load.image('perso','_graph/img/assets_jeu/recree_pangBall.png');
 	this.load.image('barriere','_graph/img/assets_jeu/recree_barrieres.png');
 	this.load.image('barriere0','_graph/img/assets_jeu/recree_barrieres_0.png');
@@ -50,6 +51,7 @@ document.getElementById("button").style.visibility ="hidden";
 
 
 	this.add.image(640,360,'background');
+	this.add.image(640,360,'fil');
 	this.add.image(1262,490,'barriere_fin');
 
 	platforms = this.physics.add.staticGroup();
