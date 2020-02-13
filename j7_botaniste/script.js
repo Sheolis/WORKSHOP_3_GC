@@ -51,6 +51,8 @@ function init(){
 	var scoreTextj;
 	var gameOverTextj;
 	var potions
+	var text;
+	var timedEvent;
 }
 
 function preload(){
@@ -271,6 +273,14 @@ function create(){
 	this.physics.add.collider(potions, sol);
 	this.physics.add.overlap(potions, player, collectPotion, null, this);
 	this.physics.add.overlap(potions, playerj, collectPotionj, null, this);
+
+	
+
+
+	text = this.add.text(32, 32);
+	timedEvent = this.time.addEvent({ delay: 800, callback: setbomb, callbackScope: this, repeat: 90 });
+
+
 }
 
 
@@ -550,4 +560,11 @@ function update() {
 
 	}
 
+
+
+	text.setText('\nTemps restant: ' + timedEvent.repeatCount);
+
+	if(timedEvent.repeatCount==0){
+		
+	}
 }
