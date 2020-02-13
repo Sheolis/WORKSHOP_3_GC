@@ -18,26 +18,19 @@ scene: {
 };
 
 var game = new Phaser.Game(config);
-var score = 0;
-var vie = 2;
+
 
 function init() {
 var player;
 var cursors;
-var scoreText;
-var bomb;
 
-var text;
-
-var timedEvent;
 }
 
 function preload(){
-	this.load.image('background','_graph/img/decors/recree_2.png');
-	this.load.image('bomb','_graph/img/assets_jeu/recree_pangBall.png');
-	this.load.image('mur','_graph/img/assets_jeu/recree_mur.png');
-	this.load.image('barriere','_graph/img/assets_jeu/recree_barrieres.png')
-	this.load.spritesheet('perso','_graph/img/assets_jeu/recree_perso2.png',{frameWidth: 64, frameHeight: 64});
+	this.load.image('background','../_graph/img/decors/recree_2.png');
+	this.load.image('perso','../_graph/img/assets_jeu/recree_pangBall.png');
+	this.load.image('mur','../_graph/img/assets_jeu/recree_mur.png');
+	this.load.image('barriere','../_graph/img/assets_jeu/recree_barrieres.png')
 }
 
 
@@ -49,8 +42,6 @@ function create(){
 
 
 	this.add.image(640,360,'background');
-	life1 = this.add.image(400,300,'life1').setScale(0.25);
-	life2 = this.add.image(400,300,'life2').setScale(0.25);
 
 
 	platforms = this.physics.add.staticGroup();
@@ -91,11 +82,4 @@ function update(){
 
 		player.setVelocityY(0);
 	}
-
-
-
-
-
-
-
-
+}
