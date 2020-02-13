@@ -78,14 +78,15 @@ function clean_emplacements_perso(){
     for (i=0; i<3; i++) $('#emplacement_'+i).css("background-image","");
     }
 
-    function print_personnage(i, l) { //fonction chargée de l'update de l'image à charger et du nom à afficher
-      var index_perso = dialogue_liste[i][l][1];
-      $('#nom_du_locuteur').html(pseudo_liste[index_perso]);
-      clean_emplacements_perso()
-      if (perso_asset_liste[index_perso][0]!='') {
-        $('#emplacement_'+perso_asset_liste[index_perso][1]).append('<img src="../_graph/img/perso/'+perso_asset_liste[index_perso][0]+etat_jeu+'.png" />');
-      }
-    }
+function print_personnage(i, l) { //fonction chargée de l'update de l'image à charger et du nom à afficher
+  var index_perso = dialogue_liste[i][l][1];
+  $('#nom_du_locuteur').html(pseudo_liste[index_perso]);
+  if (perso_asset_liste.length>0) {
+    clean_emplacements_perso();
+    $('#emplacement_'+perso_asset_liste[index_perso][1]).css("background-image",'url(../_graph/img/perso/'+perso_asset_liste[index_perso][0]+etat_jeu+'.png)');
+  }
+}
+
 
 function f_choix(choix_index) { //fonction_choix
     for (var i = 0; i < choix_liste[choix_index].length; i++) {
