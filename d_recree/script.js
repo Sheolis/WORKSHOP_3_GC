@@ -5,103 +5,43 @@ var joueur = $.session.get('nom_joueur');
 
 var pseudo_liste=[
     '',
-    'Valentin',
-    'Swann',
-    '',
-    ''
+    'Papy'
   ];
 var perso_asset_liste=[
   ['', 0],
-  ['copain_d_enfance_18ans_', 0],
-  ['copine_18_ans_', 2],
-  ['copain_d_enfance_18ans_', 0],
-  ['copine_18_ans_', 2]
-
+  ['grand_pere_', 1]
 ]; //Contient le nom d'asset des perso et le slot d'affichage à l'écran de l'image
-var decors_liste=[['salon_fete_', 0]];
+var decors_liste=[['plateau_dames_', 0]];
 var dialogue_liste=[ // contient la liste des dialogues [le dialogue1[ligne de dialogue, l'index du nom(pseudo_list) de celui qui parle], le dialogue2 ...]
   [
-    ['Tout est prêt pour la soirée ?', 1],
+    ['Vous vous retrouvez devant votre grand-père, en pleine échange avec ce dernier', 0],
     ['choix', 0] // si le dialogue est égal à 'choix' on va aller chercher l'affichage du choix suivant dans la liste de choix, permettant au joueur de prendre une décision. Le 0 n'a pas d'importance
   ],
   [
-    ['Nickel.', 1],
-    ['Ça a intérêt à être une soirée inoubliable, vu que c’est la dernière avant longtemps.', 1],
+    ['Je suis content pour toi, ce Valentin a l’air fort sympathique !', 1],
     ['choix', 1]
   ],
   [
-    ['Ouais c’est fait.', 1],
-    ['Ça a intérêt à être une soirée inoubliable, vu que c’est la dernière avant longtemps.', 1],
-    ['choix', 1]
-  ],
-  [
-    ['Carrément mec ! Les opportunités là-bas sont vraiment intéressantes.', 1],
+    ['Papi sourit d’un air bienveillant.', 0],
+    ['D\'ailleurs, comment vont Papa et Maman ?',1],
+    ['Il déplace son pion avant de lever de nouveau les yeux.', 0],
     ['choix', 2]
   ],
   [
-    ['Il vous regarde, amusé.', 3],
-    ['Ouais c’est vrai, toutes ces heures à jouer n’auront pas été inutiles finalement ! Et toi pas trop stressé pour ton examen d’entrée ?', 1],
-    ['choix', 3]
-  ],
-  [
-    ['Tu bosses tellement, ça va aller !', 1],
-    ['Des bruits de pas se font entendre, votre petite amie arrive dans le salon, sautillante.', 3],
-    ['Les cocktails sont prêts !', 2],
-    ['choix', 4]
-  ],
-  [
-    ['Il pose sa main sur votre épaule.', 3],
-    ['Ouais, c’est dans la poche !', 1],
-    ['Des bruits de pas se font entendre, votre petite amie arrive dans le salon, sautillante.', 3],
-    ['Les cocktails sont prêts !', 2],
-    ['choix', 4]
-  ],
-  [
-    ['Tu feras attention à ce que personne ne rentre dans ta chambre, il y a les cartons pour le déménagement.', 2],
-    ['C’est vrai que c’est demain !', 1],
-    ['Un sourire espiègle apparaît sur son visage.', 3],
-    ['M’oubliez pas hein.', 1],
-    ['choix', 5]
-  ],
-  [
-    ['J’espère bien !', 1],
-    ['La sonnette retentit.', 4],
-    ['Ah, les premiers invités arrivent!', 2],
-    ['La soirée se déroule à merveille, marquant de souvenirs inoubliables l’aube du nouveau chapitre de votre vie.', 0],
-    ['Par contre vous emballez pas trop, le ménage va pas se faire tout seul.', 0],
-    ['fin', 0]
-  ],
-  [
-    ['Swann rigole.', 4],
-    ['Dit pas ça, on sait qu’il va te manquer.', 2],
-    ['La sonnette retentit.', 4],
-    ['Ah, les premiers invités arrivent!', 2],
-    ['La soirée se déroule à merveille, marquant de souvenirs inoubliables l’aube du nouveau chapitre de votre vie.', 0],
-    ['Par contre vous emballez pas trop, le ménage va pas se faire tout seul.', 0],
+    ['Eh bien ! Une journée sacrément fournie en somme. Et puis nous avons quasiment terminé notre partie.', 1],
     ['fin', 0]
   ]
 ];
 var choix_liste = [ //contient plusieurs groupes de choix. Chaque choix est composé d'une phrase et de l'index du dialogue qu'il appelle.
   [
-    ['Normalement, oui.', 1],
-    ['T’as sorti les chips ?', 2]
+    ['Et voilà comment c’est passée ma journée, Papi.',1]
   ],
   [
-    ['T’inquiètes, ça va être cool. Alors, prêt pour le Canada ?', 3]
+    ['Ouais, il est trop cool.', 2],
+    ['On a super bien rigolé ensemble.', 2]
   ],
   [
-    ['Qui aurait pensé que tu passerais de joueur à concepteur il y a quelques années ?', 4]
-  ],
-  [
-    ['Si, j’ai vraiment envie de suivre les traces de mon père.', 5],
-    ['Non, c’est ma passion après tout, je suis confiant.', 6]
-  ],
-  [
-    ['Ça marche.', 7]
-  ],
-  [
-    ['Bien sûr que non.', 8],
-    ['J’vais y réfléchir.', 9]
+    ['Bien, Maman avait un concerto aujourd’hui et Papa a ramené une nouvelle plante de son travail, elle est incroyable.', 3]
   ]
 ];
 
