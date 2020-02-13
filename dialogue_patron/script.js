@@ -342,7 +342,6 @@ $('#boite_de_dialogue').on('click',function(){
             stop_anim('#emplacement_'+perso_asset_liste[dialogue_liste[dialogue_index][dialogue_ligne-1][1]][1]);
         }
         window.clearInterval(intervalId);
-
         $('#dialogue').html('');
         $('#dialogue').html(dialogue_liste[dialogue_index][dialogue_ligne-1][0]);
     }

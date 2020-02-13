@@ -46,10 +46,6 @@ function preload(){
 
 function create(){
 
-document.getElementById("button").style.visibility ="hidden";
-
-
-
 	this.add.image(640,360,'background');
 	this.add.image(640,360,'fil');
 	this.add.image(1262,490,'barriere_fin');
@@ -75,7 +71,7 @@ document.getElementById("button").style.visibility ="hidden";
 
 	platforms.create(596,440,'barriere12');
 	platforms.create(546,490,'barriere12');
-	
+
 	platforms.create(619,570,'barriere2_3');
 	platforms.create(669,520,'barriere2_3');
 
@@ -105,7 +101,7 @@ document.getElementById("button").style.visibility ="hidden";
 
 	platforms.create(1138,466,'barriere12');
 	platforms.create(1088,516,'barriere12');
-	
+
 	platforms.create(1280,466,'barriere12');
 	platforms.create(1250,516,'barriere12');
 
@@ -117,7 +113,7 @@ document.getElementById("button").style.visibility ="hidden";
 
 
 	cursors = this.input.keyboard.createCursorKeys()
-	
+
 
 	flag = this.physics.add.group({
 		key: 'barriere_fin',
@@ -157,5 +153,7 @@ function update(){
 }
 
 function fin(){
-		document.getElementById("button").style.visibility = "visible";
+	$("body").fadeOut(1000,function(){
+		document.location.href = '../d2_anneau/index.html';
+	});
 	}
