@@ -32,10 +32,19 @@ function print_ligne_dialogue(dialogue_index,dialogue_ligne) {
     $('#dialogue').html('');
     var i = 0;
     var texte=dialogue_liste[dialogue_index][dialogue_ligne][0];
+    var index_perso = dialogue_liste[dialogue_index][dialogue_ligne][1];
+    $('#emplacement_'+perso_asset_liste[index_perso][1]).animateSprite({
+    fps: 2,
+    animations: {
+        speak: [1, 2],
+    },
+    loop: true,
+    });
     intervalId = window.setInterval(function() {
         $('#dialogue').append(texte.charAt(i++));
         if (i > texte.length)
             window.clearInterval(intervalId);
+            $('#emplacement_'+perso_asset_liste[index_perso][1]).animateSprite('stop');
     }, 30);
   }
 function upload_environnement(index_environnement) {
@@ -52,7 +61,7 @@ function clean_emplacements_perso(){
     $('#nom_du_locuteur').html(pseudo_liste[index_perso]);
     if (perso_asset_liste.length>0) {
       clean_emplacements_perso()
-      $('#emplacement_'+perso_asset_liste[index_perso][1]).append('<img src="../_graph/img/perso/'+perso_asset_liste[index_perso][0]+etat_jeu+'_0'+'.png" />');
+      $('#emplacement_'+perso_asset_liste[index_perso][1]).append('<img src="../_graph/img/perso/'+perso_asset_liste[index_perso][0]+etat_jeu+'.png" />');
     }
   }
 
@@ -100,6 +109,7 @@ print_ligne_dialogue(dialogue_index,0);//appelle la première ligne du premier d
 $('#boite_de_dialogue').on('click',function(){
     if ($('#dialogue').html().length < dialogue_liste[dialogue_index][dialogue_ligne-1][0].length) { //permet d'accelerer le dialogue si il n'est pas fini
         window.clearInterval(intervalId);
+        $('#emplacement_'+perso_asset_liste[dialogue_liste[dialogue_index][dialogue_ligne][1]][1]).animateSprite('stop');
         $('#dialogue').html('');
         $('#dialogue').html(dialogue_liste[dialogue_index][dialogue_ligne-1][0]);
     }
