@@ -5,6 +5,7 @@ var joueur = $.session.get('nom_joueur');
 var pseudo_liste=['','Mère'];
 var decors_liste=['naissance_','chambre_']; //placé dans le chemin suivant ../_graph/img/perso/
 var perso_asset_liste=[
+  ['',0],['',0]
 ]; //Contient le nom d'asset des perso et le slot d'affichage à l'écran de l'image
 var dialogue_liste=[ // contient la liste des dialogues [le dialogue1[ligne de dialogue, l'index du nom(pseudo_list) de celui qui parle], le dialogue2 ...]
   [
@@ -59,8 +60,8 @@ function clean_emplacements_perso(){
   function print_personnage(i, l) { //fonction chargée de l'update de l'image à charger et du nom à afficher
     var index_perso = dialogue_liste[i][l][1];
     $('#nom_du_locuteur').html(pseudo_liste[index_perso]);
-    if (perso_asset_liste.length>0) {
-      clean_emplacements_perso()
+    clean_emplacements_perso()
+    if (perso_asset_liste[index_perso][0]!='') {
       $('#emplacement_'+perso_asset_liste[index_perso][1]).append('<img src="../_graph/img/perso/'+perso_asset_liste[index_perso][0]+etat_jeu+'.png" />');
     }
   }
