@@ -18,13 +18,11 @@ scene: {
 };
 
 var game = new Phaser.Game(config);
-var score = 0;
 var vie = 2;
 
 function init() {
 var player;
 var cursors;
-var scoreText;
 var bomb;
 
 var text;
@@ -83,7 +81,7 @@ function create(){
 
 	this.physics.add.overlap(player,null,this);
 
-	scoreText = this.add.text(16,16, 'score: 0', {fontSize: '32px', fill:'#000'});
+
 	bombs = this.physics.add.group();
 	this.physics.add.collider(bombs,platforms);
 	this.physics.add.collider(player,bombs, hitBomb, null, this);
@@ -139,21 +137,46 @@ function update(){
 		life2.destroy(true);
 	}
 	else if (vie == 0){
-		life1.destroy(true);
-		this.physics.pause();
-		player.setTint(0xff0000);
-		player.anims.play('turn');
-		gameOver = true;
-		score = 0;
-		vie = 3;
+		vie = -1 ;
+		var score=$.session.get('score');
+		alert(score);
+		score-=1;
+		alert(score);
+		if (score>=1) {
+			$.session.set('etat_jeu',2);
+		}
+		else if (-1<=score<1) {
+			$.session.set('etat_jeu',1);
+		}
+		else {
+			$.session.set('etat_jeu',0);
+		}
+
+		$("body").fadeOut(1000,function(){
+	    document.location.href = '../d3_recree/index.html';
+	  });
 	}
 
 
 
 	text.setText('\nTemps restant: ' + timedEvent.repeatCount);
 
-	if(timedEvent.repeatCount==0){
-		
+	if(timedEvent.repeatCount==0 && vie>0){
+		var score=$.session.get('score');
+		score+=0.5;
+		if (score>=1) {
+			$.session.set('etat_jeu',2);
+		}
+		else if (0<=score<1) {
+			$.session.set('etat_jeu',1);
+		}
+		else {
+			$.session.set('etat_jeu',0);
+		}
+
+		$("body").fadeOut(1000,function(){
+	    document.location.href = '../d3_recree/index.html';
+	  });
 	}
 }
 

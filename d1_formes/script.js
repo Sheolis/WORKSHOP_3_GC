@@ -75,7 +75,7 @@ function print_personnage(i, l) { //fonction chargée de l'update de l'image à 
   var index_perso = dialogue_liste[i][l][1];
   $('#nom_du_locuteur').html(pseudo_liste[index_perso]);
   clean_emplacements_perso();
-  if (perso_asset_liste[index_perso][0]!='') {
+  if ((perso_asset_liste[dialogue_liste[dialogue_index][dialogue_ligne][1]][0] != "") && (perso_asset_liste[dialogue_liste[dialogue_index][dialogue_ligne][1]][0] != '')) {
     $('#emplacement_'+perso_asset_liste[index_perso][1]).css("background-image",'url(../_graph/img/perso/'+perso_asset_liste[index_perso][0]+etat_jeu+'.png)');
     load_speak('#emplacement_'+perso_asset_liste[dialogue_liste[i][l][1]][1]);
   }
