@@ -134,25 +134,32 @@ function create(){
 
 
 
-
+	platforms.create(498,700, 'platform').setScale(1,1);
+	platforms.create(774,700, 'platform').setScale(1,1);
 	//platforms.create(156,600, 'platform').setScale(1,1).setAlpha(0);
-	//platforms.create(156,600, 'platform').setScale(1,1).setAlpha(0);
-	platforms.create(156,482, 'platform').setScale(1,1);
+	//platforms.create(156,600, 'platform').setScale(1,1).setAlpha(0);ç
+	platforms.create(156,698, 'platform').setScale(1,1);
+	platforms.create(156,668, 'platform').setScale(1,1);	
 	platforms.create(156,200, 'platform').setScale(1,1);
+	platforms.create(156,482, 'platform').setScale(1,1);
 
 
+	platforms.create(252,700, 'platform').setScale(1,1);
 	platforms.create(252,600, 'platform').setScale(1,1);
 	platforms.create(252,400, 'platform').setScale(1,1);
 	platforms.create(252,300, 'platform').setScale(1,1);
 	platforms.create(252,100, 'platform').setScale(1,1);
 
 
+	platforms.create(348,700, 'platform').setScale(1,1);
 	platforms.create(348,600, 'platform').setScale(1,1);
 	platforms.create(348,570, 'platform').setScale(1,1);
 	platforms.create(348,300, 'platform').setScale(1,1);
 	platforms.create(348,200, 'platform').setScale(1,1);
 	platforms.create(348,100, 'platform').setScale(1,1);
 
+
+	platforms.create(444,700, 'platform').setScale(1,1);
 	platforms.create(444,600, 'platform').setScale(1,1);
 	platforms.create(444,200, 'platform').setScale(1,1);
 
@@ -175,25 +182,28 @@ function create(){
 	platforms.create(732,100, 'platform').setScale(1,1);
 	
 
+	platforms.create(828,700, 'platform').setScale(1,1);
 	platforms.create(828,600, 'platform').setScale(1,1);
 	platforms.create(828,400, 'platform').setScale(1,1);
 	platforms.create(828,300, 'platform').setScale(1,1);
 
 
+	platforms.create(924,700, 'platform').setScale(1,1);
 	platforms.create(924,600, 'platform').setScale(1,1);
 	platforms.create(924,500, 'platform').setScale(1,1);
 	platforms.create(924,300, 'platform').setScale(1,1);
 	platforms.create(924,100, 'platform').setScale(1,1);
 
 
-
+	platforms.create(1020,700, 'platform').setScale(1,1);
 	platforms.create(1020,600, 'platform').setScale(1,1);
 	platforms.create(1020,500, 'platform').setScale(1,1);
 	platforms.create(1020,400, 'platform').setScale(1,1);
 	platforms.create(1020,300, 'platform').setScale(1,1);
 
 
-
+	platforms.create(1116,698, 'platform').setScale(1,1);
+	platforms.create(1116,668, 'platform').setScale(1,1);
 	platforms.create(1116,500, 'platform').setScale(1,1);
 	platforms.create(1116,400, 'platform').setScale(1,1);
 	platforms.create(1116,100, 'platform').setScale(1,1);
@@ -235,6 +245,8 @@ function create(){
 	platformsV.create(156,100, 'platform').setScale(1,1);
 	platformsV.create(156,300, 'platform').setScale(1,1);
 	platformsV.create(348,400, 'platform').setScale(1,1);
+
+
 	platformsV.setTint(0x00ff00);
 
 	sol = this.physics.add.staticGroup();
