@@ -25,28 +25,40 @@ var dialogue_index=0; //index du dialogue
 var dialogue_ligne=1; //index de la ligne de texte du dialogue
 var choix_index; // index du choix proposé
 
-
 ///////////////////////////////////////////////FONCTIONS/////////////////////////////////////////////////////
 var intervalId;
 
+
+function load_speak(id_sprite) {
+  $(id_sprite).animateSprite({
+  fps: 5,
+  animations: {
+      speak: [7, 8, 9, 10, 11, 12, 13]
+  },
+  loop: true,
+  });
+  $(id_sprite).animateSprite('restart');
+}
+
+function stop_anim(id_sprite) {
+  $(id_sprite).animateSprite('stop');
+}
+
 function print_ligne_dialogue(dialogue_index,dialogue_ligne) {
+    //clearInterval(blink_anim_interv);
     $('#dialogue').html('');
     var i = 0;
     var texte=dialogue_liste[dialogue_index][dialogue_ligne][0];
     var index_perso = dialogue_liste[dialogue_index][dialogue_ligne][1];
     if ( perso_asset_liste[index_perso][0] != '') {
-      $('#emplacement_'+perso_asset_liste[index_perso][1]).animateSprite({
-      fps: 5,
-      animations: {
-          speak: [0, 1, 2],
-      },
-      loop: true,
-      });
+      load_speak('#emplacement_'+perso_asset_liste[index_perso][1]);
     }
     intervalId = window.setInterval(function() {
         $('#dialogue').append(texte.charAt(i++));
         if (i > texte.length)
             window.clearInterval(intervalId);
+            //stop_anim('#emplacement_'+perso_asset_liste[index_perso][1]);
+            //blink_anim_f();
            // $('#emplacement_'+perso_asset_liste[index_perso][1]).animateSprite('stop');
 
     }, 30);
@@ -66,6 +78,7 @@ function print_personnage(i, l) { //fonction chargée de l'update de l'image à 
   clean_emplacements_perso();
   if (perso_asset_liste[index_perso][0]!='') {
     $('#emplacement_'+perso_asset_liste[index_perso][1]).css("background-image",'url(../_graph/img/perso/'+perso_asset_liste[index_perso][0]+etat_jeu+'.png)');
+    load_speak('#emplacement_'+perso_asset_liste[dialogue_liste[i][l][1]][1]);
   }
 }
 
@@ -106,7 +119,7 @@ function f_choix(choix_index) { //fonction_choix
 ///////////////////////////////////////////////MAIN/////////////////////////////////////////////////////
 
 
-//clearInterval();
+
 upload_environnement(0); //charge le premier décors de la liste
 print_personnage(dialogue_index,0);
 print_ligne_dialogue(dialogue_index,0);//appelle la première ligne du premier dialogue à s'afficher sur le html
@@ -114,7 +127,7 @@ print_ligne_dialogue(dialogue_index,0);//appelle la première ligne du premier d
 $('#boite_de_dialogue').on('click',function(){
     if ($('#dialogue').html().length < dialogue_liste[dialogue_index][dialogue_ligne-1][0].length) { //permet d'accelerer le dialogue si il n'est pas fini
         if ( perso_asset_liste[dialogue_liste[dialogue_index][dialogue_ligne][1]][0] != '') {
-            $('#emplacement_'+perso_asset_liste[dialogue_liste[dialogue_index][dialogue_ligne][1]][1]).animateSprite('stop');
+            stop_anim('#emplacement_'+perso_asset_liste[dialogue_liste[dialogue_index][dialogue_ligne-1][1]][1]);
         }
         window.clearInterval(intervalId);
         $('#dialogue').html('');
