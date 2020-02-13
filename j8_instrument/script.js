@@ -128,7 +128,7 @@ function create(){
 	ard1.body.setGravityY(-300);
 
 	
-	text = this.add.text(32, 32);
+	text = this.add.text(32, 32, "VOUS AVEZ FAIT UNE FAUSSE NOTE", {'font': '40px', fill: '#000'});
 	timedEvent = this.time.addEvent({ delay: 800, callback: null, callbackScope: this, repeat: 30 });
 	
 	this.physics.add.overlap(player, playerj, collectNoteA, null, this);
