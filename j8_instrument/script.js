@@ -37,13 +37,15 @@ function init(){
 }
 
 function preload(){
-	this.load.image('background','assets/back.png');
+	this.load.image('background','assets/instrument_sheet.png');
 	this.load.image('cote','assets/cote.png');
-	this.load.spritesheet('persoj','assets/RunPig.png', {frameWidth: 38, frameHeight: 26});
-	this.load.spritesheet('perso','assets/Run.png', {frameWidth: 40, frameHeight: 28});
-	this.load.spritesheet('jump','assets/Jump.png', {frameWidth: 39, frameHeight: 28});
-	this.load.spritesheet('idle','assets/Idle.png', {frameWidth: 39, frameHeight: 28});
-	this.load.spritesheet('tard','assets/Tard.png', {frameWidth: 24, frameHeight: 22});
+	this.load.image('persoj','assets/instrument_blanche.png');
+	this.load.image('perso','assets/instrument_barre.png');
+	this.load.image('tard','assets/instrument__croche.png');
+	this.load.image('ard','assets/instrument_dblcroche.png');
+	this.load.image('tard1','assets/instrument_doublecroche.png');
+
+
 
 }
 
@@ -83,12 +85,12 @@ function create(){
 	tard.body.setGravityY(-300);
 
 
-	tard1 = this.physics.add.sprite(2000,380,'tard');
+	tard1 = this.physics.add.sprite(2000,380,'persoj');
 	tard1.setBounce(0.02);
 	tard1.body.setGravityY(-300);
 
 
-	tard2 = this.physics.add.sprite(2500,180,'tard');
+	tard2 = this.physics.add.sprite(2500,180,'tard1');
 	tard2.setBounce(0.02);
 	tard2.body.setGravityY(-300);
 
@@ -96,17 +98,17 @@ function create(){
 	tard3.setBounce(0.02);
 	tard3.body.setGravityY(-300);
 
-	tard4 = this.physics.add.sprite(3500,300,'tard');
+	tard4 = this.physics.add.sprite(3500,300,'persoj');
 	tard4.setBounce(0.02);
 	tard4.body.setGravityY(-300);
 	
 
-	tard5 = this.physics.add.sprite(4000,200,'tard');
+	tard5 = this.physics.add.sprite(4000,200,'tard1');
 	tard5.setBounce(0.02);
 	tard5.body.setGravityY(-300);
 
 
-	tard6 = this.physics.add.sprite(6000,550,'tard');
+	tard6 = this.physics.add.sprite(6000,550,'tard1');
 	tard6.setBounce(0.02);
 	tard6.body.setGravityY(-300);
 
@@ -116,12 +118,12 @@ function create(){
 	tard8.body.setGravityY(-300);
 
 
-	ard = this.physics.add.sprite(11000,430,'tard');
+	ard = this.physics.add.sprite(11000,430,'ard');
 	ard.setBounce(0.02);
 	ard.body.setGravityY(-300);
 
 
-	ard1 = this.physics.add.sprite(10000,530,'tard');
+	ard1 = this.physics.add.sprite(10000,530,'ard');
 	ard1.setBounce(0.02);
 	ard1.body.setGravityY(-300);
 
@@ -261,11 +263,11 @@ function create(){
 
 	//Texte
 
-	gameOverText = this.add.text(450, 250, "VOUS AVEZ FAIT UNE FAUSSE NOTE", {'font': '128px', fill: '#000'});
+	gameOverText = this.add.text(150, 250, "VOUS AVEZ FAIT UNE FAUSSE NOTE", {'font': '40px', fill: '#000'});
 	gameOverText.visible = false
 
 
-	gameOverTextSucces = this.add.text(450, 250, "QUELLE PERFECTION", {'font': '128px', fill: '#000'});
+	gameOverTextSucces = this.add.text(270, 250, "QUELLE PERFECTION", {'font': '40px', fill: '#000'});
 	gameOverTextSucces.visible = false
 
 }
@@ -325,6 +327,7 @@ function update() {
 	    	repeat: 0,            // -1: infinity
 	    	yoyo: false
 		});
+		
 
 
 	}
@@ -343,7 +346,7 @@ function update() {
 	    	yoyo: false
 		});
 
-		tard.setFlipX(true);
+
 
 	}
 
@@ -362,7 +365,7 @@ function update() {
 	    	yoyo: false
 		});
 
-		tard1.setFlipX(true);
+
 
 	}
 
@@ -380,7 +383,7 @@ function update() {
 	    	yoyo: false
 		});
 
-		tard2.setFlipX(true);
+		
 
 	}
 
@@ -398,7 +401,7 @@ function update() {
 	    	yoyo: false
 		});
 
-		tard3.setFlipX(true);
+		
 
 	}
 
@@ -417,7 +420,7 @@ function update() {
 	    	yoyo: false
 		});
 
-		tard4.setFlipX(true);
+		
 
 	}
 
@@ -435,7 +438,7 @@ function update() {
 	    	yoyo: false
 		});
 
-		tard5.setFlipX(true);
+		
 
 	}
 
@@ -453,7 +456,7 @@ function update() {
 	    	yoyo: false
 		});
 
-		tard6.setFlipX(true);
+		
 
 	}
 
@@ -471,7 +474,7 @@ function update() {
 	    	yoyo: false
 		});
 
-		tard8.setFlipX(true);
+		
 
 	}
 
@@ -489,7 +492,7 @@ function update() {
 	    	yoyo: false
 		});
 
-		ard.setFlipX(true);
+		
 
 	}
 
@@ -507,7 +510,7 @@ function update() {
 	    	yoyo: false
 		});
 
-		ard1.setFlipX(true);
+		
 
 	}
 
