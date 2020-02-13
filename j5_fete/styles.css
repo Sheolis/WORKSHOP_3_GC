@@ -7,57 +7,90 @@ height: 720px;
 background-repeat: no-repeat;
 }
 
-#triangle_poubelle{
+#l1{
   position: absolute;
   top: 110px;
   left: 680px;
 }
-#triangle1_poubelle{
+#l2{
   position: absolute;
   top: 380px;
   left: 40px;
 }
-#triangle2_poubelle{
+#l3{
   position: absolute;
   top: 600px;
   left: 750px;
 }
-#rond{
+#p1{
   position: absolute;
   top: 130px;
   left: 160px;
 }
-#carre{
+#p2{
   position: absolute;
   top: 350px;
   left: 690px;
 }
-#carre1{
+#p3{
   position: absolute;
   top: 290px;
   left: 60px;
 }
-#carre2{
+#p4{
   position: absolute;
   top: 680px;
   left: 170px;
 }
-#carre3{
+#p5{
   position: absolute;
   top: 400px;
   left: 1030px;
 }
-#etoile{
+#p6{
   position: absolute;
   top: 480px;
   left: 270px;
 }
 
 
-#poubelle {
+#p_bac {
   position: absolute;
   top: 480px;
   left: 950px;
   width: 200px;
   height: 200px;
+}
+#l_bac {
+  position: absolute;
+  top: 480px;
+  left: 750px;
+  width: 200px;
+  height: 200px;
+}
+.styled {
+    border: 0;
+    line-height: 2.5;
+    padding: 0 20px;
+    font-size: 1rem;
+    text-align: center;
+    color: #fff;
+    text-shadow: 1px 1px 1px #000;
+    border-radius: 10px;
+    background-color: rgba(220, 0, 0, 1);
+    background-image: linear-gradient(to top left,
+                                      rgba(0, 0, 0, .2),
+                                      rgba(0, 0, 0, .2) 30%,
+                                      rgba(0, 0, 0, 0));
+    box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
+                inset -2px -2px 3px rgba(0, 0, 0, .6);
+}
+
+.styled:hover {
+    background-color: rgba(255, 0, 0, 1);
+}
+
+.styled:active {
+    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
+                inset 2px 2px 3px rgba(0, 0, 0, .6);
 }

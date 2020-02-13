@@ -1,3 +1,7 @@
+
+var victoire = 0;
+document.getElementById("button").style.visibility ="hidden";
+
 function allowDrop(ev) {
   ev.preventDefault();
 
@@ -14,10 +18,11 @@ function drag(ev) {
 
 function drop(ev) {
 	ev.preventDefault();
-  	if (ev.target.id==(objet_deplace+'_poubelle')) {
+  	if (ev.target.id==(objet_deplace[0]+"_bac")) {
   		$('#'+objet_deplace).remove();
+  		victoire ++ ;
+  		if (victoire == 9){
+  			document.getElementById("button").style.visibility = "visible";
+  		}
 	}
-    if (ev.target.id==('poubelle')) {
-      $('#'+objet_deplace).remove();
-}
 }
