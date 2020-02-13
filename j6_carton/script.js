@@ -6,7 +6,7 @@ var config = {
 		default: 'arcade',
 		arcade: {
 			gravity: {y: 20},
-			debug: true
+			debug: false
 
 		}
 	},
@@ -27,22 +27,11 @@ function init(){
 	var player;
 	var cursors;
 	var boits;
-	var gameOverText;
+	var gameOverperduText;
+	var gameOvergagnéText;
 	
 }
-var Immovable = {
-		setImmovable: function (value)
-    	{
-        	if (value === undefined) { value = true; }
 
-        	this.player2.immovable = value;
-
-        	return this;
-    	}
-
-	};
-
-	module.exports = Immovable;
 
 function preload(){
 	this.load.image('background','assets_jeu/carton_camion.png');
@@ -75,8 +64,12 @@ function create(){
 
 	sol = this.physics.add.staticGroup();
 	sol.create(300,720, 'sol').setScale(2).refreshBody();
-
 	sol.create(300,-30, 'sol').setScale(2).refreshBody();
+	
+
+	limite = this.physics.add.staticGroup();
+	limite.create(288,270, 'sol').setScale(0.6,0.7).refreshBody();
+	limite.setAlpha(0.5);
 
 	cote = this.physics.add.staticGroup();
 	cote.create(-10,300, 'cote');
@@ -361,8 +354,11 @@ function create(){
 	//Texte
 
 
-	gameOverText = this.add.text(450, 250, "GAME OVER MAN", {fontsize: '128px', fill: '#000'});
-	gameOverText.visible = false
+	gameOverperduText = this.add.text(600, 250, "IL RISQUE D'Y AVOIR DE LA CASSE", {fontsize: '128px', fill: '#000'});
+	gameOverperduText.visible = false
+
+	gameOvergagnéText = this.add.text(600, 250, "BRAVO LE CAMION EST PRET", {fontsize: '128px', fill: '#000'});
+	gameOvergagnéText.visible = false
 
 }
 
@@ -479,7 +475,7 @@ function update() {
 			if(player3.y>380){
 				player4.body.setGravityY(0);
 
-				if(player4.y<400){
+				if(player4.y<320){
 					if (cursors.up.isDown){
 					player4.anims.play('left', true);
 					player4.setVelocityY(10);
@@ -510,10 +506,10 @@ function update() {
 					}
 				}
 
-				if(player4.y>400){
+				if(player4.y>320){
 					player5.body.setGravityY(0);
 
-					if(player5.y<350){
+					if(player5.y<320){
 						if (cursors.up.isDown){
 						player5.anims.play('left', true);
 						player5.setVelocityY(10);
@@ -545,10 +541,10 @@ function update() {
 						}
 					}
 
-					if(player5.y>350){
+					if(player5.y>320){
 						player6.body.setGravityY(0);
 
-						if(player6.y<350){
+						if(player6.y<320){
 							if (cursors.up.isDown){
 								player6.anims.play('left', true);
 								player6.setVelocityY(10);
@@ -580,10 +576,10 @@ function update() {
 							}
 						}
 
-							if(player6.y>350){
+							if(player6.y>320){
 								player7.body.setGravityY(0);
 
-							if(player7.y<350){
+							if(player7.y<320){
 								if (cursors.up.isDown){
 									player6.anims.play('left', true);
 									player6.setVelocityY(10);
@@ -615,10 +611,10 @@ function update() {
 								}
 							}
 
-							if(player7.y>350){
+							if(player7.y>320){
 								player8.body.setGravityY(0);
 
-								if(player8.y<350){
+								if(player8.y<280){
 									if (cursors.up.isDown){
 										player8.anims.play('left', true);
 										player8.setVelocityY(10);
@@ -650,10 +646,10 @@ function update() {
 									}
 								}
 
-								if(player8.y>350){
+								if(player8.y>280){
 									player9.body.setGravityY(0);
 
-									if(player9.y<350){
+									if(player9.y<280){
 										if (cursors.up.isDown){
 											player9.anims.play('left', true);
 											player9.setVelocityY(10);
@@ -685,10 +681,10 @@ function update() {
 										}
 									}
 
-									if(player9.y>350){
+									if(player9.y>280){
 										playerA.body.setGravityY(0);
 
-										if(playerA.y<350){
+										if(playerA.y<260){
 											if (cursors.up.isDown){
 												playerA.anims.play('left', true);
 												playerA.setVelocityY(10);
@@ -720,7 +716,12 @@ function update() {
 											}
 										}
 
-										if(playerA.y>455 ){
+										if(playerA.y < 280 && playerA.body.touching.down){
+											gameOverperduText.visible = true;
+										}
+
+										if(playerA.y>300){
+											gameOvergagnéText.visible = true;
 											this.physics.pause(true);
 										}
 									}
