@@ -1,12 +1,12 @@
 var config = {
 	type: Phaser.AUTO,
-	width: 1280,
-	height: 720,
+	width: 1000,
+	height: 600,
 	physics: {
 		default: 'arcade',
 		arcade: {
-			gravity: {y: 20},
-			debug: false
+			gravity: {y: 300},
+			debug: true
 
 		}
 	},
@@ -20,722 +20,506 @@ var config = {
 var game = new Phaser.Game(config);
 
 
+
 function init(){
-	var platforms;
-	var sol;
-	var cote;
+
 	var player;
+	var playerj;
+	var tard;
 	var cursors;
-	var boits;
-
-	var gameOverperduText;
-	var gameOvergagnéText;
-
+	var scoreText;
 	var gameOverText;
-
-
+	var gameOverTextSucces;
+	var text;
+	var timedEvent;
+	var cote;
+	
 }
 
-
 function preload(){
-	this.load.image('background','_graph/img/decors/camion_2.png');
-	this.load.image('cote', '_graph/img/assets_jeu/carton_côté.png');
-	this.load.image('cote1', '_graph/img/assets_jeu/carton_côté.png');
-	this.load.image('sol', '_graph/img/assets_jeu/carton_sol.png');
-	this.load.image('boits', '_graph/img/assets_jeu/carton_boite.jpg');
-	this.load.image('perso','_graph/img/assets_jeu/carton_boxB.jpg');
-	this.load.image('perso1','_graph/img/assets_jeu/carton_boxC.jpg');
-	this.load.image('perso2','_graph/img/assets_jeu/carton_boxD.jpg');
-	this.load.image('perso3','_graph/img/assets_jeu/carton_boxE.jpg');
-	this.load.image('box','_graph/img/assets_jeu/carton_boxB.jpg');
+	this.load.image('background','assets/back.png');
+	this.load.image('cote','assets/cote.png');
+	this.load.spritesheet('persoj','assets/RunPig.png', {frameWidth: 38, frameHeight: 26});
+	this.load.spritesheet('perso','assets/Run.png', {frameWidth: 40, frameHeight: 28});
+	this.load.spritesheet('jump','assets/Jump.png', {frameWidth: 39, frameHeight: 28});
+	this.load.spritesheet('idle','assets/Idle.png', {frameWidth: 39, frameHeight: 28});
+	this.load.spritesheet('tard','assets/Tard.png', {frameWidth: 24, frameHeight: 22});
 
 }
 
 function create(){
 
-
-// Player équivaut aux boites que l'on déplacera
-
 	//Monde
-
-	this.add.image(400,300,'background');
-
-	cote1 = this.physics.add.staticGroup();
-	cote1.create(36,250, 'cote1');
-	cote1.create(552,250, 'cote1');
-	cote1.setAlpha(0);
-
-
-	sol = this.physics.add.staticGroup();
-	sol.create(300,720, 'sol').setScale(2).refreshBody();
-	sol.create(300,-30, 'sol').setScale(2).refreshBody();
 	
+	this.add.image(500,300,'background');
 
-	limite = this.physics.add.staticGroup();
-	limite.create(288,270, 'sol').setScale(0.6,0.7).refreshBody();
-	limite.setAlpha(0.5);
 
 	cote = this.physics.add.staticGroup();
-	cote.create(-10,300, 'cote');
-
-
-
+	cote.create(0,500, 'cote').setScale(1,2);
 
 	//Player 1
 
-	player = this.physics.add.sprite(400,100,'perso');
+	player = this.physics.add.sprite(100,450,'perso');
 	player.setCollideWorldBounds(true);
-	player.setBounce(0);
-	player.body.setGravityY(0);
+	player.setBounce(0.02);
+	player.body.setGravityY(-300);
 
-	this.physics.add.collider(player,sol);
-	this.physics.add.collider(player,cote);
 
 
 	//Récupération des curseurs
-
 	cursors = this.input.keyboard.createCursorKeys();
 
 
+	// Ennemis 
 
-	//Animations Joueur 2
+	playerj = this.physics.add.sprite(1000,450,'persoj');
+	playerj.setBounce(0.02);
+	playerj.body.setGravityY(-300);
 
-	player2 = this.physics.add.sprite(400,100,'perso1');
-	player2.setCollideWorldBounds(true);
-	player2.setBounce(0);
-	player2.body.setGravityY(-20);
+	
+	
+	tard = this.physics.add.sprite(1500,100,'tard');
+	tard.setBounce(0.02);
+	tard.body.setGravityY(-300);
 
-	this.physics.add.collider(player2,sol);
-	this.physics.add.collider(player2,cote);
 
+	tard1 = this.physics.add.sprite(2000,380,'tard');
+	tard1.setBounce(0.02);
+	tard1.body.setGravityY(-300);
 
 
+	tard2 = this.physics.add.sprite(2500,180,'tard');
+	tard2.setBounce(0.02);
+	tard2.body.setGravityY(-300);
 
-	//Animations Joueur 3
+	tard3 = this.physics.add.sprite(3000,150,'tard');
+	tard3.setBounce(0.02);
+	tard3.body.setGravityY(-300);
 
-	player3 = this.physics.add.sprite(400,100,'perso2');
-	player3.setCollideWorldBounds(true);
-	player3.setBounce(0);
-	player3.body.setGravityY(-20);
+	tard4 = this.physics.add.sprite(3500,300,'tard');
+	tard4.setBounce(0.02);
+	tard4.body.setGravityY(-300);
+	
 
-	this.physics.add.collider(player3,sol);
-	this.physics.add.collider(player3,cote);
+	tard5 = this.physics.add.sprite(4000,200,'tard');
+	tard5.setBounce(0.02);
+	tard5.body.setGravityY(-300);
 
 
+	tard6 = this.physics.add.sprite(6000,550,'tard');
+	tard6.setBounce(0.02);
+	tard6.body.setGravityY(-300);
 
 
-	//Animations Joueur 4
+	tard8 = this.physics.add.sprite(5000,130,'tard');
+	tard8.setBounce(0.02);
+	tard8.body.setGravityY(-300);
 
-	player4 = this.physics.add.sprite(400,100,'perso3');
-	player4.setCollideWorldBounds(true);
-	player4.setBounce(0);
-	player4.body.setGravityY(-20);
 
-	this.physics.add.collider(player4,sol);
-	this.physics.add.collider(player4,cote);
+	ard = this.physics.add.sprite(11000,430,'tard');
+	ard.setBounce(0.02);
+	ard.body.setGravityY(-300);
 
 
+	ard1 = this.physics.add.sprite(10000,530,'tard');
+	ard1.setBounce(0.02);
+	ard1.body.setGravityY(-300);
 
-	//Animations Joueur 5
+	
+	text = this.add.text(32, 32);
+	timedEvent = this.time.addEvent({ delay: 800, callback: null, callbackScope: this, repeat: 30 });
+	
+	this.physics.add.overlap(player, playerj, collectNoteA, null, this);
+	this.physics.add.overlap(player, tard, collectNoteB, null, this);
+	this.physics.add.overlap(player, tard1, collectNoteC, null, this);
+	this.physics.add.overlap(player, tard2, collectNoteD, null, this);
+	this.physics.add.overlap(player, tard3, collectNoteE, null, this);
+	this.physics.add.overlap(player, tard4, collectNoteF, null, this);
+	this.physics.add.overlap(player, tard5, collectNoteG, null, this);
+	this.physics.add.overlap(player, tard6, collectNoteH, null, this);
+	this.physics.add.overlap(player, tard8, collectNoteJ, null, this);
+	this.physics.add.overlap(player, ard, collectNote, null, this);
+	this.physics.add.overlap(player, ard1, collectNote1, null, this);
 
-	player5 = this.physics.add.sprite(400,100,'perso2');
-	player5.setCollideWorldBounds(true);
-	player5.setBounce(0);
-	player5.body.setGravityY(-20);
 
-	this.physics.add.collider(player5,sol);
-	this.physics.add.collider(player5,cote);
+	this.physics.add.collider(cote, playerj, touchj, null, this);
+	this.physics.add.collider(cote, tard, touch1, null, this);
+	this.physics.add.collider(cote, tard1, touch2, null, this);
+	this.physics.add.collider(cote, tard2, touch3, null, this);
+	this.physics.add.collider(cote, tard3, touch4, null, this);
+	this.physics.add.collider(cote, tard4, touch5, null, this);
+	this.physics.add.collider(cote, tard5, touch6, null, this);
+	this.physics.add.collider(cote, tard6, touch7, null, this);
+	this.physics.add.collider(cote, tard8, touch8, null, this);
+	this.physics.add.collider(cote, ard, touch9, null, this);
+	this.physics.add.collider(cote, ard1, touchA, null, this);
 
 
 
+	function collectNoteA(player, playerj){
+	playerj.destroy(true);
+	}
 
-	//Animations Joueur 6
+	function collectNoteB(player, tard){
+	tard.destroy(true);
+	}
 
-	player6 = this.physics.add.sprite(400,100,'perso');
-	player6.setCollideWorldBounds(true);
-	player6.setBounce(0);
-	player6.body.setGravityY(-20);
+	function collectNoteC(player, tard1){
+	tard1.destroy(true);
+	}
 
-	this.physics.add.collider(player6,sol);
-	this.physics.add.collider(player6,cote);
+	function collectNoteD(player, tard2){
+	tard2.destroy(true);
+	}
 
+	function collectNoteE(player, tard3){
+	tard3.destroy(true);
+	}
 
+	function collectNoteF(player, tard4){
+	tard4.destroy(true);
+	}
 
-	//Animations Joueur 6
+	function collectNoteG(player, tard5){
+	tard5.destroy(true);
+	}
 
-	player7 = this.physics.add.sprite(400,100,'perso');
-	player7.setCollideWorldBounds(true);
-	player7.setBounce(0);
-	player7.body.setGravityY(-20);
 
-	this.physics.add.collider(player7,sol);
-	this.physics.add.collider(player7,cote);
+	function collectNoteH(player, tard6){
+	tard6.destroy(true);
+	}
 
 
+	function collectNoteJ(player, tard8){
+	tard8.destroy(true);
+	}
+	
 
-	//Animations Joueur 6
+	function collectNote(player, ard){
+	ard.destroy(true);
+	}
 
-	player8 = this.physics.add.sprite(400,100,'perso');
-	player8.setCollideWorldBounds(true);
-	player8.setBounce(0);
-	player8.body.setGravityY(-20);
 
-	this.physics.add.collider(player8,sol);
-	this.physics.add.collider(player8,cote);
+	function collectNote1(player, ard1){
+	ard1.destroy(true);
+	}
 
 
+	function touchj (cote, playerj){
+		gameOverText.visible = true;
+		this.physics.pause();	}
 
-	//Animations Joueur 6
+	function touch1 (cote, tard){
+		gameOverText.visible = true;
+		this.physics.pause();
+	}
 
-	player9 = this.physics.add.sprite(400,100,'perso');
-	player9.setCollideWorldBounds(true);
-	player9.setBounce(0);
-	player9.body.setGravityY(-20);
+	function touch2 (cote, tard1){
+		gameOverText.visible = true;
+		this.physics.pause();
+	}
 
-	this.physics.add.collider(player9,sol);
-	this.physics.add.collider(player9,cote);
+	function touch3 (cote, tard2){
+		gameOverText.visible = true;
+		this.physics.pause();
+	}
 
+	function touch4 (cote, tard3){
+		gameOverText.visible = true;
+		this.physics.pause();
+	}
 
+	function touch5 (cote, tard4){
+		gameOverText.visible = true;
+		this.physics.pause();
+	}
 
+	function touch6 (cote, tard5){
+		gameOverText.visible = true;
+		this.physics.pause();
+	}
 
-	//Animations Joueur 6
+	function touch7 (cote, tard6){
+		gameOverText.visible = true;
+		this.physics.pause();
+	}
 
-	playerA = this.physics.add.sprite(400,100,'perso');
-	playerA.setCollideWorldBounds(true);
-	playerA.setBounce(0);
-	playerA.body.setGravityY(-20);
+	function touch8 (cote, tard8){
+		gameOverText.visible = true;
+		this.physics.pause();
+	}
 
-	this.physics.add.collider(playerA,sol);
-	this.physics.add.collider(playerA,cote);
+	function touch9 (cote, ard){
+		gameOverText.visible = true;
+		this.physics.pause();
+	}
 
-
-
-	//BOITES
-
-	box = this.physics.add.staticGroup();
-	box.create(472,492, 'box');
-	boits = this.physics.add.staticGroup();
-	boits.create(122,488, 'boits');
-	boits.create(242,488, 'boits');
-	boits.create(362,488, 'boits');
-
-
-	/*boits.create(75,380, 'boits');
-	boits.create(75,460, 'boits');
-	boits.create(75,540, 'boits');
-	boits.create(75,620, 'boits');
-	boits.create(194,550, 'boits');
-	boits.create(194,350, 'boits');
-	boits.create(194,150, 'boits');
-	boits.create(194,70, 'boits');*/
-
-
-
-	this.physics.add.collider(boits,cote);
-	this.physics.add.collider(boits,sol);
-
-
-
-
-	this.physics.add.collider(player, player2);
-	this.physics.add.collider(player, player3);
-	this.physics.add.collider(player, player4);
-	this.physics.add.collider(player, player5);
-	this.physics.add.collider(player, player6);
-	this.physics.add.collider(player, player7);
-	this.physics.add.collider(player, player8);
-	this.physics.add.collider(player, player9);
-	this.physics.add.collider(player, playerA);
-
-
-
-
-	this.physics.add.collider(player2, player3);
-	this.physics.add.collider(player2, player4);
-	this.physics.add.collider(player2, player5);
-	this.physics.add.collider(player2, player6);
-	this.physics.add.collider(player2, player7);
-	this.physics.add.collider(player2, player8);
-	this.physics.add.collider(player2, player9);
-	this.physics.add.collider(player2, playerA);
-
-
-
-
-	this.physics.add.collider(player3, player4);
-	this.physics.add.collider(player3, player5);
-	this.physics.add.collider(player3, player6);
-	this.physics.add.collider(player3, player7);
-	this.physics.add.collider(player3, player8);
-	this.physics.add.collider(player3, player9);
-	this.physics.add.collider(player3, playerA);
-
-
-
-
-	this.physics.add.collider(player4, player5);
-	this.physics.add.collider(player4, player6);
-	this.physics.add.collider(player4, player7);
-	this.physics.add.collider(player4, player8);
-	this.physics.add.collider(player4, player9);
-	this.physics.add.collider(player4, playerA);
-
-
-
-
-	this.physics.add.collider(player5, player6);
-	this.physics.add.collider(player5, player7);
-	this.physics.add.collider(player5, player8);
-	this.physics.add.collider(player5, player9);
-	this.physics.add.collider(player5, playerA);
-
-
-
-
-	this.physics.add.collider(player6, player7);
-	this.physics.add.collider(player6, player8);
-	this.physics.add.collider(player6, player9);
-	this.physics.add.collider(player6, playerA);
-
-
-
-
-	this.physics.add.collider(player7, player8);
-	this.physics.add.collider(player7, player9);
-	this.physics.add.collider(player7, playerA);
-
-
-
-
-	this.physics.add.collider(player8, player9);
-	this.physics.add.collider(player8, playerA);
-	this.physics.add.collider(player9, playerA);
-
-
-
-
-	this.physics.add.collider(player, boits);
-	this.physics.add.collider(player2, boits);
-	this.physics.add.collider(player3, boits);
-	this.physics.add.collider(player4, boits);
-	this.physics.add.collider(player5, boits);
-	this.physics.add.collider(player6, boits);
-	this.physics.add.collider(player7, boits);
-	this.physics.add.collider(player8, boits);
-	this.physics.add.collider(player9, boits);
-	this.physics.add.collider(playerA, boits);
-
-	this.physics.add.collider(boits, boits);
-
-
-
-
-	this.physics.add.collider(player, box);
-	this.physics.add.collider(player2, box);
-	this.physics.add.collider(player3, box);
-	this.physics.add.collider(player4, box);
-	this.physics.add.collider(player5, box);
-	this.physics.add.collider(player6, box);
-	this.physics.add.collider(player7, box);
-	this.physics.add.collider(player8, box);
-	this.physics.add.collider(player9, box);
-	this.physics.add.collider(playerA, box);
-
-
-
-
-	this.physics.add.collider(player, cote1);
-	this.physics.add.collider(player2, cote1);
-	this.physics.add.collider(player3, cote1);
-	this.physics.add.collider(player4, cote1);
-	this.physics.add.collider(player5, cote1);
-	this.physics.add.collider(player6, cote1);
-	this.physics.add.collider(player7, cote1);
-	this.physics.add.collider(player8, cote1);
-	this.physics.add.collider(player9, cote1);
-	this.physics.add.collider(playerA, cote1);
+	function touchA (cote, ard1){
+		gameOverText.visible = true;
+		this.physics.pause();
+	}
 
 	//Texte
 
+	gameOverText = this.add.text(450, 250, "VOUS AVEZ FAIT UNE FAUSSE NOTE", {'font': '128px', fill: '#000'});
+	gameOverText.visible = false
 
-	gameOverperduText = this.add.text(600, 250, "IL RISQUE D'Y AVOIR DE LA CASSE", {fontsize: '128px', fill: '#000'});
-	gameOverperduText.visible = false
 
-	gameOvergagnéText = this.add.text(600, 250, "BRAVO LE CAMION EST PRET", {fontsize: '128px', fill: '#000'});
-	gameOvergagnéText.visible = false
+	gameOverTextSucces = this.add.text(450, 250, "QUELLE PERFECTION", {'font': '128px', fill: '#000'});
+	gameOverTextSucces.visible = false
 
 }
 
 
+
 function update() {
+
+	text.setText('Fin de la mélodie dans:' + timedEvent.repeatCount);
+
+
+
+	//Déplacement du Joueur 1
 
 	if (cursors.space.isDown){
 		this.registry.destroy(); // destroy registry
 		this.events.off();﻿ // disable all active events
 		this.scene.restart();﻿﻿﻿﻿ // restart current scene
 	}
-	if(player.y<350){
-		if (cursors.up.isDown){
-			player.anims.play('left', true);
-			player.setVelocityY(10);
 
-		}
-		else if (cursors.down.isDown){
-			player.anims.play('left', true);
-			player.setVelocityY(100);
-
-		}
-
-		else if (cursors.left.isDown){
-			player.anims.play('left', true);
-			player.setVelocityX(-100);
-
-		}
-
-		else if (cursors.right.isDown){
-			player.anims.play('left', true);
-			player.setVelocityX(100);
-
-		}
-
-		else{
-
-			player.setVelocityX(0);
-
-		}
+	
+	if (cursors.up.isDown){
+			player.setVelocityY(-210);
+			player.setFlipX(false);
 	}
 
-	//Joueur 1 arrêt, début Joueur 2
-	if(player.y>380){
-		player2.body.setGravityY(0);
 
-		if(player2.y<320){
-			if (cursors.up.isDown){
-			player2.anims.play('left', true);
-			player2.setVelocityY(10);
-
-			}
-			else if (cursors.down.isDown){
-				player2.anims.play('left', true);
-				player2.setVelocityY(100);
-
-			}
-
-			else if (cursors.left.isDown){
-				player2.anims.play('left', true);
-				player2.setVelocityX(-100);
-
-			}
-
-			else if (cursors.right.isDown){
-				player2.anims.play('left', true);
-				player2.setVelocityX(100);
-
-			}
-
-			else{
-
-				player2.setVelocityX(0);
-
-			}
-		}
-
-		//Joueur 2 arrêt, début Joueur 3
-		if(player2.y>320){
-			player3.body.setGravityY(0);
-
-			if(player3.y<380){
-				if (cursors.up.isDown){
-				player3.anims.play('left', true);
-				player3.setVelocityY(10);
-
-				}
-				else if (cursors.down.isDown){
-					player3.anims.play('left', true);
-					player3.setVelocityY(100);
-
-				}
-
-				else if (cursors.left.isDown){
-					player3.anims.play('left', true);
-					player3.setVelocityX(-100);
-
-				}
-
-				else if (cursors.right.isDown){
-					player3.anims.play('left', true);
-					player3.setVelocityX(100);
-
-				}
-
-				else{
-
-					player3.setVelocityX(0);
-
-				}
-			}
-
-			//Joueur 3 arrêt, début Joueur 4
-			if(player3.y>380){
-				player4.body.setGravityY(0);
-
-				if(player4.y<320){
-					if (cursors.up.isDown){
-					player4.anims.play('left', true);
-					player4.setVelocityY(10);
-
-					}
-					else if (cursors.down.isDown){
-						player4.anims.play('left', true);
-						player4.setVelocityY(100);
-
-					}
-
-					else if (cursors.left.isDown){
-						player4.anims.play('left', true);
-						player4.setVelocityX(-100);
-
-					}
-
-					else if (cursors.right.isDown){
-						player4.anims.play('left', true);
-						player4.setVelocityX(100);
-
-					}
-
-					else{
-
-						player4.setVelocityX(0);
-
-					}
-				}
-
-				if(player4.y>320){
-					player5.body.setGravityY(0);
-
-					if(player5.y<320){
-						if (cursors.up.isDown){
-						player5.anims.play('left', true);
-						player5.setVelocityY(10);
-
-						}
-
-						else if (cursors.down.isDown){
-							player5.anims.play('left', true);
-							player5.setVelocityY(100);
-
-						}
-
-						else if (cursors.left.isDown){
-							player5.anims.play('left', true);
-							player5.setVelocityX(-100);
-
-						}
-
-						else if (cursors.right.isDown){
-							player5.anims.play('left', true);
-							player5.setVelocityX(100);
-
-						}
-
-						else{
-
-							player5.setVelocityX(0);
-
-						}
-					}
-
-					if(player5.y>320){
-						player6.body.setGravityY(0);
-
-						if(player6.y<320){
-							if (cursors.up.isDown){
-								player6.anims.play('left', true);
-								player6.setVelocityY(10);
-
-								}
-
-							else if (cursors.down.isDown){
-								player6.anims.play('left', true);
-								player6.setVelocityY(100);
-
-							}
-
-							else if (cursors.left.isDown){
-								player6.anims.play('left', true);
-								player6.setVelocityX(-100);
-
-							}
-
-							else if (cursors.right.isDown){
-								player6.anims.play('left', true);
-								player6.setVelocityX(100);
-
-							}
-
-							else{
-
-								player6.setVelocityX(0);
-
-							}
-						}
-
-							if(player6.y>320){
-								player7.body.setGravityY(0);
-
-							if(player7.y<320){
-								if (cursors.up.isDown){
-									player6.anims.play('left', true);
-									player6.setVelocityY(10);
-
-									}
-
-								else if (cursors.down.isDown){
-									player7.anims.play('left', true);
-									player7.setVelocityY(100);
-
-								}
-
-								else if (cursors.left.isDown){
-									player7.anims.play('left', true);
-									player7.setVelocityX(-100);
-
-								}
-
-								else if (cursors.right.isDown){
-									player7.anims.play('left', true);
-									player7.setVelocityX(100);
-
-								}
-
-								else{
-
-									player7.setVelocityX(0);
-
-								}
-							}
-
-							if(player7.y>320){
-								player8.body.setGravityY(0);
-
-								if(player8.y<280){
-									if (cursors.up.isDown){
-										player8.anims.play('left', true);
-										player8.setVelocityY(10);
-
-										}
-
-									else if (cursors.down.isDown){
-										player8.anims.play('left', true);
-										player8.setVelocityY(100);
-
-									}
-
-									else if (cursors.left.isDown){
-										player8.anims.play('left', true);
-										player8.setVelocityX(-100);
-
-									}
-
-									else if (cursors.right.isDown){
-										player8.anims.play('left', true);
-										player8.setVelocityX(100);
-
-									}
-
-									else{
-
-										player8.setVelocityX(0);
-
-									}
-								}
-
-								if(player8.y>280){
-									player9.body.setGravityY(0);
-
-									if(player9.y<280){
-										if (cursors.up.isDown){
-											player9.anims.play('left', true);
-											player9.setVelocityY(10);
-
-											}
-
-										else if (cursors.down.isDown){
-											player9.anims.play('left', true);
-											player9.setVelocityY(100);
-
-										}
-
-										else if (cursors.left.isDown){
-											player9.anims.play('left', true);
-											player9.setVelocityX(-100);
-
-										}
-
-										else if (cursors.right.isDown){
-											player9.anims.play('left', true);
-											player9.setVelocityX(100);
-
-										}
-
-										else{
-
-											player9.setVelocityX(0);
-
-										}
-									}
-
-									if(player9.y>280){
-										playerA.body.setGravityY(0);
-
-										if(playerA.y<260){
-											if (cursors.up.isDown){
-												playerA.anims.play('left', true);
-												playerA.setVelocityY(10);
-
-												}
-
-											else if (cursors.down.isDown){
-												playerA.anims.play('left', true);
-												playerA.setVelocityY(100);
-
-											}
-
-											else if (cursors.left.isDown){
-												playerA.anims.play('left', true);
-												playerA.setVelocityX(-100);
-
-											}
-
-											else if (cursors.right.isDown){
-												playerA.anims.play('left', true);
-												playerA.setVelocityX(100);
-
-											}
-
-											else{
-
-												playerA.setVelocityX(0);
-
-											}
-										}
-
-										if(playerA.y < 280 && playerA.body.touching.down){
-											gameOverperduText.visible = true;
-										}
-
-										if(playerA.y>300){
-											gameOvergagnéText.visible = true;
-											this.physics.pause(true);
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-
-			}
-		}
+	else if (cursors.down.isDown){
+			player.setVelocityY(210);
+			player.setFlipX(false);
 	}
+
+	else{
+		player.setVelocityX(0);
+		player.setVelocityY(0);
+	
+	}
+
+
+	
+	
+
+	//Déplacement du Joueur 2
+
+
+	
+	if (playerj.x >= 90){
+		this.tweens.add({
+	    	targets: playerj,
+	   	 	
+	   	 	x :-1000,
+	    	// alpha: { start: 0, to: 1 },
+	    	// alpha: 1,
+	    	// alpha: '+=1',
+	    	ease: 'Linear',       // 'Cubic', 'Elastic', 'Bounce', 'Back'
+	    	duration: 10000,
+	    	repeat: 0,            // -1: infinity
+	    	yoyo: false
+		});
+
+
+	}
+
+	if (tard.x >= 90){
+    	this.tweens.add({
+	    	targets: tard,
+	   	 	
+	   	 	x : -1000,
+	    	// alpha: { start: 0, to: 1 },
+	    	// alpha: 1,
+	    	// alpha: '+=1',
+	    	ease: 'Linear',       // 'Cubic', 'Elastic', 'Bounce', 'Back'
+	    	duration: 10000,
+	    	repeat: 0,            // -1: infinity
+	    	yoyo: false
+		});
+
+		tard.setFlipX(true);
+
+	}
+
+
+	if (tard1.x >= 90){
+    	this.tweens.add({
+	    	targets: tard1,
+	   	 	
+	   	 	x : -1000,
+	    	// alpha: { start: 0, to: 1 },
+	    	// alpha: 1,
+	    	// alpha: '+=1',
+	    	ease: 'Linear',       // 'Cubic', 'Elastic', 'Bounce', 'Back'
+	    	duration: 10000,
+	    	repeat: 0,            // -1: infinity
+	    	yoyo: false
+		});
+
+		tard1.setFlipX(true);
+
+	}
+
+	if (tard2.x >= 90){
+    	this.tweens.add({
+	    	targets: tard2,
+	   	 	
+	   	 	x : -1000,
+	    	// alpha: { start: 0, to: 1 },
+	    	// alpha: 1,
+	    	// alpha: '+=1',
+	    	ease: 'Linear',       // 'Cubic', 'Elastic', 'Bounce', 'Back'
+	    	duration: 10000,
+	    	repeat: 0,            // -1: infinity
+	    	yoyo: false
+		});
+
+		tard2.setFlipX(true);
+
+	}
+
+	if (tard3.x >= 90){
+    	this.tweens.add({
+	    	targets: tard3,
+	   	 	
+	   	 	x : -1000,
+	    	// alpha: { start: 0, to: 1 },
+	    	// alpha: 1,
+	    	// alpha: '+=1',
+	    	ease: 'Linear',       // 'Cubic', 'Elastic', 'Bounce', 'Back'
+	    	duration: 10000,
+	    	repeat: 0,            // -1: infinity
+	    	yoyo: false
+		});
+
+		tard3.setFlipX(true);
+
+	}
+
+
+	if (tard4.x >= 90){
+    	this.tweens.add({
+	    	targets: tard4,
+	   	 	
+	   	 	x : -1000,
+	    	// alpha: { start: 0, to: 1 },
+	    	// alpha: 1,
+	    	// alpha: '+=1',
+	    	ease: 'Linear',       // 'Cubic', 'Elastic', 'Bounce', 'Back'
+	    	duration: 10000,
+	    	repeat: 0,            // -1: infinity
+	    	yoyo: false
+		});
+
+		tard4.setFlipX(true);
+
+	}
+
+	if (tard5.x >= 90){
+    	this.tweens.add({
+	    	targets: tard5,
+	   	 	
+	   	 	x : -1000,
+	    	// alpha: { start: 0, to: 1 },
+	    	// alpha: 1,
+	    	// alpha: '+=1',
+	    	ease: 'Linear',       // 'Cubic', 'Elastic', 'Bounce', 'Back'
+	    	duration: 10000,
+	    	repeat: 0,            // -1: infinity
+	    	yoyo: false
+		});
+
+		tard5.setFlipX(true);
+
+	}
+
+	if (tard6.x >= 90){
+    	this.tweens.add({
+	    	targets: tard6,
+	   	 	
+	   	 	x : -1000,
+	    	// alpha: { start: 0, to: 1 },
+	    	// alpha: 1,
+	    	// alpha: '+=1',
+	    	ease: 'Linear',       // 'Cubic', 'Elastic', 'Bounce', 'Back'
+	    	duration: 10000,
+	    	repeat: 0,            // -1: infinity
+	    	yoyo: false
+		});
+
+		tard6.setFlipX(true);
+
+	}
+
+	if (tard8.x >= 90){
+    	this.tweens.add({
+	    	targets: tard8,
+	   	 	
+	   	 	x : -1000,
+	    	// alpha: { start: 0, to: 1 },
+	    	// alpha: 1,
+	    	// alpha: '+=1',
+	    	ease: 'Linear',       // 'Cubic', 'Elastic', 'Bounce', 'Back'
+	    	duration: 10000,
+	    	repeat: 0,            // -1: infinity
+	    	yoyo: false
+		});
+
+		tard8.setFlipX(true);
+
+	}
+
+	if (ard.x >= 90){
+    	this.tweens.add({
+	    	targets: ard,
+	   	 	
+	   	 	x : -1000,
+	    	// alpha: { start: 0, to: 1 },
+	    	// alpha: 1,
+	    	// alpha: '+=1',
+	    	ease: 'Linear',       // 'Cubic', 'Elastic', 'Bounce', 'Back'
+	    	duration: 10000,
+	    	repeat: 0,            // -1: infinity
+	    	yoyo: false
+		});
+
+		ard.setFlipX(true);
+
+	}
+
+	if (ard1.x >= 90){
+    	this.tweens.add({
+	    	targets: ard1,
+	   	 	
+	   	 	x : -1000,
+	    	// alpha: { start: 0, to: 1 },
+	    	// alpha: 1,
+	    	// alpha: '+=1',
+	    	ease: 'Linear',       // 'Cubic', 'Elastic', 'Bounce', 'Back'
+	    	duration: 90000,
+	    	repeat: 0,            // -1: infinity
+	    	yoyo: false
+		});
+
+		ard1.setFlipX(true);
+
+	}
+
+
+	if (tard.y<=0 || tard1.y<=0 || tard2.y<=0 || tard3.y<=0 || tard4.y<=0 || tard5.y<=0 || tard6.y<=0 || tard8.y<=0 || ard.y<=0 || ard1.y<=0 || playerj.y<=0 ){
+		gameOverTextSucces.visible = true;
+		this.physics.pause();
+	}
+
+	if (timedEvent.repeatCount<=0){
+		gameOverTextSucces.visible = true;
+		this.physics.pause();
+	}
+
 }
