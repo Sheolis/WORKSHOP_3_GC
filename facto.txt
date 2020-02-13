@@ -56,11 +56,11 @@ Repository:
  index.html
     styles.css
     script.js
- /j3_dame1
+ /j3_recree
  index.html
     styles.css
     script.js
- /j4_recree
+ /j4_dame1
  index.html
     styles.css
     script.js
