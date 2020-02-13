@@ -40,7 +40,7 @@ body {
 
 #boite_de_dialogue{
   position: absolute;
-  background-color: black;
+  background-image: url('../_graph/img/texte.png');
   width: 1080px;
   height: 180px;
   z-index: 4;
@@ -51,6 +51,7 @@ body {
   color: white;
   font-size: 25px;
   white-space: normal;
+  text-shadow: 1.5px 1.5px #000000;
 }
 
 #boite_choix_multiples{
