@@ -1,5 +1,5 @@
 var etat_jeu=$.session.get('etat_jeu');
-var indexhtml_suivant='../j9_dame2/index.html';
+var indexhtml_suivant='../d9_dame2/index.html';
 var joueur = $.session.get('nom_joueur');
 
 
