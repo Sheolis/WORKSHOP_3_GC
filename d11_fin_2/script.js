@@ -265,10 +265,7 @@ print_ligne_dialogue(dialogue_index,0);//appelle la première ligne du premier d
 $('#boite_de_dialogue').on('click',function(){
     if ($('#dialogue').html().length < dialogue_liste[dialogue_index][dialogue_ligne-1][0].length) { //permet d'accelerer le dialogue si il n'est pas fini
         window.clearInterval(intervalId);
-<<<<<<< HEAD
-=======
         //$('#emplacement_'+perso_asset_liste[dialogue_liste[dialogue_index][dialogue_ligne][1]][1]).animateSprite('stop');
->>>>>>> master
         $('#dialogue').html('');
         $('#dialogue').html(dialogue_liste[dialogue_index][dialogue_ligne-1][0]);
     }

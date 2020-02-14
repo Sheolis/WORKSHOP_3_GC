@@ -5,132 +5,32 @@ var joueur = $.session.get('nom_joueur');
 
 var pseudo_liste=[
     '',
-    'Swann',
-    'Sam',
-    'Alan',
-    '',
-    '',
-    ''
+    'Scientifique A',
+    'Scientifique B',
+    'Scientifique C',
+    'Scientifique D'
   ];
 var perso_asset_liste=[
   ['', 0],
-  ['grand_mere_', 0],
-  ['petit_fils_', 1],
-  ['petit_fils_38ans_', 2],
-  ['grand_mere_', 0],
-  ['petit_fils_', 1],
-  ['petit_fils_38ans_', 2]
+  ['', 0],
+  ['', 0],
+  ['', 0],
+  ['', 0]
 
 ]; //Contient le nom d'asset des perso et le slot d'affichage à l'écran de l'image
-var decors_liste=[['bureau_', 0], ['salon_70_', 1]];
+var decors_liste=[['laboratoire_', 0]];
 var dialogue_liste=[ // contient la liste des dialogues [le dialogue1[ligne de dialogue, l'index du nom(pseudo_list) de celui qui parle], le dialogue2 ...]
   [
-    ['Vous regardez dehors, et remarquez à quel point le monde a changé depuis votre emménagement, il y a maintenant plus de 40 ans. ', 0],
-    ['La voix de votre femme vient vous sortir de vos pensées.', 0],
-    ['Alan et Sam sont arrivés, ils attendent dans le salon. Donc sort de ta grotte !', 1],
-    ['decors', 1] // si le dialogue est égal à 'choix' on va aller chercher l'affichage du choix suivant dans la liste de choix, permettant au joueur de prendre une décision. Le 0 n'a pas d'importance
-  ],
-  [
-    ['Vous descendez les rejoindre et votre petit fils court dans votre direction avant de sauter dans vos bras, montrant toute l’affection qu\'il vous porte. .', 0],
-    ['choix', 0]
-  ],
-  [
-    ['Tu m\'as manqué !', 2],
-    ['choix', 1]
-  ],
-  [
-    ['Je suis devenu plus fort depuis la dernière fois hein ?', 2],
-    ['choix', 2]
-  ],
-  [
-    ['Alan s’approche de vous et vous prend dans ses bras à son tour.', 6],
-    ['Bonjour, comment vas-tu ?', 3],
-    ['choix', 3]
-  ],
-  [
-    ['Celui pour le journal local ?', 3],
-    ['choix', 4]
-  ],
-  [
-    ['Au même moment la voix de Swann se fait entendre depuis la cuisine.', 0],
-    ['Alan, peux-tu venir m’aider ?', 1],
-    ['J’arrive Maman.', 3],
-    ['Il se dirige vers la cuisine.', 0],
-    ['Sam se tourne de nouveau vers vous.', 5],
-    ['Maman m\'as dit que c\'était ton anniversaire demain, tu vas avoir 70 ans ! C\'est beaucoup quand même.', 2],
-    ['choix', 5]
-  ],
-  [
-    ['Et moi je viens d\'avoir 5 ans, je suis presque un adulte.', 2],
-    ['choix', 6]
-  ],
-  [
-    ['J\'irais leur dire ça car ils continuent de dire que je suis un enfant.', 2],
-    ['Vous riez.', 5],
-    ['choix', 7]
-  ],
-  [
-    ['Ah bon, c\'est quoi la sagesse ?', 2],
-    ['choix', 8]
-  ],
-  [
-    ['J\'ai pas tout compris.', 2],
-    ['choix', 9]
-  ],
-  [
-    ['Sam se dirige vers une ancienne boîte de jeu sur une étagère de votre salon, avant de la prendre dans ses mains, un air curieux sur son visage.', 0],
-    ['Qu’est-ce que c’est ?', 2],
-    ['choix', 10]
-  ],
-  [
-    ['Trop bien, tu veux bien m\'apprendre et jouer avec moi ?', 5],
-    ['choix', 11]
-  ],
-  [
-    ['Vous installez le jeu, et commencez à expliquer les règles à votre petit-fils. Une fois le système compris, vous commencez votre réelle première partie. ', 5],
-    ['fin', 0]
+    ['Vous ne comprenez pas pourquoi vous vous trouvez dans un laboratoire et ni pourquoi vous êtes dans l’incapacité d’émettre le moindre son ou le moindre mouvement. ', 0],
+    ['Un groupe de chercheurs s’approche de vous jusqu’à ce que vous ayez la possibilité d’entendre leur conversation.', 0],
+    ['Encore une fois, l’expérience se conclut par un échec.', 1],
+    ['Il est impossible d’aboutir au résultat souhaité par notre commanditaire, ils ne réalisent pas la prouesse technologique que ce projet requiert.', 2],
+    ['Et puis ne parlons même pas du point de vue éthique soulevé. Peut-on encore parler d’intelligence artificielle ? Parvenir à le compléter résulterait peut-être comme un crime envers notre société !', 3],
+    ['Vous avez fini de vous trouver des excuses ou de vous donner bonne conscience ? Nous avons accepté de notre plein gré d’y participer. Donc maintenant on reboot le prototype en modifiant quelques données et on réitère l’expérimentation.', 4],
+    ['fin', 0] // si le dialogue est égal à 'choix' on va aller chercher l'affichage du choix suivant dans la liste de choix, permettant au joueur de prendre une décision. Le 0 n'a pas d'importance
   ]
 ];
 var choix_liste = [ //contient plusieurs groupes de choix. Chaque choix est composé d'une phrase et de l'index du dialogue qu'il appelle.
-  [
-    ['Qu\'est ce qui me vaut un si bel accueil ?', 2],
-    ['Pas si fort, tu vas me casser haha.', 3]
-  ],
-  [
-    ['C\'est vrai que ça fait un petit moment qu\'on ne s\'est pas vu.', 4]
-  ],
-  [
-    ['Beaucoup trop fort pour moi, en effet.', 4]
-  ],
-  [
-    ['Oh ça va, je finissais mon article sur les plantes médicinales.', 5]
-  ],
-  [
-    ['Tout à fait.', 6]
-  ],
-  [
-    ['Ah c\'est vrai que je ne suis plus tout jeune.', 7],
-    ['Oui, mais c\'est l\'âge de la sagesse.', 9]
-  ],
-  [
-    ['Déjà plus adulte que ton papa', 8]
-    ['Déjà plus adulte que ta maman', 8]
-  ],
-  [
-    ['Tu vas me faire faire taper sur les doigts Sam.', 11]
-  ],
-  [
-    ['C\'est prendre du recul, faire preuve de patience ou encore de discernement en s\'appuyant sur nos expériences passées.', 10]
-  ],
-  [
-    ['Haha, tu demanderas à ton père ou à ta mère demain.', 11]
-  ],
-  [
-    ['C\'est un jeu de dames, et c\'est celui qui appartenait à mon grand-père.', 12]
-  ],
-  [
-    ['Bien sûr.', 13]
-  ]
 ];
 
 var dialogue_statut=1; // 1 le dialogue est en cours, 0 le dialogue est terminé
