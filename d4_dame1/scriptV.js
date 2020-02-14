@@ -1,4 +1,4 @@
-var etat_jeu=2;
+var etat_jeu=$.session.get('etat_jeu');
 var indexhtml_suivant='../j4_dame1/index.html';
 var joueur = $.session.get('nom_joueur');
 
@@ -15,11 +15,11 @@ var decors_liste=[['plateau_dames_', 0]];
 var dialogue_liste=[ // contient la liste des dialogues [le dialogue1[ligne de dialogue, l'index du nom(pseudo_list) de celui qui parle], le dialogue2 ...]
   [
     ['Félicitations !', 1],
-    ['Votre grand-père applaudit, rayonnant.', 0],
+    ['Votre grand-père applaudit, rayonnant.', 1],
     ['choix', 0]
   ],
   [
-    ['Il vous fait un clin d\'œil.', 0],
+    ['Il vous fait un clin d\'œil.', 1],
     ['Tu sais c’est parfois dans la défaite que l’on obtient le sentiment de la victoire.', 1],
     ['choix', 1]
   ],
@@ -42,31 +42,43 @@ var dialogue_index=0; //index du dialogue
 var dialogue_ligne=1; //index de la ligne de texte du dialogue
 var choix_index; // index du choix proposé
 
-
 ///////////////////////////////////////////////FONCTIONS/////////////////////////////////////////////////////
 var intervalId;
 
+
+function load_speak(id_sprite) {
+  $(id_sprite).animateSprite({
+  fps: 5,
+  animations: {
+      speak: [7, 8, 9, 10, 11, 12, 13]
+  },
+  loop: true,
+  });
+  $(id_sprite).animateSprite('restart');
+}
+
+function stop_anim(id_sprite) {
+  $(id_sprite).animateSprite('stop');
+}
+
 function print_ligne_dialogue(dialogue_index,dialogue_ligne) {
+    //clearInterval(blink_anim_interv);
     $('#dialogue').html('');
     var i = 0;
     var texte=dialogue_liste[dialogue_index][dialogue_ligne][0];
     var index_perso = dialogue_liste[dialogue_index][dialogue_ligne][1];
     if ( perso_asset_liste[index_perso][0] != '') {
-      $('#emplacement_'+perso_asset_liste[index_perso][1]).animateSprite({
-      fps: 5,
-      animations: {
-          speak: [0, 1, 2],
-      },
-      loop: true,
-      });
-      intervalId = window.setInterval(function() {
-          $('#dialogue').append(texte.charAt(i++));
-          if (i > texte.length)
-              window.clearInterval(intervalId);
-             // $('#emplacement_'+perso_asset_liste[index_perso][1]).animateSprite('stop');
-
-      }, 30);
+      load_speak('#emplacement_'+perso_asset_liste[index_perso][1]);
     }
+    intervalId = window.setInterval(function() {
+        $('#dialogue').append(texte.charAt(i++));
+        if (i > texte.length)
+            window.clearInterval(intervalId);
+            //stop_anim('#emplacement_'+perso_asset_liste[index_perso][1]);
+            //blink_anim_f();
+           // $('#emplacement_'+perso_asset_liste[index_perso][1]).animateSprite('stop');
+
+    }, 30);
   }
 function upload_environnement(i) {
   $("#environnement").empty();
@@ -77,13 +89,13 @@ function clean_emplacements_perso(){
     for (i=0; i<3; i++) $('#emplacement_'+i).css("background-image","");
     }
 
-
 function print_personnage(i, l) { //fonction chargée de l'update de l'image à charger et du nom à afficher
   var index_perso = dialogue_liste[i][l][1];
   $('#nom_du_locuteur').html(pseudo_liste[index_perso]);
   clean_emplacements_perso();
   if (perso_asset_liste[index_perso][0]!='') {
     $('#emplacement_'+perso_asset_liste[index_perso][1]).css("background-image",'url(../_graph/img/perso/'+perso_asset_liste[index_perso][0]+etat_jeu+'.png)');
+    load_speak('#emplacement_'+perso_asset_liste[dialogue_liste[i][l][1]][1]);
   }
 }
 
@@ -124,15 +136,17 @@ function f_choix(choix_index) { //fonction_choix
 ///////////////////////////////////////////////MAIN/////////////////////////////////////////////////////
 
 
-//clearInterval();
+
 upload_environnement(0); //charge le premier décors de la liste
 print_personnage(dialogue_index,0);
 print_ligne_dialogue(dialogue_index,0);//appelle la première ligne du premier dialogue à s'afficher sur le html
 
 $('#boite_de_dialogue').on('click',function(){
     if ($('#dialogue').html().length < dialogue_liste[dialogue_index][dialogue_ligne-1][0].length) { //permet d'accelerer le dialogue si il n'est pas fini
+        if ( perso_asset_liste[dialogue_liste[dialogue_index][dialogue_ligne][1]][0] != '') {
+            stop_anim('#emplacement_'+perso_asset_liste[dialogue_liste[dialogue_index][dialogue_ligne-1][1]][1]);
+        }
         window.clearInterval(intervalId);
-        //$('#emplacement_'+perso_asset_liste[dialogue_liste[dialogue_index][dialogue_ligne][1]][1]).animateSprite('stop');
         $('#dialogue').html('');
         $('#dialogue').html(dialogue_liste[dialogue_index][dialogue_ligne-1][0]);
     }
@@ -150,8 +164,9 @@ $('#boite_de_dialogue').on('click',function(){
           dialogue_ligne=1;
         }
         else if(dialogue_liste[dialogue_index][dialogue_ligne][0]=='fin') {
-          document.location.href = indexhtml_suivant;
-
+          $("body").fadeOut(1000,function(){
+            document.location.href = indexhtml_suivant;
+          });
         }
         else if(dialogue_ligne<dialogue_liste[dialogue_index].length){
             print_personnage(dialogue_index,dialogue_ligne);
