@@ -1,5 +1,5 @@
-var etat_jeu=2;
-var indexhtml_suivant='../j10_avantFin/index.html';
+var etat_jeu=$.session.get('etat_jeu');
+var indexhtml_suivant='../d11_fin_0/credit.html';
 var joueur = $.session.get('nom_joueur');
 
 
@@ -175,31 +175,40 @@ var dialogue_index=0; //index du dialogue
 var dialogue_ligne=1; //index de la ligne de texte du dialogue
 var choix_index; // index du choix proposé
 
-
 ///////////////////////////////////////////////FONCTIONS/////////////////////////////////////////////////////
 var intervalId;
 
+
+function load_speak(id_sprite) {
+  $(id_sprite).animateSprite({
+  fps: 5,
+  animations: {
+      speak: [7, 8, 9, 10, 11, 12, 13]
+  },
+  loop: true,
+  });
+  $(id_sprite).animateSprite('restart');
+}
+
+function stop_anim(id_sprite) {
+  $(id_sprite).animateSprite('stop');
+}
+
 function print_ligne_dialogue(dialogue_index,dialogue_ligne) {
+    //clearInterval(blink_anim_interv);
     $('#dialogue').html('');
     var i = 0;
     var texte=dialogue_liste[dialogue_index][dialogue_ligne][0];
     var index_perso = dialogue_liste[dialogue_index][dialogue_ligne][1];
-    if ( perso_asset_liste[index_perso][0] != '') {
-      $('#emplacement_'+perso_asset_liste[index_perso][1]).animateSprite({
-      fps: 5,
-      animations: {
-          speak: [0, 1, 2],
-      },
-      loop: true,
-      });
-      intervalId = window.setInterval(function() {
-          $('#dialogue').append(texte.charAt(i++));
-          if (i > texte.length)
-              window.clearInterval(intervalId);
-             // $('#emplacement_'+perso_asset_liste[index_perso][1]).animateSprite('stop');
+    intervalId = window.setInterval(function() {
+        $('#dialogue').append(texte.charAt(i++));
+        if (i > texte.length)
+            window.clearInterval(intervalId);
+            //stop_anim('#emplacement_'+perso_asset_liste[index_perso][1]);
+            //blink_anim_f();
+           // $('#emplacement_'+perso_asset_liste[index_perso][1]).animateSprite('stop');
 
-      }, 30);
-    }
+    }, 30);
   }
 function upload_environnement(i) {
   $("#environnement").empty();
@@ -209,7 +218,6 @@ function upload_environnement(i) {
 function clean_emplacements_perso(){
     for (i=0; i<3; i++) $('#emplacement_'+i).css("background-image","");
     }
-
 
 function print_personnage(i, l) { //fonction chargée de l'update de l'image à charger et du nom à afficher
   var index_perso = dialogue_liste[i][l][1];
@@ -257,7 +265,7 @@ function f_choix(choix_index) { //fonction_choix
 ///////////////////////////////////////////////MAIN/////////////////////////////////////////////////////
 
 
-//clearInterval();
+
 upload_environnement(0); //charge le premier décors de la liste
 print_personnage(dialogue_index,0);
 print_ligne_dialogue(dialogue_index,0);//appelle la première ligne du premier dialogue à s'afficher sur le html
@@ -265,7 +273,6 @@ print_ligne_dialogue(dialogue_index,0);//appelle la première ligne du premier d
 $('#boite_de_dialogue').on('click',function(){
     if ($('#dialogue').html().length < dialogue_liste[dialogue_index][dialogue_ligne-1][0].length) { //permet d'accelerer le dialogue si il n'est pas fini
         window.clearInterval(intervalId);
-        //$('#emplacement_'+perso_asset_liste[dialogue_liste[dialogue_index][dialogue_ligne][1]][1]).animateSprite('stop');
         $('#dialogue').html('');
         $('#dialogue').html(dialogue_liste[dialogue_index][dialogue_ligne-1][0]);
     }
@@ -283,8 +290,9 @@ $('#boite_de_dialogue').on('click',function(){
           dialogue_ligne=1;
         }
         else if(dialogue_liste[dialogue_index][dialogue_ligne][0]=='fin') {
-          document.location.href = indexhtml_suivant;
-
+          $("body").fadeOut(1000,function(){
+            document.location.href = indexhtml_suivant;
+          });
         }
         else if(dialogue_ligne<dialogue_liste[dialogue_index].length){
             print_personnage(dialogue_index,dialogue_ligne);

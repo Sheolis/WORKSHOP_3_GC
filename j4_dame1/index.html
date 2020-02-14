@@ -113,7 +113,7 @@
            +" height=4><br></td></tr></table><br>"
            +"<form name='disp'><textarea name='message' wrap=virtual rows=2 cols=40></textarea><br><input "
            +"type=button value=\"Red&eacute;marrer le jeu\" onClick=\"location.href+=''\"></form>");
-          
+
 
 
 
@@ -330,7 +330,7 @@
                  message("Tu as gagné!");
                  var score=$.session.get('score');
              		score= 1 + parseInt(score);
-             		if (score>=1) {
+             		if (score>=2) {
              			$.session.set('etat_jeu',2);
              		}
              		else if (score<2 && score>=(-2)) {
@@ -348,7 +348,7 @@
                message("Arg! Game over.");
                var score=$.session.get('score');
               score= parseInt(score) - 2;
-              if (score>=1) {
+              if (score>=2) {
                 $.session.set('etat_jeu',2);
               }
               else if (score<2 && score>=(-2)) {

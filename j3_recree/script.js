@@ -140,7 +140,7 @@ function update(){
 		vie = -1 ;
 		var score=$.session.get('score');
 		score-=2;
-		if (score>=1) {
+		if (score>=2) {
 			$.session.set('etat_jeu',2);
 		}
 		else if (score<2 && score>=(-2)) {
@@ -166,7 +166,7 @@ function update(){
 	if(timedEvent.repeatCount==0){
 		var score=$.session.get('score');
 		score = score_win;
-		if (score>=1) {
+		if (score>=2) {
 			$.session.set('etat_jeu',2);
 		}
 		else if (score<2 && score>=(-2)) {

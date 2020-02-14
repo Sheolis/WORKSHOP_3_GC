@@ -18,9 +18,10 @@ var config = {
 };
 
 var game = new Phaser.Game(config);
-
-
-
+var score_win;
+var score_loose;
+var anti_loose;
+var win;
 function init(){
 
 	var player;
@@ -55,6 +56,9 @@ function preload(){
 }
 
 function create(){
+	score_win = 1 + parseInt( $.session.get('score') );
+	score_loose = parseInt( $.session.get('score') - 2 );
+	win=0;
 	{
 	    var music = this.sound.add('theme');
 	    music.play();
@@ -168,50 +172,61 @@ function create(){
 
 	function collectNoteA(player, playerj){
 	playerj.destroy(true);
+	win ++;
 	}
 
 	function collectNoteB(player, tard){
 	tard.destroy(true);
+	win ++;
 	}
 
 	function collectNoteC(player, tard1){
 	tard1.destroy(true);
+	win ++;
 	}
 
 	function collectNoteD(player, tard2){
 	tard2.destroy(true);
+	win ++;
 	}
 
 	function collectNoteE(player, tard3){
 	tard3.destroy(true);
+	win ++;
 	}
 
 	function collectNoteF(player, tard4){
 	tard4.destroy(true);
+	win ++;
 	}
 
 	function collectNoteG(player, tard5){
 	tard5.destroy(true);
+	win ++;
 	}
 
 
 	function collectNoteH(player, tard6){
 	tard6.destroy(true);
+	win ++;
 	}
 
 
 	function collectNoteJ(player, tard8){
 	tard8.destroy(true);
+	win ++;
 	}
 
 
 	function collectNote(player, ard){
 	ard.destroy(true);
+	win ++;
 	}
 
 
 	function collectNote1(player, ard1){
 	ard1.destroy(true);
+	win ++;
 	}
 
 
@@ -526,11 +541,47 @@ function update() {
 	if (tard.y<=0 || tard1.y<=0 || tard2.y<=0 || tard3.y<=0 || tard4.y<=0 || tard5.y<=0 || tard6.y<=0 || tard8.y<=0 || ard.y<=0 || ard1.y<=0 || playerj.y<=0 ){
 		gameOverTextSucces.visible = true;
 		this.physics.pause();
+
 	}
 
+if (win==10) {
+	anti_loose = 1;
+	var score_p=$.session.get('score');
+	score_p = score_win;
+	if (score_p>=2) {
+		$.session.set('etat_jeu',2);
+	}
+	else if (score_p<2 && score_p>=(-2)) {
+		$.session.set('etat_jeu',1);
+	}
+	else {
+		$.session.set('etat_jeu',0);
+	}
+	$.session.set('score',score_p);
+	$("body").fadeOut(1000,function(){
+		document.location.href = '../d8_instrument/index.html';
+	});
+}
 	if (timedEvent.repeatCount<=0){
 		gameOverTextSucces.visible = true;
 		this.physics.pause();
+		if (anti_loose != 1) {
+			var score_p=$.session.get('score');
+			score_p = score_loose;
+			if (score_p>=2) {
+				$.session.set('etat_jeu',2);
+			}
+			else if (score_p<2 && score_p>=(-2)) {
+				$.session.set('etat_jeu',1);
+			}
+			else {
+				$.session.set('etat_jeu',0);
+			}
+			$.session.set('score',score_p);
+			$("body").fadeOut(1000,function(){
+				document.location.href = '../d8_instrument/index.html';
+			});
+		}
 	}
 
 }

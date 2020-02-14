@@ -19,6 +19,9 @@ var config = {
 
 var game = new Phaser.Game(config);
 var score = 0;
+var timedEvent;
+var score_win;
+var score_loose;
 
 
 
@@ -33,16 +36,11 @@ function init(){
 	var cursors;
 	var gameOverText;
 	var gameOverTextj;
-
-
-	var text;
-	var timedEvent;
 	var fleurs
 	var fleursV
 	var fleursR
 	var fleursB
 	var fleursJ
-
 }
 
 function preload(){
@@ -63,11 +61,15 @@ function preload(){
 }
 
 function create(){
+	score_win = 1 + parseInt( $.session.get('score') );
+	score_loose = parseInt( $.session.get('score') - 2 );
+
+	timedEvent = this.time.addEvent({ delay: 1000, repeat: 60 });
 
 	this.add.image(640,360,'background');
 
 	murs = this.physics.add.staticGroup();
-	
+
 
 	murs.create(1146,666, 'mur').setScale(1,1);
 	murs.create(1146,642, 'mur').setScale(1,1);
@@ -139,7 +141,7 @@ function create(){
 	//platforms.create(156,600, 'platform').setScale(1,1).setAlpha(0);
 	//platforms.create(156,600, 'platform').setScale(1,1).setAlpha(0);ç
 	platforms.create(156,698, 'platform').setScale(1,1);
-	platforms.create(156,668, 'platform').setScale(1,1);	
+	platforms.create(156,668, 'platform').setScale(1,1);
 	platforms.create(156,200, 'platform').setScale(1,1);
 	platforms.create(156,482, 'platform').setScale(1,1);
 
@@ -180,7 +182,7 @@ function create(){
 	platforms.create(732,600, 'platform').setScale(1,1);
 	platforms.create(732,400, 'platform').setScale(1,1);
 	platforms.create(732,100, 'platform').setScale(1,1);
-	
+
 
 	platforms.create(828,700, 'platform').setScale(1,1);
 	platforms.create(828,600, 'platform').setScale(1,1);
@@ -207,7 +209,7 @@ function create(){
 	platforms.create(1116,500, 'platform').setScale(1,1);
 	platforms.create(1116,400, 'platform').setScale(1,1);
 	platforms.create(1116,100, 'platform').setScale(1,1);
-	
+
 
 
 
@@ -253,7 +255,7 @@ function create(){
 	sol.create(632,720, 'sol').setScale(1,1);
 
 
-	
+
 
 	//Player 1
 
@@ -312,8 +314,8 @@ function create(){
 
 
 
-	// Ennemis 
-	
+	// Ennemis
+
 	tard = this.physics.add.sprite(1100,10,'tard');
 	tard.setCollideWorldBounds(true);
 	tard.setTint(0xff0000);
@@ -337,8 +339,8 @@ function create(){
 	this.physics.add.collider(tard1,platformsR);
 	this.physics.add.collider(tard1,platforms);
 	this.physics.add.collider(tard1,sol);
-	
-	
+
+
 	this.anims.create({
 		key: 'idle_tard',
 		frames: this.anims.generateFrameNumbers('tard', {start: 0, end: 2}),
@@ -353,15 +355,15 @@ function create(){
 		repeat: -1
 	});
 
-	
 
-	
+
+
 
 	//Texte
 
 	gameOverText = this.add.text(410, 350, "La fleur       est pollinisée", {'font':'38px Arial', fill: '#fff'});
 	gameOverText.visible = false
-	
+
 
 
 
@@ -378,9 +380,6 @@ function create(){
 		setXY: {x: 640, y: 600, stepX: 70}
 	});
 
-
-	text = this.add.text(32, 32);
-	timedEvent = this.time.addEvent({ delay: 800, callback: setbomb, callbackScope: this, repeat: 90 });
 	this.physics.add.collider(fleursR, platforms);
 	fleursR.setTint(0xff0000);
 	this.physics.add.collider(fleursR, sol);
@@ -416,7 +415,7 @@ function create(){
 		repeat: 0,
 		setXY: {x: 640, y: 600, stepX: 70}
 	});
-	
+
 	this.physics.add.collider(fleursV, sol);
 	fleursV.setTint(0x00ff00);
 	this.physics.add.collider(fleursV, murs);
@@ -432,7 +431,6 @@ function create(){
 	this.physics.add.collider(fleurs, platforms);
 	this.physics.add.collider(fleurs, sol);
 	this.physics.add.collider(fleurs, murs);
-
 
 
 
@@ -496,17 +494,17 @@ function update() {
 	}
 
 
-	
+
 
 	if (keys.A.isUp){
 		attack = 1;
 	}
 
-	
+
 	if ( Phaser.Input.Keyboard.JustDown(boutonFeu)) {
 		tirer(player, direction);
-	}	
-	
+	}
+
 
 	//Déplacement du Joueur 2
 
@@ -534,7 +532,7 @@ function update() {
 
 
 
-	
+
 
 	if (cursors.left.isDown){
 		tard.anims.play('left', true);
@@ -579,19 +577,43 @@ function update() {
 
 	}
 
-
-
-
-	text.setText('\nTemps restant: ' + timedEvent.repeatCount);
-
 	if(timedEvent.repeatCount==0){
-		//condition de sortie du jeu defaite
+		var score_p=$.session.get('score');
+		score_p = score_loose;
+		if (score_p>=2) {
+			$.session.set('etat_jeu',2);
+		}
+		else if (score_p<2 && score_p>=(-2)) {
+			$.session.set('etat_jeu',1);
+		}
+		else {
+			$.session.set('etat_jeu',0);
+		}
+		$.session.set('score',score_p);
+		$("body").fadeOut(1000,function(){
+			document.location.href = '../d7_botanist/index.html';
+		});
 	}
 
 	if (score == 40){
 		gameOverText.visible = true;
 		this.physics.pause();
-	}
 
+		var score_p=$.session.get('score');
+		score_p = score_win;
+		if (score_p>=2) {
+			$.session.set('etat_jeu',2);
+		}
+		else if (score_p<2 && score_p>=(-2)) {
+			$.session.set('etat_jeu',1);
+		}
+		else {
+			$.session.set('etat_jeu',0);
+		}
+		$.session.set('score',score_p);
+		$("body").fadeOut(1000,function(){
+			document.location.href = '../d7_botanist/index.html';
+		});
+	}
 
 }
