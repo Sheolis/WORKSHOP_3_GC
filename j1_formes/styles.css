@@ -1,13 +1,15 @@
 body {
+  background-image: url("assets/jeu_tuto.png");
+  background-repeat: no-repeat;
   width: 1280px;
   height: 720px;
 }
 
 
 #div1, #div2,  #div3, #div4 {
-  display: inline-block;
-  width: 100px;
-  height: 100px;
+  display: relative;
+  width: 75px;
+  height: 75px;
   margin: 10px;
   padding: 10px;
   border: 5px solid black;
@@ -15,43 +17,39 @@ body {
 
 #triangle_bloc {
   position: relative;
-  top: 170px;
-  left: 250px;
+  top: -70px;
+  left: 694px;
   width: 100px;
   height: 120px;
   margin: 10px;
   padding: 10px;
-  border: 5px solid black;
 }
 #rond_bloc {
   position: relative;
-  top: 250px;
-  left: 750px;
+  top: -477px;
+  left: 695px;
   width: 100px;
   height: 120px;
   margin: 10px;
   padding: 10px;
-  border: 5px solid black;
 }
 #carre_bloc {
   position: relative;
-  top: 150px;
-  left: 500px;
+  top: -380px;
+  left: 440px;
   width: 100px;
   height: 120px;
   margin: 10px;
   padding: 10px;
-  border: 5px solid black;
 }
 #etoile_bloc {
   position: relative;
-  top: 120px;
-  left: 200px;
+  top: -785px;
+  left: 443px;
   width: 100px;
   height: 120px;
   margin: 10px;
   padding: 10px;
-  border: 5px solid black;
 }
 
 body{
