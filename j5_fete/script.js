@@ -24,7 +24,7 @@ var fenetre = window.setInterval(function(){
     window.clearInterval(fenetre);
    var score=$.session.get('score');
    score= parseInt(score) - 2;
-   if (score>=1) {
+   if (score>=2) {
      $.session.set('etat_jeu',2);
    }
    else if (score<2 && score>=(-2)) {
@@ -50,7 +50,7 @@ function drop(ev) {
   		if (victoire == 9){
         var score=$.session.get('score');
        score= 1 + parseInt(score);
-       if (score>=1) {
+       if (score>=2) {
          $.session.set('etat_jeu',2);
        }
        else if (score<2 && score>=(-2)) {
