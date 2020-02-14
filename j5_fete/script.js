@@ -22,8 +22,21 @@ var fenetre = window.setInterval(function(){
 
   if (count <= 0 ){
     window.clearInterval(fenetre);
-
-    //
+   var score=$.session.get('score');
+   score= parseInt(score) - 2;
+   if (score>=1) {
+     $.session.set('etat_jeu',2);
+   }
+   else if (score<2 && score>=(-2)) {
+     $.session.set('etat_jeu',1);
+   }
+   else {
+     $.session.set('etat_jeu',0);
+   }
+   $.session.set('score',score);
+   $("body").fadeOut(1000,function(){
+     document.location.href = '../d5_fete/indexD.html';
+   });
   }
 
 },1000)
@@ -35,7 +48,21 @@ function drop(ev) {
   		$('#'+objet_deplace).remove();
   		victoire ++ ;
   		if (victoire == 9){
-  			document.getElementById("button").style.visibility = "visible";
+        var score=$.session.get('score');
+       score= 1 + parseInt(score);
+       if (score>=1) {
+         $.session.set('etat_jeu',2);
+       }
+       else if (score<2 && score>=(-2)) {
+         $.session.set('etat_jeu',1);
+       }
+       else {
+         $.session.set('etat_jeu',0);
+       }
+       $.session.set('score',score);
+       $("body").fadeOut(1000,function(){
+         document.location.href = '../d5_fete/indexV.html';
+       });
   		}
 	}
 }

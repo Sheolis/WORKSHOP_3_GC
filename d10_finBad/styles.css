@@ -1,0 +1,131 @@
+body {
+  width: 1280px;
+  height: 720px;
+}
+
+#environnement{
+  position: absolute;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+#personnages{
+    position: absolute;
+    margin-top: 70px;
+}
+
+.emplacement{
+  position: absolute;
+  width: 520px;
+  height: 650px;
+}
+
+#emplacement_0{z-index:1; }
+#emplacement_1{margin-left: 380px; z-index:2;}
+#emplacement_2{margin-left: 760px; z-index:1;}
+
+#nom_du_locuteur{
+  position: absolute;
+  background-color: black;
+  width: 200px;
+  height: 50px;
+  margin-left: 100px;
+  margin-top: 454px;
+  padding-left: 15px;
+  padding-top: 15px;
+  z-index: 3;
+  color: white;
+  font-size: 25px;
+}
+
+#boite_de_dialogue{
+  position: absolute;
+  background-color: black;
+  background-image: url('../_graph/img/texte.png');
+  width: 1080px;
+  height: 180px;
+  z-index: 4;
+  padding-left: 100px;
+  padding-right: 100px;
+  margin-top: 500px;
+  cursor: pointer;
+  color: white;
+  font-size: 25px;
+  white-space: normal;
+}
+
+#boite_choix_multiples{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 380px;
+  margin-top: 460px;
+  width: 520px;
+  height: 260px;
+  z-index: 3;
+  justify-content: space-between;
+  text-align: center;
+  font-size: 25px;
+  color: white;
+}
+
+#relire_dialogue {
+  background-color: black;
+  position: absolute;
+  width: 130px;
+  height: 40px;
+  margin-top: 660px;
+  margin-left: 1125px;
+  text-align: center;
+  font-size: 25px;
+  color: white;
+  z-index: 4;
+  cursor: pointer;
+}
+
+
+.choix{
+  cursor: pointer;
+  background-color: black;
+}
+
+.hide{
+  display: none;
+}
+
+body{
+  -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein 2s; /* Firefox < 16 */
+        -ms-animation: fadein 2s; /* Internet Explorer */
+         -o-animation: fadein 2s; /* Opera < 12.1 */
+            animation: fadein 2s;
+}
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
