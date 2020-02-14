@@ -6,7 +6,7 @@ var config = {
 		default: 'arcade',
 		arcade: {
 			gravity: {y: 300},
-			debug: false
+			debug: true
 
 		}
 	},
@@ -67,7 +67,7 @@ function create(){
 	this.add.image(640,360,'background');
 
 	murs = this.physics.add.staticGroup();
-	
+
 
 	murs.create(1146,666, 'mur').setScale(1,1);
 	murs.create(1146,642, 'mur').setScale(1,1);
@@ -139,7 +139,7 @@ function create(){
 	//platforms.create(156,600, 'platform').setScale(1,1).setAlpha(0);
 	//platforms.create(156,600, 'platform').setScale(1,1).setAlpha(0);ç
 	platforms.create(156,698, 'platform').setScale(1,1);
-	platforms.create(156,668, 'platform').setScale(1,1);	
+	platforms.create(156,668, 'platform').setScale(1,1);
 	platforms.create(156,200, 'platform').setScale(1,1);
 	platforms.create(156,482, 'platform').setScale(1,1);
 
@@ -180,7 +180,7 @@ function create(){
 	platforms.create(732,600, 'platform').setScale(1,1);
 	platforms.create(732,400, 'platform').setScale(1,1);
 	platforms.create(732,100, 'platform').setScale(1,1);
-	
+
 
 	platforms.create(828,700, 'platform').setScale(1,1);
 	platforms.create(828,600, 'platform').setScale(1,1);
@@ -207,7 +207,7 @@ function create(){
 	platforms.create(1116,500, 'platform').setScale(1,1);
 	platforms.create(1116,400, 'platform').setScale(1,1);
 	platforms.create(1116,100, 'platform').setScale(1,1);
-	
+
 
 
 
@@ -253,7 +253,7 @@ function create(){
 	sol.create(632,720, 'sol').setScale(1,1);
 
 
-	
+
 
 	//Player 1
 
@@ -312,8 +312,8 @@ function create(){
 
 
 
-	// Ennemis 
-	
+	// Ennemis
+
 	tard = this.physics.add.sprite(1100,10,'tard');
 	tard.setCollideWorldBounds(true);
 	tard.setTint(0xff0000);
@@ -337,8 +337,8 @@ function create(){
 	this.physics.add.collider(tard1,platformsR);
 	this.physics.add.collider(tard1,platforms);
 	this.physics.add.collider(tard1,sol);
-	
-	
+
+
 	this.anims.create({
 		key: 'idle_tard',
 		frames: this.anims.generateFrameNumbers('tard', {start: 0, end: 2}),
@@ -353,15 +353,15 @@ function create(){
 		repeat: -1
 	});
 
-	
 
-	
+
+
 
 	//Texte
 
 	gameOverText = this.add.text(410, 350, "La fleur       est pollinisée", {'font':'38px Arial', fill: '#fff'});
 	gameOverText.visible = false
-	
+
 
 
 
@@ -407,7 +407,7 @@ function create(){
 
 	this.physics.add.collider(fleursJ, sol);
 	fleursJ.setTint(0xffff00);
-	this.physics.add.collider(fleursJ, murs);
+	this.physics.add.collider(fleursJ, platforms);
 	this.physics.add.overlap(fleursJ, player, collectFleurJ, null, this);
 
 
@@ -416,10 +416,10 @@ function create(){
 		repeat: 0,
 		setXY: {x: 640, y: 600, stepX: 70}
 	});
-	
+
 	this.physics.add.collider(fleursV, sol);
 	fleursV.setTint(0x00ff00);
-	this.physics.add.collider(fleursV, murs);
+	this.physics.add.collider(fleursV, platforms);
 	this.physics.add.overlap(fleursV, playerj, collectFleurV, null, this);
 
 	fleurs = this.physics.add.group({
@@ -496,17 +496,17 @@ function update() {
 	}
 
 
-	
+
 
 	if (keys.A.isUp){
 		attack = 1;
 	}
 
-	
+
 	if ( Phaser.Input.Keyboard.JustDown(boutonFeu)) {
 		tirer(player, direction);
-	}	
-	
+	}
+
 
 	//Déplacement du Joueur 2
 
@@ -534,7 +534,7 @@ function update() {
 
 
 
-	
+
 
 	if (cursors.left.isDown){
 		tard.anims.play('left', true);
