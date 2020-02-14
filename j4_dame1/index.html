@@ -326,8 +326,42 @@
                    if(integ(board[i][j]) == 1) moi = true;
                 }
              }
-             if (!comp) message("Tu as gagné!");
-             if (!moi) message("Arg! Game over.");
+             if (!comp){
+                 message("Tu as gagné!");
+                 var score=$.session.get('score');
+             		score= 1 + parseInt(score);
+             		if (score>=1) {
+             			$.session.set('etat_jeu',2);
+             		}
+             		else if (score<2 && score>=(-2)) {
+             			$.session.set('etat_jeu',1);
+             		}
+             		else {
+             			$.session.set('etat_jeu',0);
+             		}
+             		$.session.set('score',score);
+             		$("body").fadeOut(1000,function(){
+             	    document.location.href = '../d4_dame1/indexV.html';
+             	  });
+             }
+             if (!moi) {
+               message("Arg! Game over.");
+               var score=$.session.get('score');
+              score= parseInt(score) - 2;
+              if (score>=1) {
+                $.session.set('etat_jeu',2);
+              }
+              else if (score<2 && score>=(-2)) {
+                $.session.set('etat_jeu',1);
+              }
+              else {
+                $.session.set('etat_jeu',0);
+              }
+              $.session.set('score',score);
+              $("body").fadeOut(1000,function(){
+                document.location.href = '../d4_dame1/indexD.html';
+              });
+             }
              game_is_over = (!comp || !moi)
              return (!game_is_over);
           }
