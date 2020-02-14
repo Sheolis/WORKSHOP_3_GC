@@ -6,7 +6,7 @@ var config = {
 		default: 'arcade',
 		arcade: {
 			gravity: {y: 300},
-			debug: true
+			debug: false
 
 		}
 	},
@@ -33,7 +33,7 @@ function init(){
 	var text;
 	var timedEvent;
 	var cote;
-	
+
 }
 
 function preload(){
@@ -45,14 +45,22 @@ function preload(){
 	this.load.image('ard','assets/instrument_dblcroche.png');
 	this.load.image('tard1','assets/instrument_doublecroche.png');
 
-
+	{
+	    this.load.audio('theme', [
+	        'assets/audio/berceuse.ogg',
+	        'assets/audio/berceuse.mp3'
+	    ]);
+	}
 
 }
 
 function create(){
-
+	{
+	    var music = this.sound.add('theme');
+	    music.play();
+	}
 	//Monde
-	
+
 	this.add.image(500,300,'background');
 
 
@@ -72,14 +80,14 @@ function create(){
 	cursors = this.input.keyboard.createCursorKeys();
 
 
-	// Ennemis 
+	// Ennemis
 
 	playerj = this.physics.add.sprite(1000,450,'persoj');
 	playerj.setBounce(0.02);
 	playerj.body.setGravityY(-300);
 
-	
-	
+
+
 	tard = this.physics.add.sprite(1500,100,'tard');
 	tard.setBounce(0.02);
 	tard.body.setGravityY(-300);
@@ -101,7 +109,7 @@ function create(){
 	tard4 = this.physics.add.sprite(3500,300,'persoj');
 	tard4.setBounce(0.02);
 	tard4.body.setGravityY(-300);
-	
+
 
 	tard5 = this.physics.add.sprite(4000,200,'tard1');
 	tard5.setBounce(0.02);
@@ -127,10 +135,10 @@ function create(){
 	ard1.setBounce(0.02);
 	ard1.body.setGravityY(-300);
 
-	
+
 	text = this.add.text(32, 32, "VOUS AVEZ FAIT UNE FAUSSE NOTE", {'font': '40px', fill: '#000'});
 	timedEvent = this.time.addEvent({ delay: 800, callback: null, callbackScope: this, repeat: 30 });
-	
+
 	this.physics.add.overlap(player, playerj, collectNoteA, null, this);
 	this.physics.add.overlap(player, tard, collectNoteB, null, this);
 	this.physics.add.overlap(player, tard1, collectNoteC, null, this);
@@ -195,7 +203,7 @@ function create(){
 	function collectNoteJ(player, tard8){
 	tard8.destroy(true);
 	}
-	
+
 
 	function collectNote(player, ard){
 	ard.destroy(true);
@@ -288,7 +296,7 @@ function update() {
 		this.scene.restart();﻿﻿﻿﻿ // restart current scene
 	}
 
-	
+
 	if (cursors.up.isDown){
 			player.setVelocityY(-210);
 			player.setFlipX(false);
@@ -303,21 +311,21 @@ function update() {
 	else{
 		player.setVelocityX(0);
 		player.setVelocityY(0);
-	
+
 	}
 
 
-	
-	
+
+
 
 	//Déplacement du Joueur 2
 
 
-	
+
 	if (playerj.x >= 90){
 		this.tweens.add({
 	    	targets: playerj,
-	   	 	
+
 	   	 	x :-1000,
 	    	// alpha: { start: 0, to: 1 },
 	    	// alpha: 1,
@@ -327,7 +335,7 @@ function update() {
 	    	repeat: 0,            // -1: infinity
 	    	yoyo: false
 		});
-		
+
 
 
 	}
@@ -335,7 +343,7 @@ function update() {
 	if (tard.x >= 90){
     	this.tweens.add({
 	    	targets: tard,
-	   	 	
+
 	   	 	x : -1000,
 	    	// alpha: { start: 0, to: 1 },
 	    	// alpha: 1,
@@ -354,7 +362,7 @@ function update() {
 	if (tard1.x >= 90){
     	this.tweens.add({
 	    	targets: tard1,
-	   	 	
+
 	   	 	x : -1000,
 	    	// alpha: { start: 0, to: 1 },
 	    	// alpha: 1,
@@ -372,7 +380,7 @@ function update() {
 	if (tard2.x >= 90){
     	this.tweens.add({
 	    	targets: tard2,
-	   	 	
+
 	   	 	x : -1000,
 	    	// alpha: { start: 0, to: 1 },
 	    	// alpha: 1,
@@ -383,14 +391,14 @@ function update() {
 	    	yoyo: false
 		});
 
-		
+
 
 	}
 
 	if (tard3.x >= 90){
     	this.tweens.add({
 	    	targets: tard3,
-	   	 	
+
 	   	 	x : -1000,
 	    	// alpha: { start: 0, to: 1 },
 	    	// alpha: 1,
@@ -401,7 +409,7 @@ function update() {
 	    	yoyo: false
 		});
 
-		
+
 
 	}
 
@@ -409,7 +417,7 @@ function update() {
 	if (tard4.x >= 90){
     	this.tweens.add({
 	    	targets: tard4,
-	   	 	
+
 	   	 	x : -1000,
 	    	// alpha: { start: 0, to: 1 },
 	    	// alpha: 1,
@@ -420,14 +428,14 @@ function update() {
 	    	yoyo: false
 		});
 
-		
+
 
 	}
 
 	if (tard5.x >= 90){
     	this.tweens.add({
 	    	targets: tard5,
-	   	 	
+
 	   	 	x : -1000,
 	    	// alpha: { start: 0, to: 1 },
 	    	// alpha: 1,
@@ -438,14 +446,14 @@ function update() {
 	    	yoyo: false
 		});
 
-		
+
 
 	}
 
 	if (tard6.x >= 90){
     	this.tweens.add({
 	    	targets: tard6,
-	   	 	
+
 	   	 	x : -1000,
 	    	// alpha: { start: 0, to: 1 },
 	    	// alpha: 1,
@@ -456,14 +464,14 @@ function update() {
 	    	yoyo: false
 		});
 
-		
+
 
 	}
 
 	if (tard8.x >= 90){
     	this.tweens.add({
 	    	targets: tard8,
-	   	 	
+
 	   	 	x : -1000,
 	    	// alpha: { start: 0, to: 1 },
 	    	// alpha: 1,
@@ -474,14 +482,14 @@ function update() {
 	    	yoyo: false
 		});
 
-		
+
 
 	}
 
 	if (ard.x >= 90){
     	this.tweens.add({
 	    	targets: ard,
-	   	 	
+
 	   	 	x : -1000,
 	    	// alpha: { start: 0, to: 1 },
 	    	// alpha: 1,
@@ -492,14 +500,14 @@ function update() {
 	    	yoyo: false
 		});
 
-		
+
 
 	}
 
 	if (ard1.x >= 90){
     	this.tweens.add({
 	    	targets: ard1,
-	   	 	
+
 	   	 	x : -1000,
 	    	// alpha: { start: 0, to: 1 },
 	    	// alpha: 1,
@@ -510,7 +518,7 @@ function update() {
 	    	yoyo: false
 		});
 
-		
+
 
 	}
 
