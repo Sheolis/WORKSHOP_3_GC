@@ -35,7 +35,7 @@ var fenetre = window.setInterval(function(){
    }
    $.session.set('score',score);
    $("body").fadeOut(1000,function(){
-     document.location.href = '../d4_dame1/indexD.html';
+     document.location.href = '../d5_fete/indexD.html';
    });
   }
 
@@ -61,7 +61,7 @@ function drop(ev) {
        }
        $.session.set('score',score);
        $("body").fadeOut(1000,function(){
-         document.location.href = '../d4_dame1/indexV.html';
+         document.location.href = '../d5_fete/indexV.html';
        });
   		}
 	}
