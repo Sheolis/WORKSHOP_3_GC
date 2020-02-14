@@ -543,6 +543,7 @@ function update() {
 		this.physics.pause();
 
 	}
+
 if (win==10) {
 	anti_loose = 1;
 	var score_p=$.session.get('score');
