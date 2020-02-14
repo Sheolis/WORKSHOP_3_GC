@@ -18,3 +18,7 @@ body {
   margin-left: 490px;
   margin-top: 335px;
 }
+
+.hide{
+  display: none;
+}
