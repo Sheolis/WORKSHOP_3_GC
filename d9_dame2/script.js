@@ -246,8 +246,9 @@ $('#boite_de_dialogue').on('click',function(){
           dialogue_ligne=1;
         }
         else if(dialogue_liste[dialogue_index][dialogue_ligne][0]=='fin') {
-          document.location.href = indexhtml_suivant;
-
+          $("body").fadeOut(1000,function(){
+            document.location.href = indexhtml_suivant;
+          });
         }
         else if(dialogue_ligne<dialogue_liste[dialogue_index].length){
             print_personnage(dialogue_index,dialogue_ligne);
