@@ -6,7 +6,7 @@ var config = {
 		default: 'arcade',
 		arcade: {
 			gravity: {y: 300},
-			debug: true
+			debug: false
 
 		}
 	},
@@ -19,6 +19,9 @@ var config = {
 
 var game = new Phaser.Game(config);
 var score = 0;
+var timedEvent;
+var score_win;
+var score_loose;
 
 
 
@@ -33,16 +36,11 @@ function init(){
 	var cursors;
 	var gameOverText;
 	var gameOverTextj;
-
-
-	var text;
-	var timedEvent;
 	var fleurs
 	var fleursV
 	var fleursR
 	var fleursB
 	var fleursJ
-
 }
 
 function preload(){
@@ -63,6 +61,10 @@ function preload(){
 }
 
 function create(){
+	score_win = 1 + parseInt( $.session.get('score') );
+	score_loose = parseInt( $.session.get('score') - 2 );
+
+	timedEvent = this.time.addEvent({ delay: 1000, repeat: 60 });
 
 	this.add.image(640,360,'background');
 
@@ -378,9 +380,6 @@ function create(){
 		setXY: {x: 640, y: 600, stepX: 70}
 	});
 
-
-	text = this.add.text(32, 32);
-	timedEvent = this.time.addEvent({ delay: 800, callback: setbomb, callbackScope: this, repeat: 90 });
 	this.physics.add.collider(fleursR, platforms);
 	fleursR.setTint(0xff0000);
 	this.physics.add.collider(fleursR, sol);
@@ -407,7 +406,7 @@ function create(){
 
 	this.physics.add.collider(fleursJ, sol);
 	fleursJ.setTint(0xffff00);
-	this.physics.add.collider(fleursJ, platforms);
+	this.physics.add.collider(fleursJ, murs);
 	this.physics.add.overlap(fleursJ, player, collectFleurJ, null, this);
 
 
@@ -419,7 +418,7 @@ function create(){
 
 	this.physics.add.collider(fleursV, sol);
 	fleursV.setTint(0x00ff00);
-	this.physics.add.collider(fleursV, platforms);
+	this.physics.add.collider(fleursV, murs);
 	this.physics.add.overlap(fleursV, playerj, collectFleurV, null, this);
 
 	fleurs = this.physics.add.group({
@@ -432,7 +431,6 @@ function create(){
 	this.physics.add.collider(fleurs, platforms);
 	this.physics.add.collider(fleurs, sol);
 	this.physics.add.collider(fleurs, murs);
-
 
 
 
@@ -579,19 +577,43 @@ function update() {
 
 	}
 
-
-
-
-	text.setText('\nTemps restant: ' + timedEvent.repeatCount);
-
 	if(timedEvent.repeatCount==0){
-		//condition de sortie du jeu defaite
+		var score_p=$.session.get('score');
+		score_p = score_loose;
+		if (score_p>=2) {
+			$.session.set('etat_jeu',2);
+		}
+		else if (score_p<2 && score_p>=(-2)) {
+			$.session.set('etat_jeu',1);
+		}
+		else {
+			$.session.set('etat_jeu',0);
+		}
+		$.session.set('score',score_p);
+		$("body").fadeOut(1000,function(){
+			document.location.href = '../d7_botanist/index.html';
+		});
 	}
 
 	if (score == 40){
 		gameOverText.visible = true;
 		this.physics.pause();
-	}
 
+		var score_p=$.session.get('score');
+		score_p = score_win;
+		if (score_p>=2) {
+			$.session.set('etat_jeu',2);
+		}
+		else if (score_p<2 && score_p>=(-2)) {
+			$.session.set('etat_jeu',1);
+		}
+		else {
+			$.session.set('etat_jeu',0);
+		}
+		$.session.set('score',score_p);
+		$("body").fadeOut(1000,function(){
+			document.location.href = '../d7_botanist/index.html';
+		});
+	}
 
 }
