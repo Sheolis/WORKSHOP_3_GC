@@ -18,7 +18,8 @@ var config = {
 };
 
 var game = new Phaser.Game(config);
-
+var score_win;
+var score_loose;
 
 function init(){
 	var platforms;
@@ -38,7 +39,7 @@ function init(){
 
 
 function preload(){
-	this.load.image('background','_graph/img/decors/camion_2.png');
+	this.load.image('background','_graph/img/decors/camion_1.png');
 	this.load.image('cote', '_graph/img/assets_jeu/carton_côté.png');
 	this.load.image('cote1', '_graph/img/assets_jeu/carton_côté.png');
 	this.load.image('sol', '_graph/img/assets_jeu/carton_sol.png');
@@ -52,8 +53,8 @@ function preload(){
 }
 
 function create(){
-
-
+score_win = 1 + parseInt( $.session.get('score') );
+score_loose = parseInt( $.session.get('score') - 2 );
 // Player équivaut aux boites que l'on déplacera
 
 	//Monde
@@ -69,7 +70,7 @@ function create(){
 	sol = this.physics.add.staticGroup();
 	sol.create(300,720, 'sol').setScale(2).refreshBody();
 	sol.create(300,-30, 'sol').setScale(2).refreshBody();
-	
+
 
 	limite = this.physics.add.staticGroup();
 	limite.create(288,270, 'sol').setScale(0.6,0.7).refreshBody();
@@ -722,11 +723,43 @@ function update() {
 
 										if(playerA.y < 280 && playerA.body.touching.down){
 											gameOverperduText.visible = true;
+
+											var score=$.session.get('score');
+											score = score_loose;
+											if (score>=1) {
+												$.session.set('etat_jeu',2);
+											}
+											else if (score<2 && score>=(-2)) {
+												$.session.set('etat_jeu',1);
+											}
+											else {
+												$.session.set('etat_jeu',0);
+											}
+											$.session.set('score',score);
+											$("body").fadeOut(1000,function(){
+										    document.location.href = '../d6_carton/indexD.html';
+										  });
 										}
 
 										if(playerA.y>300){
 											gameOvergagnéText.visible = true;
 											this.physics.pause(true);
+
+											var score=$.session.get('score');
+											score = score_win;
+											if (score>=1) {
+												$.session.set('etat_jeu',2);
+											}
+											else if (score<2 && score>=(-2)) {
+												$.session.set('etat_jeu',1);
+											}
+											else {
+												$.session.set('etat_jeu',0);
+											}
+											$.session.set('score',score);
+											$("body").fadeOut(1000,function(){
+										    document.location.href = '../d6_carton/indexV.html';
+										  });
 										}
 									}
 								}
