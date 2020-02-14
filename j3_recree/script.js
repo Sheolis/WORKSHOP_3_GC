@@ -44,8 +44,6 @@ function preload(){
 
 function create(){
 	score_win = 1 + parseInt( $.session.get('score') );
-	alert(score_win);
-
 
 
 	this.add.image(640,360,'background');
