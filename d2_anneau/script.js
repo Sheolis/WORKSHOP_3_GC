@@ -1,4 +1,4 @@
-var indexhtml_suivant='../j3_recree/index.html';
+var indexhtml_suivant='../j3_recree/tuto.html';
 var etat_jeu=$.session.get('etat_jeu');
 var joueur = $.session.get('nom_joueur');
 
@@ -12,6 +12,8 @@ var pseudo_liste=[
     'Professeur',
     '',
     '',
+    '',
+    '',
     ''
   ];
 var perso_asset_liste=[
@@ -23,7 +25,9 @@ var perso_asset_liste=[
   ['', 0],
   ['mere_30ans_', 0],
   ['pere_30ans_', 2],
-  ['copain_d_enfance_12ans_', 1]
+  ['copain_d_enfance_12ans_', 1],
+  ['', 0],
+  ['', 0]
 ]; //Contient le nom d'asset des perso et le slot d'affichage à l'écran de l'image
 var decors_liste=[['chambre_', 0], ['cuisine_', 3], ['chambre_', 6], ['cuisine_', 12], ['recree_', 14]];
 var dialogue_liste=[ // contient la liste des dialogues [le dialogue1[ligne de dialogue, l'index du nom(pseudo_list) de celui qui parle], le dialogue2 ...]
@@ -301,9 +305,11 @@ print_ligne_dialogue(dialogue_index,0);//appelle la première ligne du premier d
 
 $('#boite_de_dialogue').on('click',function(){
     if ($('#dialogue').html().length < dialogue_liste[dialogue_index][dialogue_ligne-1][0].length) { //permet d'accelerer le dialogue si il n'est pas fini
-        if ( perso_asset_liste[dialogue_liste[dialogue_index][dialogue_ligne][1]][0] != '') {
-            stop_anim('#emplacement_'+perso_asset_liste[dialogue_liste[dialogue_index][dialogue_ligne-1][1]][1]);
-        }
+      if (dialogue_liste[dialogue_index][dialogue_ligne][0]!="fin" && dialogue_liste[dialogue_index][dialogue_ligne][0]!="choix"){
+          if ( perso_asset_liste[dialogue_liste[dialogue_index][dialogue_ligne][1]][0] != '') {
+              stop_anim('#emplacement_'+perso_asset_liste[dialogue_liste[dialogue_index][dialogue_ligne-1][1]][1]);
+          }
+      }
         window.clearInterval(intervalId);
         $('#dialogue').html('');
         $('#dialogue').html(dialogue_liste[dialogue_index][dialogue_ligne-1][0]);

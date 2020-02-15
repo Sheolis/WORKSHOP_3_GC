@@ -26,31 +26,36 @@ body {
 
 #nom_du_locuteur{
   position: absolute;
-  background-color: black;
+  background-image: url('../_graph/img/name.png');
+  background-repeat: no-repeat;
   width: 200px;
   height: 50px;
   margin-left: 100px;
-  margin-top: 454px;
+  margin-top: 460px;
   padding-left: 15px;
   padding-top: 15px;
-  z-index: 3;
+  z-index: 5;
   color: white;
   font-size: 25px;
+  text-shadow: black 1px 1px;
+
 }
 
 #boite_de_dialogue{
   position: absolute;
-  background-color: black;
   background-image: url('../_graph/img/texte.png');
+  background-repeat: no-repeat;
   width: 1080px;
   height: 180px;
   z-index: 4;
+  padding-top: 25px;
   padding-left: 100px;
   padding-right: 100px;
   margin-top: 500px;
   cursor: pointer;
   color: white;
   font-size: 25px;
+  text-shadow: black 1px 1px;
   white-space: normal;
 }
 
@@ -68,6 +73,8 @@ body {
   text-align: center;
   font-size: 25px;
   color: white;
+}
+
 }
 
 #relire_dialogue {
@@ -94,18 +101,6 @@ body {
   display: none;
 }
 
-#again{
-  position: relative;
-  z-index: 2;
-  width : 200px;
-  height : 50px;
-  background-color: green;
-  color: white;
-}
-
-video{
-  z-index: 1;
-}
 body{
   -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
        -moz-animation: fadein 2s; /* Firefox < 16 */

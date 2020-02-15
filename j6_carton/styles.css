@@ -38,3 +38,12 @@ body{
     from { opacity: 0; }
     to   { opacity: 1; }
 }
+
+#image_tuto {
+  background-image: url('tuto/carton.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+  width: 1280px;
+  height: 720px;
+}

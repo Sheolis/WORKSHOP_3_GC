@@ -28,7 +28,7 @@ p.namo-list {
   font-family:Times New Roman;
 }
 
-p.namo-sublist { 
+p.namo-sublist {
   color:rgb(145,102,23);
   font-size:10pt;
   font-family:Times New Roman;
@@ -77,4 +77,13 @@ body{
 @-o-keyframes fadein {
     from { opacity: 0; }
     to   { opacity: 1; }
+}
+
+#image_tuto {
+  background-image: url('tuto/dame.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+  width: 1280px;
+  height: 720px;
 }

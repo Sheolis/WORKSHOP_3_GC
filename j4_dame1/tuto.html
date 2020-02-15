@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HUMANITEE</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <div id='image_tuto'> </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $("#image_tuto").on('click' , function(){
+      $("body").fadeOut(1000,function(){
+        document.location.href = 'index.html';
+      });
+    })
+</script>
+</html>
